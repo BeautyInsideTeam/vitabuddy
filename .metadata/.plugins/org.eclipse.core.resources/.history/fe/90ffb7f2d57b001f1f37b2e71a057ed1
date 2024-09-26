@@ -1,0 +1,4 @@
+CREATE TABLE Ingredient_Supplement(
+	Sup_ID INTEGER NOT NULL PRIMARY KEY,
+	Ingredient_ID VARCHAR2(30) NOT NULL
+);
