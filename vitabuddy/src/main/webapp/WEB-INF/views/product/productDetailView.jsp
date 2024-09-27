@@ -27,7 +27,7 @@
 			<!-- 별점 -->
 			<div class="rating">
 			<c:forEach var="i" begin="1" end="5">
-	            <i class="${i <= product.rating ? fa-solid fa-star : fa-regular fa-star}"></i>
+	            <i class="${i <= product.rating ? 'fa-solid fa-star' : 'fa-regular fa-star'}"></i>
 	        </c:forEach>
 	        </div>
 	        
