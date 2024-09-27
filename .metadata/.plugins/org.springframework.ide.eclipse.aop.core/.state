@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="VitaBuddy"/>
+<aop-project name="checkDB_2"/>
+<aop-project name="vitabuddy"/>
 <aop-project name="checkDB"/>
 </aop-reference-model>
