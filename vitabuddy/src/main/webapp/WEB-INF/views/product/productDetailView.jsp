@@ -116,14 +116,10 @@
 					<br>
 					
 					<!-- 해시태그 -->
-						<select id="hashtag" name="tagSelected">
-						    <option value="a" ${review.hashtag == a ? 'selected' : ''}>a</option>
-						    <option value="b" ${review.hashtag == b ? 'selected' : ''}>b</option>
-						    <option value="c" ${review.hashtag == c ? 'selected' : ''}>c</option>
-						    <option value="d" ${review.hashtag == d ? 'selected' : ''}>d</option>
-						    <option value="e" ${review.hashtag == e ? 'selected' : ''}>e</option>
-						    <option value="d" ${review.hashtag == f ? 'selected' : ''}>f</option>
-						    <option value="e" ${review.hashtag == g ? 'selected' : ''}>g</option>
+						<select id="hashtag" name="quantity">
+						<c:forEach var="tags" items="${taglist}">
+						    <option value="${tag.tagNo}" ${tag.tag == tag.tagNo ? 'selected' : ''}>a</option>
+						</c:forEach>
 						</select>
 				
 		       		<!-- 리뷰 내용 -->
