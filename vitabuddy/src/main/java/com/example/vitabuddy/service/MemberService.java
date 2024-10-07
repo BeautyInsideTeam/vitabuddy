@@ -1,21 +1,11 @@
 package com.example.vitabuddy.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.example.vitabuddy.dao.IMemberDAO;
 import com.example.vitabuddy.model.MemberVO;
 
 @Service
-public class MemberService implements UserDetailsService {
+public class MemberService {
 
     private final IMemberDAO memberDAO;
 
@@ -23,18 +13,17 @@ public class MemberService implements UserDetailsService {
         this.memberDAO = memberDAO;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        MemberVO member = memberDAO.findByUsername(userId);
-
+    public boolean authenticate(String username, String password) {
+        MemberVO member = memberDAO.findByUsername(username);
         if (member == null) {
-            throw new UsernameNotFoundException("User not found with username: " + userId);
+            return false;
         }
+        // 비밀번호 검증 로직 (예: 암호화된 비밀번호와 비교)
+        return password.equals(member.getUserPwd()); // 단순 비교
+    }
 
-        // 권한 설정 (ROLE_USER만 설정)
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-        return new User(member.getUserId(), member.getUserPwd(), authorities);
+    // 사용자 정보를 로드하는 메서드 (JWTFilter에서 사용)
+    public MemberVO loadUserByUsername(String username) {
+        return memberDAO.findByUsername(username);
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.example.vitabuddy.service.MemberService;
+import com.example.vitabuddy.service.UserDetailService;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
@@ -20,11 +20,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public class JWTFilter extends OncePerRequestFilter {
 
     private final JWTUtil jwtUtil;
-    private final MemberService memberService;  // MemberService 추가
+    private final UserDetailService userDetailService;  
 
-    public JWTFilter(JWTUtil jwtUtil, MemberService memberService) {
+    public JWTFilter(JWTUtil jwtUtil, UserDetailService userDetailService) {
         this.jwtUtil = jwtUtil;
-        this.memberService = memberService;  // MemberService 주입
+        this.userDetailService = userDetailService;  
     }
 
     @Override
@@ -71,7 +71,7 @@ public class JWTFilter extends OncePerRequestFilter {
         
         
         // 사용자 정보 로드
-        UserDetails userDetails = memberService.loadUserByUsername(username);
+        UserDetails userDetails = userDetailService.loadUserByUsername(username);
 
         if (userDetails == null) {
             System.out.println("user not found");

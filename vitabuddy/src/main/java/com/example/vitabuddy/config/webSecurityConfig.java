@@ -17,7 +17,7 @@ import com.example.vitabuddy.jwt.JWTFilter;
 import com.example.vitabuddy.jwt.JWTUtil;
 import com.example.vitabuddy.jwt.loginFilter;
 import com.example.vitabuddy.jwt.logoutFilter;
-import com.example.vitabuddy.service.MemberService;
+import com.example.vitabuddy.service.UserDetailService;
 import com.example.vitabuddy.service.RefreshService;
 
 @Configuration
@@ -26,13 +26,13 @@ public class webSecurityConfig {
 
     private final AuthenticationConfiguration authenticationConfiguration;
     private final JWTUtil jwtUtil;
-    private final MemberService memberService;
+    private final UserDetailService userDetailService;
     private final RefreshService refreshService;
 
-    public webSecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil, MemberService memberService, RefreshService refreshService) {
+    public webSecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil, UserDetailService userDetailService, RefreshService refreshService) {
         this.authenticationConfiguration = authenticationConfiguration;
         this.jwtUtil = jwtUtil;
-        this.memberService = memberService;
+        this.userDetailService = userDetailService;
         this.refreshService = refreshService;
     }
 
@@ -59,7 +59,7 @@ public class webSecurityConfig {
             .requestMatchers("/profile", "/order", "/cart").authenticated()
             .anyRequest().authenticated())                // 그 외 모든 요청은 인증 필요
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .addFilterBefore(new JWTFilter(jwtUtil, memberService), loginFilter.class)  // 필터 추가
+            .addFilterBefore(new JWTFilter(jwtUtil, userDetailService), loginFilter.class)  // 필터 추가
         	.addFilterAt(new loginFilter(authenticationManager(authenticationConfiguration), jwtUtil, refreshService), UsernamePasswordAuthenticationFilter.class)
         	.addFilterBefore(new logoutFilter(jwtUtil, refreshService), LogoutFilter.class);
         return http.build();

@@ -11,6 +11,8 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/intro.css'/>">
 <script src="<c:url value='/js/login.js'/>"></script>
+<script src="<c:url value='/js/jquery-3.6.0.min.js'/>"></script>
+<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 </head>
 <body>
 	<div id="wrap">

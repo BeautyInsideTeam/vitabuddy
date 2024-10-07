@@ -7,23 +7,23 @@ import com.example.vitabuddy.dao.IRefreshDAO;
 import com.example.vitabuddy.model.RefreshVO;
 
 @Service
-public class RefreshService implements IRefreshService {
+public class RefreshService {
 
 	@Autowired
 	private IRefreshDAO dao;
 
-	@Override
+	
 	public Boolean existsByRefresh(String refreshToken) {
 		return dao.existsByRefresh(refreshToken);
 	}
 
-	@Override
+	
 	public void deleteByRefresh(String refreshToken) {
 		dao.deleteByRefresh(refreshToken);
 	}
 
 	// 여기에서 DAO를 통해 refreshToken을 저장하는 로직을 구현
-	@Override
+	
 	public void saveRefreshToken(RefreshVO refreshVO) {
 		dao.saveRefreshToken(refreshVO);
 	}
