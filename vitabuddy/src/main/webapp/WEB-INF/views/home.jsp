@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  	<link rel="stylesheet" type="text/css" href="<c:url value='/css/home.css'/>">
-	<script src="<c:url value='/js/searchHome.js'/>"></script>
-	<%-- <c:import url="/WEB-INF/views/layout/head.jsp" />	  --%>
+	<c:import url="/WEB-INF/views/layout/head.jsp" />	 
 </head>
 <body>
 <div id="wrap">
@@ -19,7 +18,7 @@
 	
 	<!-- 검색창 -->
 	<div class="search">
-		<form class="searchBox" id="searchForm" method="get" action="/product/products/search">
+		<form class="searchBox" id="searchForm" method="get">
 			<input type="text" name="keyword" id="keyword" class="searchTxt" placeholder="Search">
 			<button type="submit" class="searchBtn"><!-- 돋보기 아이콘 -->
 			<i class="fa-solid fa-magnifying-glass"></i>
@@ -50,7 +49,7 @@
 	</div>
 </section>	
 
-<%-- <c:import url="/WEB-INF/views/layout/footer.jsp" /> --%>
+<c:import url="/WEB-INF/views/layout/footer.jsp" />
 
 </div>
 </body>

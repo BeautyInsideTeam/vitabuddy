@@ -1,0 +1,124 @@
+/* 인트로 이미지 설정 */
+
+#wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+	overflow:hidden;
+}
+
+/* 인트로 이미지 설정 */
+.introTitle img {
+	opacity:50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: 1;
+}
+
+/* 메인 타이틀 */
+.main-title {
+    position: relative;
+    z-index: 2; /* 이미지보다 위에 나타나도록 */
+    color: #583b1f;
+    font-size: 70px;
+    font-weight: 800;
+    text-align: center;
+    margin-top: 5vh;
+}
+
+section div {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 20px;
+    align-items: center;
+}
+
+/* 라벨 왼쪽 정렬 */
+label {
+    display: block;
+    text-align: left; /* 왼쪽 정렬 */
+    margin-bottom: 5px; /* 약간의 여백 */
+}
+
+/* input 필드의 중앙 정렬 */
+.loginForm input.formTxt {
+    display: block;
+    margin: 0 auto; /* 중앙 정렬 */
+    width: 100%; /* 너비 조정 */
+    max-width: 600px; /* 최대 너비 제한 */
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 15px;
+    border: none;
+    line-height: 30px;
+    color: #583b1f;
+    background-color: #f2f2f2; /* 배경색 (선택 사항) */
+}
+
+/* 로그인 폼 중앙 정렬 */
+.loginForm {
+    width: 100%; /* 폼 너비를 100% */
+    max-width: 500px; 
+    margin: 30px auto; 
+    padding: 20px;
+    text-align: center;
+    color: #583b1f;
+    border-radius: 20px;
+    margin-bottom:20px;
+}
+
+/* 로그인 버튼 중앙 정렬 */
+.loginForm #loginSubmit {
+    width: 100px;
+    height: 40px;
+    padding: 10px;
+    display: block;
+    float: right;
+}
+
+.btn{
+	margin-top:10px;
+}
+
+.btn {
+  max-width: 150px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 300;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btnFilled{
+	width:150px;
+	background-color:#583b1f;
+	color:#e5e0da;
+}
+
+.btnUnfilled{
+	width:150px;
+	background-color:#e5e0da;
+	color:#583b1f;
+	border: solid 1.5px #583b1f; 
+}
+
+
+/* 버튼 hover */
+.btnFilled:hover {
+    background-color: #71543d; 
+    transition: background-color 0.3s ease;
+}
+
+
