@@ -45,25 +45,22 @@
 			</div>
 			
 			<div class = "right">
-			<div class="zipcode">
-				우편번호 입력<button type ="button" name="searchBtn" class="btn" >우편번호 찾기</button><BR>
-					<input type="text" name="userZipcode" id="userZipcode"/>
-					
-			</div>
-				
-				<label>주소 입력</label>
-				<input type="text" name="userAddress1" id="userAddress1"required/>
-				<label>상세 주소 입력</label>
-				<input type="text" name="userAddress2" id="userAddress2"required/>
-				</form>
+				<div class="zipcode">
+					우편번호 입력<button type ="button" name="searchBtn" class="btn" >우편번호 찾기</button><BR>
+					<input type="text" name="userZipcode" id="userZipcode"/>		
+					<label>주소 입력</label>
+					<input type="text" name="userAddress1" id="userAddress1"required/>
+					<label>상세 주소 입력</label>
+					<input type="text" name="userAddress2" id="userAddress2"required/>
+				</div>
 			</div>
 			
 			
-	</form>
-	<button class="submit-btn" type="submit" onclick="changeOn()" id="submitBtn" >회원가입</button>
-</div>
-
-<c:import url="/WEB-INF/views/layout/footer.jsp" /> 
+		</form>
+	
+		<button class="submit-btn" type="submit" onclick="changeOn()" id="submitBtn" >회원가입</button>
+	</div>
+<c:import url="footer.jsp" /> 
 </body>
 <script type="text/javascript">
 
