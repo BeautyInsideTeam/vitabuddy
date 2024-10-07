@@ -18,7 +18,7 @@
 	<form>
 	<div class = "right">
 		 <label>이름</label>
-         <input type="text">
+         <input type="text" value=" ${getMember.getUserName() }" readonly />
 		 <label>복용 중인 영양제</label>
          <input type="text">
 		 <label>올바른 영양제 복용법</label>
@@ -89,7 +89,7 @@
 	</form>
 </div>
 
- <button class="submit-btn" href='infoChange.jsp'">회원 정보 수정</button>
+ <button class="submit-btn" onclick="location.href='infoChange.jsp'">회원 정보 수정</button>
 <c:import url="/WEB-INF/views/layout/footer.jsp" /> 
 </body>
 </html>
