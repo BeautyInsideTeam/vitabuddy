@@ -5,10 +5,12 @@
 	<head>
 		<script src="https://kit.fontawesome.com/567f0760c2.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="DYcommon.css" >
+		<link rel="stylesheet" href="DYheader.css" >
+		
 		<meta charset="UTF-8">
 		<title>비타버디에 오신 것을 환영합니다!</title>
 	<body>
-		<%-- <%@ include file="top.jsp" %> --%><!-- 탑 경로  및 명령어 수정 -->
+		<%@ include file="DYtop.jsp" %><!-- 탑 경로  및 명령어 수정 -->
 		<section id="wrap">
 			<div class="container">
 				<div class="headers">
@@ -20,6 +22,11 @@
 							<div class="horizontal_box">
 								<label>이름</label>
 								<input type="text" name="userName" required/>
+								<label>아이디</label>
+								<div class="box_rowContents">
+									<input type="text" name="userId" required/>
+									<button type ="button" name="searchBtn">중복 확인</button>
+								</div>
 								<label>비밀번호 </label>
 			            		<input type="password"  name="userPwd" id="pw1" oninput="pwCheck()" required />
 			            		<p id="pwLeng"></p>
@@ -68,7 +75,8 @@
 		<%@ include file="footer.jsp" %><!-- 푸터 삽입 -->
 	</body>
 </html>
-<script type="text/javascript">
+<script type="text/javascript" src="register.js"></script>
+<!-- <script type="text/javascript">
 		var pwd = 0;
 		function pwCheck(){
 			var pw3 = document.getElementById('pw1').value ;
@@ -109,7 +117,7 @@
 		
 		function changeOn(){
 			if(email ==1 && pwd==1){
-				alert('변경됐습니다.')	;
+				alert('가입됐습니다.')	;
 				form.action = ""/*데이터를 받을 곳 주소*/;
 				form.method = "POST";
 				form.submit();
@@ -121,4 +129,4 @@
 			}
 			
 		}
-		</script>
+		</script> -->

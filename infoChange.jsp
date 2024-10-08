@@ -5,11 +5,12 @@
 	<head>
 		<script src="https://kit.fontawesome.com/567f0760c2.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="DYcommon.css" >
+		<link rel="stylesheet" href="DYheader.css" >
 		<meta charset="UTF-8">
 		<title>회원 정보 수정</title>
 	</head>
 	<body>
-		<%-- <%@ include file="top.jsp" %> --%>
+		<%@ include file="DYtop.jsp" %>
 		<section id="wrap">
 			<div class="container">
 				<div class="headers">
@@ -81,7 +82,8 @@
 		</section>
 		<%@ include file="footer.jsp" %> 
 	</body>
-	<script type="text/javascript">
+	<script type="text/javascript" src="register.js"></script>
+	<!-- <script type="text/javascript">
 		var pwd = 0;
 		function pwCheck(){
 			var pw3 = document.getElementById('pw1').value ;
@@ -134,5 +136,5 @@
 			}
 			
 		}
-		</script>
+		</script> -->
 </html>

@@ -4,11 +4,12 @@
 <html>
 <head>
 <link rel="stylesheet" href="DYcommon.css" >
+<link rel="stylesheet" href="DYheader.css" >
 <meta charset="UTF-8">
 <title>마이페이지</title>
 </head>
 <body>
-	<%-- <%@ include file="top.jsp" %> --%><!-- 탑 경로  및 명령어 수정 -->
+	<%@ include file="DYtop.jsp" %><!-- 탑 경로  및 명령어 수정 -->
 	<section id="wrap">
 		<div class="container">
 			<div class="headers">

@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="css/form.css">
 <link rel="stylesheet" href="css/button.css" >
 <c:import url="/WEB-INF/views/layout/head.jsp" />
+<link rel="stylesheet" href="DYheader.css" >
 </head>
 <body>
-<%-- <%@ include file="top.jsp" %> --%>
+<%@ include file="DYtop.jsp" %>
 <section id="wrap">
 	<div class="container">
 				<div class="headers">
