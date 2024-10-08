@@ -112,13 +112,35 @@ a {
 }
 
 .reviewWrite select {
-    width: 30%;
+	width: 100px;
     height: 30px;
-    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 15px;
+}
+
+.option {
     float: right;
+    text-align: right; 
+    width: 400px;
+}
+
+.option select, .option input[type="date"] {
+    display: inline-block;
+    font-size: 13px;
+    margin: 10px;
+    padding: 5px;
+}
+
+.option label {
+    display: inline-block; 
+    float: right;
+}
+
+.option input[type="date"] {
+    height: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 /* 별점 선택 */
@@ -289,8 +311,3 @@ a {
 .rate{
 	float: left;
 }
-
-
-
-
-
