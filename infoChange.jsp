@@ -20,7 +20,7 @@
 				
 				<div class="temp">
 					<div class="left">
-						<form method="post" id="infomation"onsubmit="return false;">
+						<form method="post" id="information"onsubmit="return false;">
 							<div class="horizontal_box">
 								<label>ID</label>
 								<input type="text" name="userId" value="${getMember.getUserID() }" required readonly />
