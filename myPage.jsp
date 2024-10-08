@@ -18,8 +18,8 @@
 			<div class="horizontal_box">
 				<form>
 					<label>이름</label>
-			        <input type="text" value=" ${getMember.getUserName() }" class="name" readonly />
-					<label>복용 중인 영양제</label>
+			        <input type="text" value=" ${getMember.getUserName() }" class="name" name="userName" readonly />
+					<label>복용 중인 영양제</label> <!--이거 데이터 들어오면 수정 요망-->
 			        <textarea textarea rows="10%" cols="100%" value="${getMember.getUserTabletList()}"  readonly></textarea>
 					<label>올바른 영양제 복용법</label>
 					<textarea textarea rows="10%" cols="100%"readonly></textarea>	
