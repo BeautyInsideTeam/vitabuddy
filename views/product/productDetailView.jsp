@@ -110,15 +110,28 @@
 					</div>    
 					<br>
 					
+					<table class="option">
+					<tr><td></td><td></td><td><label for="date">복용기간</label></td></tr>
+						
 					<!-- 해시태그 -->
-						<select id="hashtag" name="tagSelected">
+						<tr><td><select id="hashtag" name="tagSelected">
 						<option value="1" >1</option>
 						<option value="2" >2</option>
 						<option value="3" >3</option>
 							<%-- <c:forEach var="tags" items="${taglist}">
 							    <option value="${tag.tagNo}" ${tag.tag == tag.tagNo ? 'selected' : ''}>${tag.tagName}</option>
 							</c:forEach> --%>
-						</select>
+						</select></td>
+						<td>
+						<input type="date"
+						        id="date1"
+						        max="2000-01-01"
+						        min="2100-12-31"> ~ </td>
+						<td><input type="date"
+						        id="date2"
+						        max="2000-01-01"
+						        min="2100-12-31"></td></tr>
+					</table>
 				
 		       		<!-- 리뷰 내용 -->
 		       		<br>
