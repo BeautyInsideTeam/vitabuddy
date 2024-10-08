@@ -9,15 +9,15 @@
 		
 		<meta charset="UTF-8">
 		<title>비타버디에 오신 것을 환영합니다!</title>
-	<body>
-		<%@ include file="DYtop.jsp" %><!-- 탑 경로  및 명령어 수정 -->
+	<body><!-- 이 또한 대대적으로 구조수정. 이젠 안 망가질 것으로 ,,,, 예상.-->
+		<%@ include file="DYtop.jsp" %><!-- 탑 경로  및 명령어 수정 --><!--이름은 좀 더 고민하겠음--->
 		<section id="wrap">
 			<div class="container">
 				<div class="headers">
 					<h1>회원 가입</h1>
 				</div>
 				<div class="temp">
-					<form method="post" id="infomation"onsubmit="return false;">
+					<form method="post" id="information"onsubmit="return false;">
 						
 							<div class="horizontal_box">
 								<label>이름</label>
@@ -37,18 +37,20 @@
 								<input type="email" name="userEmail" id="email" onchange="emailCheck()"required />
 								<p id="emOk"></p>
 								<label>전화 번호 </label>
-								
-								<div class="phone-number">
+								<%-- 통신사 주석처리
+								<div class="phone-number"> 
 								<select class="tellecom">
 									<option value="kt" selected>KT</option>
 									<option value="skt" selected>SKT</option>
 									<option value="lg" selected>LG</option>
-								</select>
-									<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"name="userPh1" id="userPh1"placeholder="010"maxlength="3"  required/>
+
+								</select> --%>
+								<%-- oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" --%>
+									<input type="text" name="userPh1" id="userPh1"placeholder="010"maxlength="3"  required/>
 									 - 
-									<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"name="userPh2" id="userPh2"placeholder="1111"maxlength="4"  required/>
+									<input type="text" name="userPh2" id="userPh2"placeholder="1111"maxlength="4"  required/>
 									 - 
-									<input type="text"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="userPh3" id="userPh3"placeholder="1234"maxlength="4"   required/>
+									<input type="text" name="userPh3" id="userPh3"placeholder="1234"maxlength="4"   required/>
 								</div>
 							</div>
 						
@@ -75,7 +77,9 @@
 		<%@ include file="footer.jsp" %><!-- 푸터 삽입 -->
 	</body>
 </html>
-<script type="text/javascript" src="register.js"></script>
+
+<%-- 이하 스크립트는 참고용 --%>
+<%-- <script type="text/javascript" src="register.js"></script> --%>
 <!-- <script type="text/javascript">
 		var pwd = 0;
 		function pwCheck(){
