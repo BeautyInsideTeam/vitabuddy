@@ -6,20 +6,18 @@
 <head>
 <meta charset="UTF-8"> 
 <title>footer</title>
-<link rel="stylesheet" href="common.css" >
+<link rel="stylesheet" href="DYcommon.css" >
 </head>
 <body>  
-
-
-<footer>
-<div class=footerWrap>
-<div class="inner">
-	<div class="moveTopBtn" type="button" align="center" onclick="window.scrollTO(0,0);">최상단으로</div>
-	<div class="moveCS">
-		<a href="csCenter.jsp" >고객센터</a>
-	</div>
-</div>
-</div>
-</footer>
+	<section id="wrap">
+		<footer>
+			<div class="inner">
+				<div class="moveTopBtn" type="button" align="center" onclick="window.scrollTo(0,0);">최상단으로</div>
+				<div class="moveCS">
+					<a href="csCenter.jsp" >고객센터</a>
+				</div>
+			</div>
+		</footer>
+	</section>
 </body>
 </html>
