@@ -1,10 +1,10 @@
 INSERT ALL
     INTO USERS (USERNAME, USERID, USERPWD, USEREMAIL, USERPH, USERZIPCODE, USERADDRESS1, USERADDRESS2)
-    VALUES ('홍길동', 'qwer1234', '$2a$10$8VY43tk3SMNC3Kxgp4HZ2OLmhlEChYBDjFLSi3boXhFo.TivexTfS', 'hong1@example.com', '010-1134-5678', '12345', '서울시 도봉구', '아파트 101호')
+    VALUES ('홍길동', 'qwer1234', '$2a$10$BhrrvkBsYiiF1MOzeCx5ier3beAbVgAkXVEfrJMQBTIT1y1..Isu2', 'hong1@example.com', '010-1134-5678', '12345', '서울시 도봉구', '아파트 101호')
     INTO USERS (USERNAME, USERID, USERPWD, USEREMAIL, USERPH, USERZIPCODE, USERADDRESS1, USERADDRESS2)
-    VALUES ('김길동', 'qwer12345', '$2a$10$TDOPOZGJZui2LIIVOM4aYO5FZuJPI3XD7VKAEikYjOTMFpSyGfkcq', 'hong2@example.com', '010-2234-5678', '12315', '서울시 강북구', '아파트 102호')
+    VALUES ('김길동', 'qwer12345', '$2a$10$nPml2u4Vq1zdI6ah.Z2xvuD/ENLl20wnNybUK0hHULaMAHAdgjRYm', 'hong2@example.com', '010-2234-5678', '12315', '서울시 강북구', '아파트 102호')
     INTO USERS (USERNAME, USERID, USERPWD, USEREMAIL, USERPH, USERZIPCODE, USERADDRESS1, USERADDRESS2)
-    VALUES ('최길동', 'qwer123456', '$2a$10$Yhd7swotwIXWvv40cPRgMeapbLW/qG7svz0U5AL5BnLGA6/hJLYvW', 'hong3@example.com', '010-3234-5678', '12145', '서울시 강남구', '아파트 103호')
+    VALUES ('최길동', 'qwer123456', '$2a$10$8lfkDuFfMLgHKabRkim/refwZNIjripa9LBAvdrDpTv9.QAfR1aLe', 'hong3@example.com', '010-3234-5678', '12145', '서울시 강남구', '아파트 103호')
     INTO USERS (USERNAME, USERID, USERPWD, USEREMAIL, USERPH, USERZIPCODE, USERADDRESS1, USERADDRESS2)
-    VALUES ('박길동', 'qwer1234567', '$2a$10$IVAz7kSzvcZ8U.1w7W0/4ujxI8W0JstTCBdYhhPihn1N9ln2/LlYK', 'hong4@example.com', '010-4234-5678', '14345', '서울시 서초구', '아파트 104호')
+    VALUES ('박길동', 'qwer1234567', '$2a$10$ghio8E5BwvfwF93BAy00cey8uP7nK1cefrfogZQMu8OiVKp7GAOuC', 'hong4@example.com', '010-4234-5678', '14345', '서울시 서초구', '아파트 104호')
 SELECT * FROM dual;

@@ -1,10 +1,10 @@
-CREATE TABLE Review(
-Review_No VARCHAR2(50) NOT NULL PRIMARY KEY,
-    User_ID VARCHAR2(50) NOT NULL,
-    Sup_ID INTEGER NOT NULL,
-    Rating VARCHAR(10),
-    Review_date DATE,
-    Content VARCHAR(200),
-    Intake_Date Date,
-    Review_img VARCHAR(30)
+CREATE TABLE Review (
+    ReviewNo VARCHAR2(50) NOT NULL PRIMARY KEY,
+    UserID VARCHAR2(50) NOT NULL,
+    SupID INTEGER NOT NULL,
+    Rating VARCHAR2(10),
+    ReviewDate DATE,
+    Content VARCHAR2(200),
+    IntakeDate DATE,
+    ReviewImg VARCHAR2(30)
 );

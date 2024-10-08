@@ -1,29 +1,35 @@
 package com.example.vitabuddy.service;
 
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import com.example.vitabuddy.dao.IMemberDAO;
-import com.example.vitabuddy.model.MemberVO;
 
 @Service
-public class MemberService {
+public class MemberService implements IMemberService {
 
-    private final IMemberDAO memberDAO;
-
-    public MemberService(IMemberDAO memberDAO) {
-        this.memberDAO = memberDAO;
-    }
-
-    public boolean authenticate(String username, String password) {
-        MemberVO member = memberDAO.findByUsername(username);
-        if (member == null) {
-            return false;
-        }
-        // 비밀번호 검증 로직 (예: 암호화된 비밀번호와 비교)
-        return password.equals(member.getUserPwd()); // 단순 비교
-    }
-
-    // 사용자 정보를 로드하는 메서드 (JWTFilter에서 사용)
-    public MemberVO loadUserByUsername(String username) {
-        return memberDAO.findByUsername(username);
-    }
+	@Autowired
+	@Qualifier("IMemberDAO")
+	IMemberDAO dao;
+	
+	@Autowired
+	PasswordEncoder pwdEncoder;
+	
+	// 1. 암호화 비밀번호 & 사용자 비밀번호 확인후 로그인 실행
+	@Override
+	public String login(HashMap<String, Object> map) {
+		
+		String secPwd = dao.login((String) map.get("id"));
+		String result = "fail";
+		if(secPwd != null && pwdEncoder.matches((String) map.get("pwd"), secPwd)) {
+			result = "success";
+		}
+		return result;
+	}
+	
+	
 }

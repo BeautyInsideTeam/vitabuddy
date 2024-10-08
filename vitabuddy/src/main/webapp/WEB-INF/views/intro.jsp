@@ -9,6 +9,8 @@
 
 <c:import url="/WEB-INF/views/layout/head.jsp" />	
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/intro.css'/>">
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="/js/login.js"></script>
 </head>
 <body>
 <div id="wrap">

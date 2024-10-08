@@ -1,8 +1,9 @@
 package com.example.vitabuddy.dao;
 
-import com.example.vitabuddy.model.MemberVO;
-
 public interface IMemberDAO {
-    MemberVO findByUsername(String userId);
+	
+	//1. 로그인 기능을 위한 DAO. 
+	public String login (String id);
+	
 }
 
