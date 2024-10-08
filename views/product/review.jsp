@@ -66,6 +66,7 @@
 							    <option value="${tag.tagNo}" ${tag.tag == tag.tagNo ? 'selected' : ''}>${tag.tagName}</option>
 							</c:forEach> --%>
 						</select></td>
+						
 						<td>
 						<input type="date"
 						        id="date1"

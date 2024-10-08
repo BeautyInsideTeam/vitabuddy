@@ -15,7 +15,7 @@
 	<body>
 		<div id="wrap">
 			<!--  top -->         
-			
+		
         	<c:import url="/WEB-INF/views/layout/top.jsp" />
 			
 			<div class="prdProfile">
@@ -42,7 +42,7 @@
 					<tr><td>가격  </td>
 							<td><span id="price" data-price="${sup.supplementPrice}">
 									<fmt:formatNumber value="${sup.supplementPrice}" pattern="#,###" /></span> 원</td><td></td></tr>
-						<tr><td>브랜드 </td><td>${sup.supplementCompany}</td><td></td></tr>
+						<tr><td>브랜드</td><td>${sup.supplementCompany}</td><td></td></tr>
 				</table>
 
 			</div>
