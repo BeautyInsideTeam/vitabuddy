@@ -87,7 +87,7 @@ table{
 }
 
 .box_rowContents {
-	/* display: flex; */
+	 display: flex; 
 	flex-direction: row;
 }
 label{
