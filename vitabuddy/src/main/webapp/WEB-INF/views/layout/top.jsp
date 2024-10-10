@@ -13,14 +13,14 @@
 					<!-- 로그인 하지 않은 경우 -->
 					<c:if test="${empty sessionScope.sid}">
 					<a href="<c:url value='/'/>">로그인</a>					
-					<a href="<c:url value='/joinForm'/>">회원가입</a>
+					<a href="<c:url value='/member/register'/>">회원가입</a>
 					</c:if>
 					
 					<!-- 로그인 한 경우 -->
 					<c:if test="${not empty sessionScope.sid}">
 					<a href="<c:url value='/member/logout'/>">로그아웃</a>
-					<a href="<c:url value='/wishList'/>"><i class="fa-solid fa-heart"></i></a>					
-					<a href="<c:url value='/product/cartList'/>"><i class="fa-solid fa-cart-shopping"></i></a>
+					<a href="<c:url value='/supplement/wishList'/>"><i class="fa-solid fa-heart"></i></a>					
+					<a href="<c:url value='/supplement/cartList'/>"><i class="fa-solid fa-cart-shopping"></i></a>
 					</c:if>
 					</div>
             	</div>

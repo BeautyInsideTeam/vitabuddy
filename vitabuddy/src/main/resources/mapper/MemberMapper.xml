@@ -17,7 +17,7 @@
 	update users 
 	set userName=#{userName}, userEmail=#{userEmail}, userPwd=#{userPwd}, userPh=#{userPh},
 		userZipcode=#{userZipcode}, userAddress1=#{userAddress1}, userAddress2=#{userAddress2}
-	
+	where userId=#{userId}
 </update>
 
 

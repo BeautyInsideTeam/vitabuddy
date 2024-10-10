@@ -1,123 +1,151 @@
 @charset "UTF-8";
 
+* {
+	margin: 0 auto;
+	font-family: myriad;
+}
+
+#wrap {
+	width: 100%;
+	background-color: #e5e0da;
+	text-align: center;
+	position: relative;
+}
+
+/* 모든 img 테두리 없음 */
+img {
+	border: 0;
+	margin: 0;
+}
+
+hr {
+	border-width: 1.2px 0 0 0;
+	border-style: solid;
+	border-color: #583b1f;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* 버튼 기본 스타일 */
+button,
+.btn {
+	max-width: 150px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 15px;
+	font-weight: 300;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 25px;
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	border: none;
+	outline: 0;
+}
+
+.btnFilled,
+button {
+	background-color: #583b1f;
+	color: #e5e0da;
+}
+
+.btnUnfilled {
+	width: 150px;
+	background-color: #e5e0da;
+	color: #583b1f;
+	border: solid 1.5px #583b1f;
+}
+
+/* 버튼 hover */
+.btnFilled:hover,
+button:hover {
+	background-color: #71543d;
+	font-weight: 900;
+	transition: background-color 0.3s ease;
+}
+
+.btnUnfilled:hover {
+	background-color: #71543d;
+	color: white;
+	font-weight: 900;
+	border: #71543d;
+	transition: background-color 0.3s ease;
+}
+
 h3 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    margin-top: 30px;
-    font-size: 30px;
+	font-size: 30px;
+	color: #333;
+	margin-bottom: 20px;
+	margin-top: 30px;
 }
 
-/* 주문서 테이블 */
+/* 주문서 */
 .orderForm {
-    width: 1000px;
-    margin: 0 auto; /* 테이블을 수평 중앙에 배치 */
-    margin-bottom: 20px;
+	width: 1000px;
+	margin: 0 auto;
+	margin-bottom: 20px;
 }
 
-.orderForm th, .orderForm td {
-    padding: 12px;
-    text-align: left;
+.orderForm th,
+.orderForm td {
+	padding: 12px;
+	text-align: left;
 }
 
 .orderForm th {
-    font-weight: bold;
+	font-weight: bold;
 }
 
-
-/* 둥근 모서리 적용 */
+/* 둥근 모서리 */
 .orderForm input[type="text"],
 .orderForm input[type="email"],
 .orderForm textarea,
 .orderForm select {
-	width:1000px;
-    padding: 10px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    margin-top: 5px;
-    font-size: 14px;
-    background: #eae6e1;
-    border: 0;
+	width: 1000px;
+	padding: 10px;
+	border-radius: 20px;
+	box-sizing: border-box;
+	margin-top: 5px;
+	font-size: 14px;
+	background: #eae6e1;
+	border: 0;
 }
-
 
 .orderForm input[readonly] {
-    background-color: #e9e9e9;
-    border-radius: 20px;
+	background-color: #e9e9e9;
+	border-radius: 20px;
 }
 
-
-
+/* 우편번호 */
 .zipcodeContainer {
-    display: flex;
-    align-items: left;
-    gap: 20px; /* 필드와 버튼 사이 간격 */
-    width:900px;
-    float:left;
+	display: flex;
+	align-items: left;
+	gap: 20px;
+	width: 900px;
+	float: left;
 }
 
-.btn {
-  max-width: 150px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 300;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 25px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.btnFilled{
-	width:150px;
-	background-color:#583b1f;
-	color:#e5e0da;
-	border:#583b1f;
-}
-
-.btnUnfilled{
-	width:150px;
-	background-color:#e5e0da;
-	color:#583b1f;
-	border: solid 1.5px #583b1f; 
-}
-
-
-/* 버튼 hover */
-.btnFilled:hover {
-    background-color: #71543d;
-    font-weight: 900;
-    transition: background-color 0.3s ease;
-}
-
-.btnUnfilled:hover {
-    background-color: #71543d;  
-    color: white;
-    font-weight:900;
-    border:#71543d;
-    transition: background-color 0.3s ease;
-}
-
-/* 입력 필드 및 버튼에 적절한 크기와 스타일 적용 */
 #ordRcvZipcode {
-    flex: 1;
-    height: 40px; /* 입력 필드 높이 조정 */
+	flex: 1;
+	height: 40px;
 }
 
 #searchZipBtn {
-    padding: 8px 16px;
-    height: 35px; /* 버튼 높이 조정 */
-    cursor: pointer;
+	padding: 8px 16px;
+	height: 35px;
+	cursor: pointer;
 }
 
-/* 배송 메시지 텍스트 */
+/* 배송 메시지 */
 textarea {
-    resize: none;
-    border-radius: 20px;
+	resize: none;
+	border-radius: 20px;
 }
-

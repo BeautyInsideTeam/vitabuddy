@@ -20,7 +20,7 @@
 	<div class="search">
 		<form class="searchBox" id="searchForm" method="get">
 			<input type="text" name="keyword" id="keyword" class="searchTxt" placeholder="Search">
-			<button type="submit" class="searchBtn"> <!-- 돋보기 아이콘 -->
+			<button type="submit" class="searchBtn"><!-- 돋보기 아이콘 -->
 			<i class="fa-solid fa-magnifying-glass"></i>
 			</button>
 		</form>
@@ -39,10 +39,10 @@
 		</c:if>
 	
 	<!-- 로그인 한 경우 -->
-		<!--<c:if test="${not empty sessionScope.sid }">-->
-		<!-- 상점 
+					<c:if test="${not empty sessionScope.sid }">
+		<!-- 상점 -->
 		<a href="<c:url value='/product/prdList'/>"><img src="<c:url value='/image/prdList.png'/>" class="menuImg"><br>상점</a>
-		-->
+		
 		<!-- 마이페이지 -->
 		<a href="<c:url value='/myPage'/>"><img src="<c:url value='/image/myPage.png'/>" class="menuImg"><br>마이페이지</a>
 	</c:if>

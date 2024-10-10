@@ -12,5 +12,8 @@ public interface IMemberDAO {
 	public void myInfoUpdate(MemberVO vo);
 	
 	
+	
+	
+	
 
 }

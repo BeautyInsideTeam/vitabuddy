@@ -5,11 +5,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<c:import url="/WEB-INF/views/layout/head.jsp"/>  <!-- head.jsp 삽입 --> 
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<script src="<c:url value='/js/infoChange.js'/>"></script>  <!-- infoChange.js 스크립트 삽입 -->
 		<script src="<c:url value='/js/searchZip.js'/>"></script> <!-- searchZip.js 스크립트 삽입 -->
 		<script src="https://kit.fontawesome.com/567f0760c2.js" crossorigin="anonymous"></script>
-		<link rel="stylesheet" type="text/css" href="<c:url value='/css/DYcommon.css'/>" >   <!-- 로컬 sts 환경에 맞춰 경로 지정 -->
+		<link rel="stylesheet" type="text/css" href="<c:url value='/css/infoChange.css'/>" >   <!-- 로컬 sts 환경에 맞춰 경로 지정 -->
 		<meta charset="UTF-8"> 
 		<title>회원 정보 수정</title>
 	</head>

@@ -17,8 +17,6 @@ public class MemberService implements IMemberService {
 	@Autowired
 	PasswordEncoder pwdEncoder;
 
-
-
 	@Override
 	public MemberVO myInfoUpdateForm(String userId) {
 		return dao.myInfoUpdateForm(userId);
@@ -30,12 +28,7 @@ public class MemberService implements IMemberService {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
+
 	
 
 }

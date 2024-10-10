@@ -4,7 +4,7 @@ body {
     background-color: #f7f4ef;
     margin: 0;
     padding: 0;
-    color: #7b6e48;
+   /*  color: #7b6e48; */
 }
 #wrap{
 	position: relative;
@@ -44,15 +44,16 @@ table{
 }
 
 .container {
-	    padding: 20px;
+	padding: 20px;
     width: 80%;
  	margin: 50px auto;
-    background-color: white; 
+    /* background-color: white;  */
     height:auto;
     overflow:hidden;
     border-radius: 10px;
     background-color: #e5e0da;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: #7b6e48;
 }
 
 .horizontal_box .name{
@@ -66,7 +67,6 @@ table{
 	margin-left: 20px;
 	margin-right: 20px;
 }
-
 .horizontal_box {
 	display: flex;
 	flex-direction: column;
@@ -87,10 +87,12 @@ table{
 }
 
 .box_rowContents {
-	display: flex;
+	 display: flex; 
 	flex-direction: row;
 }
-
+label{
+	color: #7b6e48;
+}
 .left, .right {
 	width:50%;
 	display:inline-block;
@@ -133,6 +135,7 @@ input, textarea {
     width: 20%;
     display: inline-block;
 }
+
 
 .zipcode button {
   	padding: 10px;

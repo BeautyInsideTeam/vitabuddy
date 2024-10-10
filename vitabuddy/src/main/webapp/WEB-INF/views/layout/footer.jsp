@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8"> 
 <title>footer</title>
-<link rel="stylesheet" href="DYcommon.css" >
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/footer.css'/>">
 </head>
 <body>  
 	<section id="wrap">
