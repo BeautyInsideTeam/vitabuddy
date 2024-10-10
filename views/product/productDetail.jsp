@@ -33,8 +33,8 @@
 	        </div> --%></td><td></td><td></td></tr>
 	        
 	        <tr><td>
-			<div class="hashTag">
-			${sup.reviewTag}
+			<%-- <div class="hashTag">
+			${sup.supTag} --%>
         	</div></td><td></td><td></td></tr>
 			<tr><td>
 			<a href="#" id="addWish" data-prd-id="${sup.supplementNo}">찜목록 추가</a></td>
