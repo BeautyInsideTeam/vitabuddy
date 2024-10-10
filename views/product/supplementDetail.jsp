@@ -23,7 +23,7 @@
 			<br><br>
 			<table>
 			<tr><td><h2>
-			${sup.supName}</h2></td><td></td><td rowspan="5"><img class="prdImg" src="/image/prd01.png" width="300" height="300"></td></tr>
+			${sup.supName}</h2></td><td></td><td rowspan="5"><img class="prdImg" src="${sup.supImg}" width="300" height="300"></td></tr>
 			<!-- 별점 -->
 			<tr><td>
 			<%-- <div class="rating">
@@ -37,12 +37,12 @@
 			${sup.supTag} --%>
         	</div></td><td></td><td></td></tr>
 			<tr><td>
-			<a href="#" id="addWish" data-prd-id="${sup.supplementNo}">찜목록 추가</a></td>
-			<td><a href="#" id="addCart" data-prd-id="${sup.supplementNo}">장바구니 추가</a></td><td></td></tr>
+			<a href="#" id="addWish" data-prd-id="${sup.supId}">찜목록 추가</a></td>
+			<td><a href="#" id="addCart" data-prd-id="${sup.supId}">장바구니 추가</a></td><td></td></tr>
 					<tr><td>가격  </td>
-							<td><span id="price" data-price="${sup.supplementPrice}">
-									<fmt:formatNumber value="${sup.supplementPrice}" pattern="#,###" /></span> 원</td><td></td></tr>
-						<tr><td>브랜드</td><td>${sup.supplementCompany}</td><td></td></tr>
+							<td><span id="price" data-price="${sup.supPrice}">
+									<fmt:formatNumber value="${sup.supPrice}" pattern="#,###" /></span> 원</td><td></td></tr>
+						<tr><td>브랜드</td><td>${sup.supBrand}</td><td></td></tr>
 				</table>
 
 			</div>
@@ -54,19 +54,19 @@
 				<h2>상품 상세 정보</h2>
 					<div>
 							<h3>상품설명</h3>
-							<p>${sup.supplementDetail}</p>
+							<p>${sup.supDetail}</p>
 					</div>
 					<div>
 							<h3>복용법</h3>
-							<p>${sup.supplementDosage}</p>
+							<p>${sup.supDosage}</p>
 					</div>
 					<div>
 							<h3>주의사항</h3>
-							<p>${sup.supplementPrecaution}</p>
+							<p>${sup.supPrecautions}</p>
 					</div>
 					<div>
 							<h3>영양정보</h3>
-							<p>${sup.supplementNutriInfo}</p>
+							<p>${sup.supNutriInfo}</p>
 					</div>
 				</div>
 				
