@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="com.example.vitabuddy.dao.ISupplementDAO">
+
+<!-- 브랜드 태그 리스트 -->
+<select id="getAllBrands" resultType="com.example.vitabuddy.model.SupplementVO">
+	select distinct supBrand from supplement
+</select>
+
+<!-- 기능별 태그 리스트 -->
+<select id="getAllFunctions" resultType="com.example.vitabuddy.model.SupplementVO">
+	select distinct f.Function as function
+ 	from supplement s
+	join supplement_function sf ON s.SupId = sf.SupID
+	join function f ON sf.FunctionID = f.FunctionID
+	
+</select>
+
+<!-- 성분별 태그 리스트 -->
+<select id="getAllIngredients" resultType="com.example.vitabuddy.model.SupplementVO">
+	select distinct i.ingredient
+ 	from supplement s
+	join ingredientsupplement ins ON s.SupId = ins.SupId
+	join ingredient i ON ins.ingredientID = i.ingredientID
+</select>
+
+
+<!-- resultMap 구성은 SupplementVO 객체필드와 동일하게. select로 필요한 열들만 기입하고, resultMap을 supMap으로 지정해놓으면 됨 -->
+	<resultMap id="supMap" type="com.example.vitabuddy.model.SupplementVO">
+		<result property="supId" column="supId"/>
+		<result property="supName" column="supName"/>   
+		<result property="supPrice" column="supPrice"/>
+		<result property="supBrand" column="supBrand"/>
+		<result property="supDosage" column="supDosage"/>
+		<result property="supNutri" column="supNutri"/>   
+		<result property="supNutriinfo" column="supNutriinfo"/>
+		<result property="supPrecautions" column="supPrecautions"/>
+		<result property="supDetail" column="supDetail"/>
+	</resultMap>
+
+<!-- 모든 상품 출력하기 - 201개가 출력 (아무 필터링 거치지 않고 상점페이지로 처음 접속했을 대 -->
+<select id="getAllSupplements" resultMap="supMap">
+	select supName, supPrice, supBrand
+	from supplement
+</select>
+
+
+
+</mapper>

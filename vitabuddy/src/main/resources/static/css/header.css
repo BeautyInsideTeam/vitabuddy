@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+
+/********************Header****************/
+#headerBox{ /*Header 영역 (logoBox, topmenu)*/
+	height:60px; /*로고 이미지 높이*/
+	line-height:60px; /* 줄간격-수직으로 가운데 정렬 효과*/
+	padding:0;
+}
+
+#logoBox{ /*logo img 영역 태그*/
+	float:left;
+	height:60px;
+	line-height:60px;
+	padding-left:30px;
+	font-weight:900;
+	font-size:30px;
+}
+
+#topMenu{
+	float:right;
+	padding-right:30px;
+	font-weight:700;
+}
+
+header a {
+    color: #583b1f; /* 메인 컬러를 사용 */
+    text-decoration: none; /* 밑줄 제거 */
+    font-weight: bold; /* 강조 효과 */
+}
+
+/* a 태그에 마우스를 올렸을 때 색상 변경 */
+header a:hover {
+    opacity: 0.5;
+}
+
+
+/***************************헤더 고정****************************/
+/*윈도우 스크롤 시 메인메뉴 고정*/
+/*css 생성, js파일에서 addClass()로 사용*/
+.mainMenuFixed{
+	position:fixed;
+	top:0px; /*위쪽 여백이 없음*/
+}
+

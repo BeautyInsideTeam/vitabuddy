@@ -7,7 +7,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebMvc
 public class webConfig implements WebMvcConfigurer {
 
     // CORS 설정 (필요시)
@@ -21,7 +20,9 @@ public class webConfig implements WebMvcConfigurer {
     // 정적 리소스 매핑
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**")
-                .addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("file:///C:/supplement_images/");
+        
+        
     }
 }
