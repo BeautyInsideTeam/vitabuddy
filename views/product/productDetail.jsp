@@ -33,7 +33,7 @@
 	        </div> --%></td><td></td><td></td></tr>
 	        
 	        <tr><td>
-			<%-- <div class="hashTag">
+			<%-- <div class="hashTag"> 
 			${sup.supTag} --%>
         	</div></td><td></td><td></td></tr>
 			<tr><td>
