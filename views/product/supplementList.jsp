@@ -11,6 +11,7 @@
 <c:import url="/WEB-INF/views/layout/head.jsp" />    
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/category.js'/>"></script>
+<!-- 검색 js 추가 --><script src="<c:url value='/js/search.js'/>"></script>
 <!-- css 링크 수정 --><link rel="stylesheet" type="text/css" href="<c:url value='/css/supplementList.css'/>">
 
 </head>
