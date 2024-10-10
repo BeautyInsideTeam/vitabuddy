@@ -32,6 +32,7 @@ h2{
 	color: #7e7b46;
 	font-size: 30px;
 }
+
 /* 상품 섹션 */
 .product-section {
     padding: 20px;
@@ -54,6 +55,7 @@ table{
 }
 .prdImg{
 	float: right;
+	margin-left: 30px;/* 사진 옆에 공간 띄우기 */
 }
 
 .rating {
@@ -345,4 +347,11 @@ a {
 
 .prdInfo table {
     white-space: pre-line;
+    color: #7e7b46; /* 폰트 컬러 변경 */
+}
+
+
+/* 섹션 너비 맞춤  */
+section{
+	width: 80%;
 }
