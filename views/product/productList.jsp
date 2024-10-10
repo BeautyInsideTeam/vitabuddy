@@ -11,7 +11,7 @@
 <c:import url="/WEB-INF/views/layout/head.jsp" />    
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/category.js'/>"></script>
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/prdList.css'/>">
+<!-- css 링크 수정 --><link rel="stylesheet" type="text/css" href="<c:url value='/css/productList.css'/>">
 
 </head>
 <body>
@@ -121,7 +121,7 @@
 	        <c:forEach var="i" begin="1" end="${totalPages}">
 	            <a href="#" class="page" onclick="changePage(${i})">${i}</a>
 	        </c:forEach>
-	        <a href="#" class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage - 1}"><i class="fa-solid fa-caret-right"></i></a>
+	        <a href="#" class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage + 1}"><i class="fa-solid fa-caret-right"></i></a>
 	    </div>
 	</nav>
 

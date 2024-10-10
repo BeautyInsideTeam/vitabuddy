@@ -9,7 +9,7 @@
 		<title>상품 상세 조회</title>
 		<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 		<script src="<c:url value='/js/rating.js'/>"></script>
-		<link rel="stylesheet" type="text/css" href="<c:url value='/css/detailView.css'/>">
+		<!-- css 링크 수정 --><link rel="stylesheet" type="text/css" href="<c:url value='/css/productDetailView.css'/>">
 		<c:import url="/WEB-INF/views/layout/head.jsp" />
 	</head>
 	<body>

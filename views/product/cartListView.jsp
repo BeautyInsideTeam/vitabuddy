@@ -8,7 +8,7 @@
 		<meta charset="UTF-8">
 		<title>장바구니</title>
 		<c:import url="/WEB-INF/views/layout/head.jsp" />  
-		<link rel="stylesheet" type="text/css" href="<c:url value='/css/cart.css'/>">
+		<link rel="stylesheet" type="text/css" href="<c:url value='/css/cartList.css'/>">
 		 	      
 	</head>
 	<body>
