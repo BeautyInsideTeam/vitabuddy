@@ -342,3 +342,7 @@ a {
 .rate{
 	float: left;
 }
+
+.prdInfo table {
+    white-space: pre-line;
+}

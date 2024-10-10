@@ -66,7 +66,9 @@
 					</div>
 					<div>
 							<h3>영양정보</h3>
-							<p>${sup.supNutriInfo}</p>
+							<table>
+							<tr><td>${sup.supNutri}</td><td>${sup.supNutriInfo}</td></tr>
+							</table>
 					</div>
 				</div>
 				
