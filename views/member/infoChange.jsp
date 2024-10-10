@@ -1,146 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
+		<script src="<c:url value='/js/infoChange.js'/>"></script>  <!-- infoChange.js 스크립트 삽입 -->
 		<script src="https://kit.fontawesome.com/567f0760c2.js" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="infoChange.css" >
-		<link rel="stylesheet" href="header.css" >
-		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="<c:url value='/css/DYcommon.css'/>" >   <!-- 로컬 sts 환경에 맞춰 경로 지정 -->
+		<meta charset="UTF-8"> 
 		<title>회원 정보 수정</title>
 	</head>
-	<!--섹션 기반으로 한 번 갈아엎음. 구조적 문제였음. id나 class 등은 그대로 유지함. 이제 css로 안 망그러질 것-->
+	
 	<body>
-		<%@ include file="DYtop.jsp" %>
-		<section id="wrap"> <!--섹션 사용을 통해 탑, 본문, 푸터 구분-->
+		
+		<c:import url="/WEB-INF/views/layout/top.jsp"/> 
+		<section id="wrap">
 			<div class="container">
-				<div class="headers">
+				<div class="headers"> 
 					<h1>회원 정보 수정</h1>
-				</div>
+				</div> 
 				
 				<div class="temp">
 					<div class="left">
-						<form method="post" id="information"onsubmit="return false;">
+						<form method="post" id="information" action="<c:url value='/member/myInfoUpdate'/>" >  
 							<div class="horizontal_box">
-								<label>ID</label>
-								<input type="text" name="userId" value="${getMember.getUserID() }" required readonly />
 								<label>이름</label>
-								<input type="text" name="userName" value="${getMember.getUserName() }" required/>
+								<input type="text" name="userName" value="${myInfo.userName}" required/>
 								<label>비밀번호 변경</label>
-			            		<input type="password"  name="userPwd" id="pw1" oninput="pwCheck()" required />
+			            		<input type="password"  name="userPwd" id="userPwd" oninput="pwCheck()"  required />
 			            		<p id="pwLeng"></p>
 			            		<label>비밀번호 확인</label>
-								<input type="password"   name="confirmPwd" id="pw2" oninput="pwCheck()" required />
+								<input type="password"   name="confirmPwd" id="confirmPwd" oninput="pwCheck()" required />
 								<p id="pwOk"></p>
 								<label>이메일 변경</label>
-								<input type="email" name="userEmail" id="email" onchange="emailCheck()"  value="${getMember.getUserEmail() }" required />
+								<input type="email" name="userEmail" id="userEmail" onchange="emailCheck()"  value="${myInfo.userEmail}" required />
 								<p id="emOk"></p>
 								<label>전화 번호 변경</label>
+								
 								<div class="phone-number">
-								<%-- <select class="tellecom">
-									<option value="kt" selected>KT</option>
-									<option value="skt" selected>SKT</option>
-									<option value="lg" selected>LG</option>
-								</select> --%>
-								<%-- 통신사는 주석으로 해 둠 하단은 정규식 뺌 --%>
-								<%--oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"--%>
-									<input type="text" name="userPh1" id="userPh1"placeholder="010"maxlength="3" value="${getMember.getUserPh1() }" required/>
+								
+									<input type="text" name="userPh1" id="userPh1" placeholder="010" maxlength="3" value="${fn:split(myInfo.userPh,'-')[0]}" required/>
 									 - 
-									<input type="text" name="userPh2" id="userPh2"placeholder="1111"maxlength="4" value="${getMember.getUserPh2() }" required/>
+									<input type="text" name="userPh2" id="userPh2" placeholder="1111" maxlength="4" value="${fn:split(myInfo.userPh,'-')[1]}" required/>
 									 - 
-									<input type="text" name="userPh3" id="userPh3"placeholder="1234"maxlength="4" value="${getMember.getUserPh3() }"  required/>
+									<input type="text" name="userPh3" id="userPh3" placeholder="1234" maxlength="4" value="${fn:split(myInfo.userPh,'-')[2]}" required/>
 								</div>
+								
 								<div class="zipcode">
 									<label>우편번호 입력</label>
 									<div class="box_rowContents">
-										<input type="text" name="userZipcode" id="userZipcode" value="${getMember.getUserZipcode() }" required/>
+										<input type="text" name="userZipcode" id="userZipcode" required/>
 										<button type ="button" name="searchBtn">우편번호 찾기</button>
 									</div>
 									<label>주소 변경</label>
-									<input type="text" name="userAddress1" id="userAddress1" value="${getMember.getUserAddress1() }"required/>
+									<input type="text" name="userAddress1" id="userAddress1" value="${myInfo.userAddress1}" required/>
 									<label>상세 주소 변경</label>
-									<textarea rows="10%" cols="100%" name="userAddress2" id="userAddress2" value="${getMember.getUserAddress2() }"required/></textarea>
+									<input type="text" id="userAddress2" name="userAddress2"  value="${myInfo.userAddress2}" required/>
 								</div>
 							</div>
+						<button class="submit-btn" id="submitBtn" type="submit" >정보변경</button>  <!--정보변경 버튼, 즉 submit을 눌렀을 때, 위 form 태그 시작쪽의 onsubmit이 적용되고 requestmapping url로 이동할 수 있도록 type="submit" 추가-->
+
 						</form>
-						<button class="submit-btn" id="submitBtn" onclick="changeOn()" >정보 변경</button>
 					</div>
 				
+					<!-- 여기서부터 영양제 정보 수정 변경 - 팀장님 파트 -->
 					<div class="right">
-						<form>
-							<div>
-								<form class="searchBox" action="" method="get">
-									<div class="search-box">
-								        <i class="fas fa-search"></i>
-								        <input type="text" placeholder="Search">
-								    </div>
-								</form>
-								<label>복용 중인 영양제 변경</label> <!-- 복용중인 영양제 데이터는 어디있는지 모르겠어요-->
-								<textarea rows="10%" cols="100%" value="${getMember.getUserTabletList() }" /></textarea>							
+						<form class="searchBox" action="" method="get">
+							<div class="search-box">
+						        <i class="fas fa-search"></i>
+						        <input type="text" placeholder="Search">
+						    </div>
+						   	<div>
+								<label>복용 중인 영양제 변경</label>
+								<textarea rows="10%" cols="100%" value="${getMember.getUserTabletList()}" /></textarea>							
 							</div>
+							<button class="submit-btn" id="submitBtn" type="submit" >변경하기</button>
 						</form>
-						<button class="submit-btn" type="submit" id="submitBtn">변경하기</button>
+						
+						
 					</div>
+					
+					
 				</div>
 			</div>
 		</section>
-		<%@ include file="footer.jsp" %> 
+		<c:import url="/WEB-INF/views/layout/footer.jsp"/>
 	</body>
-	<script type="text/javascript" src="register.js"></script>
 
-	<!-- 하단은 기존에 작성한 펑션들-->
-	<!-- <script type="text/javascript">
-		var pwd = 0;
-		function pwCheck(){
-			var pw3 = document.getElementById('pw1').value ;
-			if(pw3.length<8){
-				document.getElementById('pwLeng').innerHTML="비밀번호는 8자리 이상이어야 합니다.";
-		    	document.getElementById('pwLeng').style.color='red';
-			}else{
-				document.getElementById('pwLeng').innerHTML="";
-			}
-			if(document.getElementById('pw1').value != '' && document.getElementById('pw2').value!=''){
-				if(document.getElementById('pw1').value ==document.getElementById('pw2').value){
-				document.getElementById('pwOk').innerHTML="비밀번호가 일치합니다.";
-				document.getElementById('pwOk').style.color='green';
-				pwd = 1;
-				 }else{
-		    	document.getElementById('pwOk').innerHTML="비밀번호가 일치하지 않습니다.";
-		    	document.getElementById('pwOk').style.color='red';  
-		    	pwd = 0;
-		    	}
-		    }
-		}
+	<!-- 변경사항 
+		1. 통신사 파트 sk, lg, kt 삭제 완료 
+		2. jsp 파일 내에 script 전부 삭제 후, 별도 js 로 옮김 - infoChange.js로 분리, changeOn()제거
+		3. infomation -> info"r"mation 오타 수정완료
+		5. button 태그가 <form> 태그 "외부"에 위치 -> <form>태그 "내부"로 재위치 시킴 : 버튼 눌렀는데도 전송이 안되는 이유
+		6. 전화번호 파트 정규식 삭제 완료
+		7. infoChange.js파일 내 eamil > email로 오타 수정
+		8. input태그 내 id, name 수정 완료 -> 그에 따른 js 파일의 모든 id 수정까지 완료
+		9. [영양제 정보 수정] 파트 -> form 태그가 두개 분리되어있음 -> 하나의 폼 태그로 합치고, div태그로 두개 섹션 생성
+		10. 상세주소 <textarea> 에서 <text>로 수정 완료
+		11. placeholder 추가 : 이름, 비밀번호, 이메일, 전화번호, 주소에 placeholder 삽입
+		12. ${myInfo.userName}으로 되어있는 부분 : 백엔드 모델 객체 변수를 myInfo로 지정함-->
 		
-		 
-		var eamil = 0;
-		
-		function emailCheck(){
-			if(document.getElementById('email').value.indexOf("@")>0){
-				document.getElementById('emOk').innerHTML="";
-				email = 1;
-			}else{
-				document.getElementById('emOk').innerHTML="올바른 이메일 형식이 아닙니다.";
-		    	document.getElementById('emOk').style.color='red'; 
-				email = 0;
-			}
-		}
-		
-		var form = document.getElementById('infomation');
-		
-		function changeOn(){
-			if(email ==1 && pwd==1){
-				alert('변경됐습니다.')	;
-				form.action = ""/*데이터를 받을 곳 주소*/;
-				form.method = "POST";
-				form.submit();
-				
-			}else{
-				
-				alert('잘못된 데이터 입니다')	;
-				return false;
-			}
-			
-		}
-		</script> -->
+
+
+	
 </html>
