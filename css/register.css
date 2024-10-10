@@ -67,9 +67,11 @@ table{
 	margin-left: 20px;
 	margin-right: 20px;
 }
+
+	
 .horizontal_box {
-	display: flex;
-	flex-direction: column;
+	
+	/* flex-direction: column; */
 	row-gap: 10px;
 }
 .horizontal_box label {
@@ -87,7 +89,7 @@ table{
 }
 
 .box_rowContents {
-	/* display: flex; */
+	display: flex;
 	flex-direction: row;
 }
 label{
@@ -181,6 +183,16 @@ input, textarea {
     background-color: transparent;
     font-size: 16px;
 }
+.box_rowContents button{
+	padding: 10px;
+  	width: 200px;
+    background-color: #a9a27e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: auto;
+} 
 
 .search-box input::placeholder {
     color: #aaa;
