@@ -11,7 +11,7 @@
 <c:import url="/WEB-INF/views/layout/head.jsp" />    
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/category.js'/>"></script>
-<!-- css 링크 수정 --><link rel="stylesheet" type="text/css" href="<c:url value='/css/productList.css'/>">
+<!-- css 링크 수정 --><link rel="stylesheet" type="text/css" href="<c:url value='/css/supplementList.css'/>">
 
 </head>
 <body>
@@ -73,7 +73,7 @@
 	    <div class="subCtgMenu" data-category="brand">
 	        <ul>
 	            <c:forEach var="func" items="${ctg}">
-	                    <li><a href="#">${brand.prdBrand}</a></li>
+	                    <li><a href="#">${brand.supBrand}</a></li>
 	            </c:forEach>
 	        </ul>
 	    </div>
@@ -94,7 +94,7 @@
 	    <div class="products">
 	    <c:forEach var="sup" items="${supList}">
 	           <div class="productItem">
-	            <a href="<c:url value='/product/detailView/${sup.supNo}'/>">
+	            <a href="<c:url value='/product/detailView/${sup.supId}'/>">
 	            <img src="${sup.supImg}" alt="${sup.supName}">
 		        </a>
 		        <p>${sup.supName}</p>
