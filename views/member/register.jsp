@@ -4,8 +4,8 @@
 <html>
 	<head>
 		<script src="https://kit.fontawesome.com/567f0760c2.js" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="DYcommon.css" >
-		<link rel="stylesheet" href="DYheader.css" >
+		<link rel="stylesheet" href="register.css" >
+		<link rel="stylesheet" href="header.css" >
 		
 		<meta charset="UTF-8">
 		<title>비타버디에 오신 것을 환영합니다!</title>
@@ -18,7 +18,6 @@
 				</div>
 				<div class="temp">
 					<form method="post" id="information"onsubmit="return false;">
-						
 							<div class="horizontal_box">
 								<label>이름</label>
 								<input type="text" name="userName" required/>
@@ -53,9 +52,6 @@
 									<input type="text" name="userPh3" id="userPh3"placeholder="1234"maxlength="4"   required/>
 								</div>
 							</div>
-						
-						
-						
 							<div class="zipcode">
 								<label>우편번호</label>
 								<div class="box_rowContents">
@@ -66,8 +62,7 @@
 								<input type="text" name="userAddress1" id="userAddress1" required/>
 								<label>상세 주소 </label>
 								<textarea rows="10%" cols="100%" name="userAddress2" id="userAddress2" required/></textarea>
-							</div>
-						
+							</div>	
 					</form>
 					
 				</div>

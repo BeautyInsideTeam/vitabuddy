@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="DYcommon.css" >
-<link rel="stylesheet" href="DYheader.css" >
+<link rel="stylesheet" href="myPage.css" >
+<link rel="stylesheet" href="header.css" >
 <meta charset="UTF-8">
 <title>마이페이지</title>
 </head>
