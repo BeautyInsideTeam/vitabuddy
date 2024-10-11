@@ -96,7 +96,7 @@
 	    <div class="products">
 	    <c:forEach var="sup" items="${supList}">
 	           <div class="productItem">
-	            <a href="<c:url value='/product/detailView/${sup.supId}'/>">
+	    <!-- 상품 상세 연결 링크 수정 --><a href="<c:url value='/api/supplement/supplementDetail/${sup.supId}'/>">
 	            <img src="${sup.supImg}" alt="${sup.supName}">
 		        </a>
 		        <p>${sup.supName}</p>
