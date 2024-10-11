@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
-<!DOCTYPE html>
+<%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ --%><!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/567f0760c2.js" crossorigin="anonymous"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>비타버디 가입하기</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/register.css'/>">
+    <link rel="stylesheet" href="register.css" > <!--css 개발용 -->
     <c:import url="/WEB-INF/views/layout/head.jsp" /> 
-    <script src="/js/register.js"></script> <!-- JS 파일을 추가 -->
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common.css'/>">
+ <!--    <script src="/js/register.js"></script> JS 파일을 추가 --> <!--css 개발용 -->
 </head>
 <body>
 <c:import url="/WEB-INF/views/layout/top.jsp" /> 
@@ -29,7 +30,7 @@
 					<div class="box_rowContents">
              				<label>아이디</label>
 	               		<input type="text" name="userId" id="userId" required/>
-	               		<button type="button" onclick="fnDbCheckId()" name="dbCheckId" class="btn" style="position:absolute; right:560px; width: 130px;">중복확인</button>
+	               		<button type="button" onclick="fnDbCheckId()" name="dbCheckId" class="btn" style="position:absolute; right: 28%; width: 7%;">중복확인</button>
            		 	</div>
 					<p></p>
 					<div class="box_rowContents">
@@ -63,7 +64,7 @@
 	               		<div class="box_rowContents">
 			                  <label>우편번호</label>
 			                  <input type="text" name="userZipcode" id="userZipcode" readonly/>
-			                  <button type="button" name="searchBtn" class="btn" onclick="openZipSearch()" style="position:absolute; right:560px; width: 130px;">우편번호 찾기</button>  
+			                  <button type="button" name="searchBtn" class="btn" onclick="openZipSearch()" style="position:absolute; right: 28%; width: 7%;">우편번호 찾기</button>  
 	                    </div>    
 			            <p></p>
 			            <div class="box_rowContents">
