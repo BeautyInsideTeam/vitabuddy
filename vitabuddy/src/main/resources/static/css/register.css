@@ -21,6 +21,7 @@ footer {
 } */
 p {
 	margin-left:10px;
+	margin-bottom: 5%;
 }
 table{
 	width:100%;
@@ -59,18 +60,14 @@ table{
 .horizontal_box .name{
 	width:20%;
 }
-.temp {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	column-gap: 40px;
-	margin-left: 20px;
-	margin-right: 20px;
-}
+
+
 
 	
 .horizontal_box {
 	
+	padding-right:32%;
+	padding-left:32%;
 	/* flex-direction: column; */
 	row-gap: 10px;
 }
@@ -78,6 +75,7 @@ table{
     display: block;
     padding: 0 10px 0 10px;
     color: #7b6e48;
+    width:150px;
 }
 .horizontal_box input {
     width: 97%;
@@ -93,6 +91,7 @@ table{
 	flex-direction: row;
 }
 label{
+	/* width: 135px; */
 	color: #7b6e48;
 }
 .left, .right {
@@ -125,14 +124,7 @@ input, textarea {
 	/* display: flex; */
 	flex-direction: row;
 }
-.tellecom{
-	margin-right: 20px;
-	width: 10%;
-    padding: 10px 0 10px 0;
-    background-color: #e9e5e0;
-    border-style:none;
-    border-radius: 5px;
-}
+
 .phone-number input {
     width: 20%;
     display: inline-block;
@@ -141,7 +133,7 @@ input, textarea {
 
 .zipcode button {
   	padding: 10px;
-  	width: 200px;
+  	/* width: 200px; */
     background-color: #a9a27e;
     color: white;
     border: none;
@@ -153,45 +145,54 @@ input, textarea {
 .submit-btn {
     display: block;
     
-    width: 200px;
-    margin: 20px auto;
-    padding: 10px;
+    width: 15%;
+    margin: 2% auto;
+    padding: 1%;
     background-color: #a9a27e;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     
-}
-.search-box {
+} 
+/* .search-box {
     display: flex;
     align-items: center;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #e9e5e0;
-}
-.search-box i {
+} */
+/* .search-box i {
     color: #888;
     margin-left: 10px;
-}
+} */
 
-.search-box input {
+/* .search-box input {
     border: none;
     outline: none;
     width: 100%;
     background-color: transparent;
     font-size: 16px;
-}
+} */
 .box_rowContents button{
-	padding: 10px;
-  	width: 200px;
+	/* right: 630px;
+	position: absolute; */
+	padding: 1%;
+  	/* width: 175px; */
     background-color: #a9a27e;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     margin-left: auto;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    width: 7%;
+    height: 3%;
+    justify-content: center;
+    
 } 
 
 .search-box input::placeholder {
