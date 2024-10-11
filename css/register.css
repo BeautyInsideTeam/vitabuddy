@@ -21,6 +21,7 @@ footer {
 } */
 p {
 	margin-left:10px;
+	margin-bottom: 5%;
 }
 table{
 	width:100%;
@@ -59,21 +60,14 @@ table{
 .horizontal_box .name{
 	width:20%;
 }
-.temp {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	column-gap: 40px;
-	margin-left: 20px;
-	margin-right: 20px;
-}
+
 
 
 	
 .horizontal_box {
 	
-	padding-right:500px;
-	padding-left:410px;
+	padding-right:32%;
+	padding-left:32%;
 	/* flex-direction: column; */
 	row-gap: 10px;
 }
@@ -97,7 +91,7 @@ table{
 	flex-direction: row;
 }
 label{
-	width: 135px;
+	/* width: 135px; */
 	color: #7b6e48;
 }
 .left, .right {
@@ -130,14 +124,7 @@ input, textarea {
 	/* display: flex; */
 	flex-direction: row;
 }
-.tellecom{
-	margin-right: 20px;
-	width: 10%;
-    padding: 10px 0 10px 0;
-    background-color: #e9e5e0;
-    border-style:none;
-    border-radius: 5px;
-}
+
 .phone-number input {
     width: 20%;
     display: inline-block;
@@ -158,7 +145,7 @@ input, textarea {
 .submit-btn {
     display: block;
     
-    width: 200px;
+    width: 15%;
     margin: 20px auto;
     padding: 10px;
     background-color: #a9a27e;
@@ -167,7 +154,7 @@ input, textarea {
     border-radius: 20px;
     cursor: pointer;
     
-}
+} 
 .search-box {
     display: flex;
     align-items: center;
@@ -189,8 +176,8 @@ input, textarea {
     font-size: 16px;
 }
 .box_rowContents button{
-	right: 630px;
-	position: absolute;
+	/* right: 630px;
+	position: absolute; */
 	padding: 10px;
   	/* width: 175px; */
     background-color: #a9a27e;
