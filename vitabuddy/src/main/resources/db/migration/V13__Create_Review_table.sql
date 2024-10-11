@@ -4,9 +4,12 @@ CREATE TABLE Review (
     UserId VARCHAR2(50) NOT NULL,
     SupId INTEGER NOT NULL,
     Rating VARCHAR2(10),
+    ReviewHashtag VARCHAR(50),
     ReviewDate DATE,
     Content VARCHAR2(200),
     StartDate DATE,
     EndDate DATE,
-    ReviewImg VARCHAR2(30)
+    ReviewImg VARCHAR2(30),
+    FOREIGN KEY (UserID) REFERENCES users(UserID), 
+    FOREIGN KEY (SupID) REFERENCES supplement(SupID) 
 );

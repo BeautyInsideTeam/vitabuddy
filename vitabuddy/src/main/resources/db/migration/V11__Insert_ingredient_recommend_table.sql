@@ -18,4 +18,3 @@ VALUES ('L-아르기닌', '밀크씨슬', 'L-아르기닌은 혈관 확장과 �
 
 INSERT INTO ingredient_recommend (RecommendID1, RecommendID2, RecommendID3, InteractionRecommend, IngredientRecommendID)
 VALUES ('종합비타민', '아연', '마그네슘', '종합비타민은 전체적인 비타민과 미네랄을 균형 있게 공급하며, 아연과 마그네슘은 면역력 강화 및 근육 기능 향상에 기여합니다.', 7);
-
