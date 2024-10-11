@@ -3,21 +3,36 @@
  */
  
 $(function() {
-    // 상위 카테고리 클릭 시 하위 카테고리 표시
-    $('#category ul li a').on('click', function(e) {
-        e.preventDefault(); // 기본 링크 동작 방지
+    $('#category ul li a').on('click', function() {
+        event.preventDefault(); 
 
-        // 클릭한 카테고리의 data-category 값 가져오기
-        var selectedCategory = $(this).parent().data('category');
+        // 상위 카테고리
+        selectedCategory = $(this).parent().data('category');
 
-        // 모든 하위 카테고리 숨기기
-        $('.subCtgMenu').hide();
+        // ajax
+        $.ajax({
+            type: 'GET',
+            url: '/api/supplement/subcategories',  
+            data: { category: selectedCategory }, // 선택된 상위 카테고리
+            success: function(response) {
+                // 기존 하위 카테고리 지우고 새 데이터 로드
+                var subCategoryMenu = $('.subCtgMenu[data-category="' + selectedCategory + '"] ul');
+                subCategoryMenu.empty();  // 기존 내용 삭제
 
-        // 선택한 카테고리와 일치하는 하위 카테고리만 보여주기
-        $('.subCtgMenu[data-category="' + selectedCategory + '"]').show();
+                // 하위 카테고리 목록 출력
+                response.forEach(function(subcategory) {
+                    subCategoryMenu.append('<li><a href="#">' + subcategory.name + '</a></li>');
+                });
+
+                // 하위 카테고리 표시
+                $('.subCtgMenu[data-category="' + selectedCategory + '"]').show();
+            },
+            error: function() {
+                console.error("하위 카테고리 로드 실패");
+            }
+        });
     });
 
-    // 페이지 로드시 모든 하위 카테고리 숨기기
-    $('.subCtgMenu').hide();
+    // 페이지 로드시 
+    $('.subCtgMenu').hide(); //모든 하위 카테고리 숨김
 });
-
