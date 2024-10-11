@@ -68,9 +68,12 @@ table{
 	margin-right: 20px;
 }
 
+
 	
 .horizontal_box {
 	
+	padding-right:500px;
+	padding-left:410px;
 	/* flex-direction: column; */
 	row-gap: 10px;
 }
@@ -78,6 +81,7 @@ table{
     display: block;
     padding: 0 10px 0 10px;
     color: #7b6e48;
+    width:150px;
 }
 .horizontal_box input {
     width: 97%;
@@ -93,6 +97,7 @@ table{
 	flex-direction: row;
 }
 label{
+	width: 135px;
 	color: #7b6e48;
 }
 .left, .right {
@@ -141,7 +146,7 @@ input, textarea {
 
 .zipcode button {
   	padding: 10px;
-  	width: 200px;
+  	/* width: 200px; */
     background-color: #a9a27e;
     color: white;
     border: none;
@@ -184,14 +189,17 @@ input, textarea {
     font-size: 16px;
 }
 .box_rowContents button{
+	right: 630px;
+	position: absolute;
 	padding: 10px;
-  	width: 200px;
+  	/* width: 175px; */
     background-color: #a9a27e;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     margin-left: auto;
+    
 } 
 
 .search-box input::placeholder {
