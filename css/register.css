@@ -146,8 +146,8 @@ input, textarea {
     display: block;
     
     width: 15%;
-    margin: 20px auto;
-    padding: 10px;
+    margin: 2% auto;
+    padding: 1%;
     background-color: #a9a27e;
     color: white;
     border: none;
@@ -155,30 +155,30 @@ input, textarea {
     cursor: pointer;
     
 } 
-.search-box {
+/* .search-box {
     display: flex;
     align-items: center;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #e9e5e0;
-}
-.search-box i {
+} */
+/* .search-box i {
     color: #888;
     margin-left: 10px;
-}
+} */
 
-.search-box input {
+/* .search-box input {
     border: none;
     outline: none;
     width: 100%;
     background-color: transparent;
     font-size: 16px;
-}
+} */
 .box_rowContents button{
 	/* right: 630px;
 	position: absolute; */
-	padding: 10px;
+	padding: 1%;
   	/* width: 175px; */
     background-color: #a9a27e;
     color: white;
@@ -186,6 +186,12 @@ input, textarea {
     border-radius: 20px;
     cursor: pointer;
     margin-left: auto;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    width: 7%;
+    height: 3%;
+    justify-content: center;
     
 } 
 
