@@ -3,8 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/header.css'/>">
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/footer.css'/>">  <!-- 강사님은 제외하고 함 -->
-	
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/footer.css'/>">  
 	<script src="https://kit.fontawesome.com/649b576283.js" crossorigin="anonymous"></script>
 	<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 
