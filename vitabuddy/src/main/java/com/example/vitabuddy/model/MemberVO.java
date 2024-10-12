@@ -12,12 +12,7 @@ public class MemberVO {
 	private String userAddress1;
 	private String userAddress2;
 
-	// 2. VO클래스 초기화
-	public MemberVO() {
-
-	}
-
-	// 3. getter & setter
+	// 2. getter & setter
 	public String getUserName() {
 		return userName;
 	}

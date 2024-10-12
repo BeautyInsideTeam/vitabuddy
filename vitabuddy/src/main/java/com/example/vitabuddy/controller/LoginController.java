@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.vitabuddy.service.MemberService;
+import com.example.vitabuddy.service.LoginService;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class MemberController {
+public class LoginController {
 
 	@Autowired 
-	MemberService memService;
+	LoginService memService;
 	
 	// 1. 로그인 기능
 	@ResponseBody

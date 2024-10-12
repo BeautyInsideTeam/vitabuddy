@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.vitabuddy.dao.IMemberDAO;
 
 @Service
-public class MemberService implements IMemberService {
+public class LoginService implements ILoginService {
 
 	@Autowired
 	@Qualifier("IMemberDAO")

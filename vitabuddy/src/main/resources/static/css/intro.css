@@ -1,33 +1,61 @@
-/* ì¸íŠ¸ë¡œ ì´ë¯¸ì§€ ì„¤ì • */
-
-#wrap {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-	overflow:hidden;
+/* ÀüÃ¼ ½ºÅ¸ÀÏ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'myriad';
 }
 
-/* ì¸íŠ¸ë¡œ ì´ë¯¸ì§€ ì„¤ì • */
+#wrap {
+    width: 100%;
+    height: 100vh;
+    background-color: #e5e0da;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+a{
+	text-decoration: none;
+}
+
+/* ¹öÆ° ÅÂ±× ±âº» css Á¦°Å */
+button{
+	max-width: 150px;
+	font-family: inherit;
+	cursor: pointer;
+	text-decoration: none;
+	border: none;
+	outline: 0;
+	border-radius: 25px;
+	background-color:#583b1f;
+	color:#e5e0da;
+}
+
+
+/* ÀÎÆ®·Î ÀÌ¹ÌÁö */
 .introTitle img {
-	opacity:50%;
+    opacity: 50%;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
     z-index: 1;
 }
 
-/* ë©”ì¸ íƒ€ì´í‹€ */
+/* ¸ŞÀÎ Å¸ÀÌÆ² */
 .main-title {
     position: relative;
-    z-index: 2; /* ì´ë¯¸ì§€ë³´ë‹¤ ìœ„ì— ë‚˜íƒ€ë‚˜ë„ë¡ */
+    z-index: 2;
     color: #583b1f;
-    font-size: 70px;
+    font-size: 5vw; /* ³Êºñ¿¡ µû¶ó ±ÛÀÚ Å©±â Á¶Á¤ */
     font-weight: 800;
     text-align: center;
     margin-top: 5vh;
+    padding: 0 20px; 
+    line-height: 1.2; 
 }
 
 section div {
@@ -38,31 +66,31 @@ section div {
     align-items: center;
 }
 
-/* ë¼ë²¨ ì™¼ìª½ ì •ë ¬ */
+/* ¶óº§ ¿ŞÂÊ Á¤·Ä */
 label {
     display: block;
-    text-align: left; /* ì™¼ìª½ ì •ë ¬ */
-    margin-bottom: 5px; /* ì•½ê°„ì˜ ì—¬ë°± */
+    text-align: left; 
+    margin-bottom: 5px; 
 }
 
-/* input í•„ë“œì˜ ì¤‘ì•™ ì •ë ¬ */
+/* input ÇÊµå Áß¾Ó Á¤·Ä */
 .loginForm input.formTxt {
     display: block;
-    margin: 0 auto; /* ì¤‘ì•™ ì •ë ¬ */
-    width: 100%; /* ë„ˆë¹„ ì¡°ì • */
-    max-width: 600px; /* ìµœëŒ€ ë„ˆë¹„ ì œí•œ */
+    margin: 0 auto; /* Áß¾Ó Á¤·Ä */
+    width: 100%; 
+    max-width: 600px; 
     padding: 10px;
     border-radius: 30px;
     font-size: 15px;
     border: none;
     line-height: 30px;
     color: #583b1f;
-    background-color: #f2f2f2; /* ë°°ê²½ìƒ‰ (ì„ íƒ ì‚¬í•­) */
+    background-color: #f2f2f2; 
 }
 
-/* ë¡œê·¸ì¸ í¼ ì¤‘ì•™ ì •ë ¬ */
+/* ·Î±×ÀÎ Æû Áß¾Ó Á¤·Ä */
 .loginForm {
-    width: 100%; /* í¼ ë„ˆë¹„ë¥¼ 100% */
+    width: 100%; 
     max-width: 500px; 
     margin: 30px auto; 
     padding: 20px;
@@ -72,7 +100,7 @@ label {
     margin-bottom:20px;
 }
 
-/* ë¡œê·¸ì¸ ë²„íŠ¼ ì¤‘ì•™ ì •ë ¬ */
+/* ·Î±×ÀÎ ¹öÆ° Áß¾Ó Á¤·Ä */
 .loginForm #loginSubmit {
     width: 100px;
     height: 40px;
@@ -81,44 +109,51 @@ label {
     float: right;
 }
 
-.btn{
-	margin-top:10px;
-}
 
 .btn {
-  max-width: 150px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 300;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 25px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.btnFilled{
-	width:150px;
-	background-color:#583b1f;
-	color:#e5e0da;
-}
-
-.btnUnfilled{
-	width:150px;
-	background-color:#e5e0da;
-	color:#583b1f;
-	border: solid 1.5px #583b1f; 
+    margin-top: 10px;
+    max-width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
-/* ë²„íŠ¼ hover */
+.btnFilled {
+    background-color: #583b1f;
+    color: #e5e0da;
+}
+
+
+.btnUnfilled {
+    background-color: #e5e0da;
+    color: #583b1f;
+    border: solid 1.5px #583b1f;
+}
+
+/* ¹öÆ° hover */
 .btnFilled:hover {
-    background-color: #71543d; 
+    background-color: #71543d;
     transition: background-color 0.3s ease;
 }
 
+/* È­¸é Å©±â Á¶Á¤½Ã ±ÛÀÚÅ©±â */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 8vw; /* ÀÛÀº È­¸é */
+    }
+}
 
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 6vw; /* ´õ ÀÛÀº È­¸é */
+    }
+}
