@@ -1,18 +1,19 @@
 package com.example.vitabuddy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.vitabuddy.dao.IMemberDAO;
+import com.example.vitabuddy.dao.IMemberUpdateDAO;
 import com.example.vitabuddy.model.MemberVO;
 
 @Service
-public class MemberService implements IMemberService {
+public class MemberUpdateService implements IMemberUpdateService {
 	@Autowired
-	@Qualifier("IMemberDAO")
-	IMemberDAO dao;
+	@Qualifier("IMemberUpdateDAO")
+	IMemberUpdateDAO dao;
 	
 	@Autowired
 	PasswordEncoder pwdEncoder;

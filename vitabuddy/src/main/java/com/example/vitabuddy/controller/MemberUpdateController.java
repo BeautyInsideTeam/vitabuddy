@@ -10,18 +10,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.example.vitabuddy.model.MemberVO;
-import com.example.vitabuddy.service.MemberService;
+import com.example.vitabuddy.service.MemberUpdateService;
 
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class MemberController {
+public class MemberUpdateController {
 	
 	@Autowired
-	MemberService memService;
+	MemberUpdateService memService;
 	
-	
+	//회원가입 수정기능구현을 위해 디폴트 페이지를 myPage로 설정 - merge이후 수정
+	@RequestMapping("/")
+	public String myPage() {
+		return "member/myPage";
+	}
 	
 	//마이페이지 > 회원정보 수정폼으로: 기존에 입력했던 회원 데이터가 폼에 출력된다 
 	@RequestMapping("/member/myInfoChangeForm")
@@ -48,7 +52,7 @@ public class MemberController {
 		String userPh = userPh1 + "-" + userPh2 + "-" + userPh3;
 		vo.setUserPh(userPh); 
 		memService.myInfoUpdate(vo);
-		return "member/myPage"; 
+		return "member/myPage"; //수정 필요
 
 		}
 
