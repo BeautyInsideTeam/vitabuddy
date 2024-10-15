@@ -7,7 +7,11 @@
     $('#searchForm').on('submit', function() {
         event.preventDefault();
 
-        const keyword = $('#keyword').val(); //검색 키워드
+        const keyword = $('#keyword').val().trim(); //검색 키워드
+        // .trim() 추가 입력한 키워드 값,양 옆 공백 제거
+        
+        /*검색 이외 부분 제외
+        
         applyFilters(keyword, null, null);
     });
 
@@ -47,34 +51,36 @@
             url.searchParams.set('order', sortOrder);
         } else {
             url.searchParams.delete('order');
-        }
+        }*/
 
         // ajax 요청
         $.ajax({
             type: 'get',
-            url: '/api/supplement?' + url.searchParams.toString(),
-            success: function(result) {
+            url: '/search',  // 요청을 보낼 URL (Spring Controller에 매핑된 URL)
+            //url: '/api/supplement?' + url.searchParams.toString(),
+            // result->response 수정
+            success: function(response) {
                 $('.products').empty();  // 기존 상품 목록 삭제
 
-                if (result.length == 0) {
+                if (response.length == 0) {
                     $('.products').append('<h4>검색 결과가 없습니다</h4>');
                 } else {
-                    result.forEach(function(product) {
+                    result.forEach(function(keywordsup) {// js 파일에서 jstl 태그 인식 못하므로, 아래와 같이 supPrice 작성
                         $('.products').append(`
                             <div class="productItem">
-					            <a href="<c:url value='/api/supplement/supplementDetail/${sup.supId}'/>">
-					            <img src="${sup.supImg}" alt="${sup.supName}">
-						        </a>
-						        <p>${sup.supName}</p>
-						        <p>${sup.supPrice}</p>
-						        <p>${sup.supBrand}</p>
-                            </div>
+					            <a href="<c:url value='/api/supplement/supplementDetail/${keywordsup.supId}'/>">
+					             <img class="prdImg" src="data:image/png;base64,${keywordsup.base64SupImg}" width="300" height="300"> </a>
+						        <p>${keywordsup.supName}</p>
+						        <p>${new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(keywordsup.supPrice)}</p>
+						        <p>${keywordsup.supBrand}</p>
+                            </div> 
                         `);
                     });
                 }
             },
             error: function() {
-                console.error("error");
+                //console.error("error");
+                alert('오류가 발생했습니다');  // 에러 처리
             }
         });
     }
