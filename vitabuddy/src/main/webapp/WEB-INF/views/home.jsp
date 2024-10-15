@@ -20,12 +20,12 @@
 	<div class="search">
 		<form class="searchBox" id="searchForm" method="get">
 			<input type="text" name="keyword" id="keyword" class="searchTxt" placeholder="Search">
-			<button type="submit" class="searchBtn"><!-- 돋보기 아이콘 -->
+			<button type="submit" class="searchBtn">  <!--돋보기 아이콘  -->
 			<i class="fa-solid fa-magnifying-glass"></i>
 			</button>
 		</form>
 	
-	</div>				
+	</div>
 					<br>
 <section>
 	<!-- 메인메뉴 -->

@@ -23,9 +23,14 @@ public class Homecontroller {
 	}*/
 
 	//회원가입 수정기능구현을 위해 디폴트 페이지를 myPage로 설정 - merge이후 수정
-	@RequestMapping("/")
+	/*@RequestMapping("/")
 	public String home() {
 		return "member/myPage";
+	}*/
+	
+	@RequestMapping("/")
+	public String home() {
+		return "home";
 	}
 
 	
