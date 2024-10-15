@@ -34,17 +34,20 @@
 	<!-- 로그인 하지 않은 경우 -->
 		<c:if test="${empty sessionScope.sid }">
 		<!-- 상점 -->
-		<a href="<c:url value='/product/prdList'/>"><img src="<c:url value='/image/prdList.png'/>" class="menuImg"><br>상점</a>
+<!-- /product/prdList 에서 supplement로 수정 -->	
+		<a href="<c:url value='/supplement/supplementList'/>"><img src="<c:url value='/image/prdList.png'/>" class="menuImg"><br>상점</a>
 		
 		</c:if>
 	
 	<!-- 로그인 한 경우 -->
 					<c:if test="${not empty sessionScope.sid }">
 		<!-- 상점 -->
-		<a href="<c:url value='/product/prdList'/>"><img src="<c:url value='/image/prdList.png'/>" class="menuImg"><br>상점</a>
+<!-- /product/prdList 에서 supplement로 수정 -->
+		<a href="<c:url value='/supplement/supplementList'/>"><img src="<c:url value='/image/prdList.png'/>" class="menuImg"><br>상점</a>
 		
 		<!-- 마이페이지 -->
-		<a href="<c:url value='/myPage'/>"><img src="<c:url value='/image/myPage.png'/>" class="menuImg"><br>마이페이지</a>
+<!-- /myPage 에서 /member/myPage로 수정 -->
+		<a href="<c:url value='/member/myPage'/>"><img src="<c:url value='/image/myPage.png'/>" class="menuImg"><br>마이페이지</a>
 	</c:if>
 	</div>
 </section>	
