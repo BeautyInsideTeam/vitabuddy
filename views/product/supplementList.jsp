@@ -49,11 +49,12 @@
 	
 	<!-- 하위 카테고리 -->
 	<div id="subCtg">
-	    <div class="subCtgMenu" data-category="function">
+	    <div class="subCtgMenu" data-category="function">	<%-- 하위카테고리 출력 부분 삭제 --%>
 	        <ul>
-	        	<c:forEach var="func" items="${ctg}">
+	        
+	        	<%-- <c:forEach var="func" items="${ctg}"> 
 	                    <li><a href="#">${func.function}</a></li>
-	            </c:forEach>
+	            </c:forEach> --%>
 	            
 	            <!-- <li><a href="#">기능1</a></li>
 	            <li><a href="#">기능2</a></li>
@@ -67,16 +68,16 @@
 	    </div>
 	    <div class="subCtgMenu" data-category="ingredient">
 	        <ul>
-	            <c:forEach var="func" items="${ctg}">
+	            <%-- <c:forEach var="func" items="${ctg}">
 	                    <li><a href="#">${ingredient.ingredient}</a></li>
-	            </c:forEach>
+	            </c:forEach> --%>
 	        </ul>
 	    </div>
 	    <div class="subCtgMenu" data-category="brand">
 	        <ul>
-	            <c:forEach var="func" items="${ctg}">
+	            <%-- <c:forEach var="func" items="${ctg}">
 	                    <li><a href="#">${brand.supBrand}</a></li>
-	            </c:forEach>
+	            </c:forEach> --%>
 	        </ul>
 	    </div>
 	</div>
