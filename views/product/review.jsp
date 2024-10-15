@@ -9,6 +9,7 @@
 		<title>상품 상세 조회</title>
 		<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 		<script src="<c:url value='/js/rating.js'/>"></script>
+<!-- 리뷰 수정 폼 링크 추가 --><script src="<c:url value='/js/editReviewForm.js'/>"></script>
 		<!-- css 링크 수정 --><link rel="stylesheet" type="text/css" href="<c:url value='/css/supplementDetail.css'/>">
 		<c:import url="/WEB-INF/views/layout/head.jsp" />
 	</head>
