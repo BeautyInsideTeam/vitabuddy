@@ -5,29 +5,42 @@
 <head>
 <link rel="stylesheet" href="myPage.css" >
 <link rel="stylesheet" href="header.css" >
+<link rel="stylesheet" href="footer.css" >
 <meta charset="UTF-8">
 <title>마이페이지</title>
 </head>
 <body>
-	<%@ include file="DYtop.jsp" %><!-- 탑 경로  및 명령어 수정 -->
+<c:import url="/WEB-INF/views/layout/top.jsp" /> 
+	<%-- <%@ include file="DYtop.jsp" %> --%><!-- 탑 경로  및 명령어 수정 -->
 	<section id="wrap">
 		<div class="container">
 			<div class="headers">
 					<h1>마이페이지</h1>
 			</div>
-			<div class="horizontal_box">
+			<div class="horizontal_box" style="width:80%;padding-right:20%; padding-left:20%;">
 				<form>
 					<label>이름</label>
 			        <input type="text" value=" ${getMember.getUserName() }" class="name" name="userName" readonly />
 					<label>복용 중인 영양제</label> <!--이거 데이터 들어오면 수정 요망-->
-			        <textarea textarea rows="10%" cols="100%" value="${getMember.getUserTabletList()}"  readonly></textarea>
-					<label>올바른 영양제 복용법</label>
-					<textarea textarea rows="10%" cols="100%"readonly></textarea>	
+			        <textarea textarea rows="10%" cols="100%" value="${getMember.getUserTabletList()}" style="width: 75%;" readonly></textarea>
+					<!-- <label>올바른 영양제 복용법</label>
+					<textarea textarea rows="10%" cols="100%"readonly></textarea>	 -->
+					<div class="box_rowContents" style="display:flex; justify-content: space-between;padding-right:44%;  /* padding-left:20%; */"> <!-- 약 시너지-->
+						<div class="horizontal_box"padding-right:20%; padding-left:20%;>
+							<label>추천 성분</label>
+							<textarea style="width:250%;"></textarea>
+						</div>
+						<div class="horizontal_box"padding-right:20%; padding-left:20%;>
+							<label>성분간 상호작용</label>
+							<textarea style="width:250%;"></textarea>
+						</div>
+					</div>
+				
 				</form>
 			</div>
-			<button class="submit-btn" onclick="location.href='infoChange.jsp'">정보 수정하기 </button>
+			<button class="submit-btn" onclick="location.href='infoChange.jsp'"> 회원 정보 수정하기 </button>
 			<div>
-				<div class="review-section">
+				<div class="review-section" style ="padding-right:20%; padding-left:20%;">
 				 	내가 작성한 리뷰 목록
 					<select>
 						<option>정렬 기준</option>
@@ -52,11 +65,11 @@
 							</tr>
 						</tbody>
 					</table>
-						<div align ="center" class="board">
+						<div align ="center" class="board" >
 							작성하신 리뷰가 없습니다.
 						</div>
 				</div>
-				<div class="purchase-section" >
+				<div class="purchase-section" style ="padding-right:20%; padding-left:20%;">
 					구매 내역
 					<select>
 						<option>현재 주문 처리 상태</option>
