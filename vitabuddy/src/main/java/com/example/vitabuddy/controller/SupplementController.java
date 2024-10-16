@@ -29,7 +29,7 @@ public class SupplementController {
 	
 	
 	//pagination test
-	@GetMapping("/product/prdList")
+	@GetMapping("/supplement/supplementList")
 	public String paging(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
 		
 		ArrayList<SupplementVO> pagingsupList = supplementService.pagingList(page);

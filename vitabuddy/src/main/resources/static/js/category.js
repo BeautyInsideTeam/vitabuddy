@@ -22,28 +22,25 @@ $(function() {
         $.ajax({
             type: 'GET',
             url: apiUrl, 
-            // data: { category: selectedCategory },  //수정사항2. 컨트롤러 매개변수로 data값을 넘기지 않음. 
             success: function(response) {
                 // 기존 하위 카테고리 내용 삭제 후 새 데이터 로드
-                
                 var subCategoryMenu = $('.subCtgMenu[data-category="' + selectedCategory + '"] ul'); //데이터가 들어갈 공간을 변수로 정의
-                $('.subCtgMenu ul').empty();  //수정사항3. 이 코드가 없으면, 다른 탭 클릭 시, 그 밑에 누적으로 카테고리 태그가 나타난다
+                $('.subCtgMenu ul').empty();  //누적으로 카테고리 태그가 나타나는 현상 방지
              
-				
                 console.log(response);    // 서버에서 받은 응답 데이터 출력하는 코드
 
 			    
-			    //수정사항4. for반복문으로 대체 (reponse[i] 하나하나에 링크를 걸어야 함 - endpoint 지정
+			    //for반복문 (reponse[i] 하나하나에 링크를 걸어야 함 - endpoint 지정
 				for (let i = 0; i < response.length; i++) {
 				    // 해당 해시태그에 맞는 상품을 검색할 엔드포인트 URL 설정
-				    let page=1
-					 
+				    let page=1  //시작 페이지 지정
+					
 					let categoryEndpoint = '/supplements/tagsearch?category=' + selectedCategory + '&tag=' + encodeURIComponent(response[i]) + '&page=' + page;
 				    // <a> 태그에 클릭 가능한 링크와 해시태그 추가
 				    subCategoryMenu.append('<li><a href="' + categoryEndpoint + '">#' + response[i].replace(/\"/g, "") + '</a></li>');
 				}
 				
-				// 하위 카테고리 표시
+				// 하위 카테고리 표시 - selectedCategory 값을 보여주는 함수
                 $('.subCtgMenu[data-category="' + selectedCategory + '"]').show();
             },
             error: function() { 
@@ -52,6 +49,6 @@ $(function() {
         });
     });
 
-    // 페이지 로드시 모든 하위 카테고리 숨김
+    // 페이지 로드시 - 화면이 로드될 떄 모든 카테고리가 아예 안뜨게끔 
     $('.subCtgMenu').hide();
 });

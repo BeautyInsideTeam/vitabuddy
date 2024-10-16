@@ -34,9 +34,7 @@ $(document).ready(function() {
                         `);
                     });
                     //페이지네이션 구현 
-                    
-                    
-                    
+
                    
                 } //else 종료
                    

@@ -12,9 +12,7 @@
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 
 <script src="<c:url value='/js/category.js'/>"></script>
-<%-- <script src="<c:url value='/js/search.js'/>"></script> <!-- 검색 js 추가 -->--%>
 <script src="<c:url value='/js/search.js'/>"></script> <!-- 검색 js 수정 -->
-
 <script src="<c:url value='/js/pageSupplementList.js'/>"></script> <!-- 페이지 js 추가 -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/supplementList.css'/>"> <!-- css 링크 수정 -->
 
@@ -54,33 +52,20 @@
 	<div id="subCtg">
 	    <div class="subCtgMenu" data-category="functions">
 	        <ul>
-	        	<c:forEach var="func" items="${ctg}">
-	                    <li><a href="#">${func.function}</a></li>
-	            </c:forEach>  
 	            
-	            <!-- <li><a href="#">기능1</a></li>
-	            <li><a href="#">기능2</a></li>
-	            <li><a href="#">기능3</a></li>
-	            <li><a href="#">기능4</a></li>
-	            <li><a href="#">기능5</a></li>
-	            <li><a href="#">기능6</a></li>
-	            <li><a href="#">기능7</a></li>
-	            <li><a href="#">기능8</a></li> 출력 형태-->
+	            <!-- [기능별] 하위 카테고리 출력 부분 : ajax 통신으로 진행 -->
 	            
 	        </ul>
 	    </div>
 	    <div class="subCtgMenu" data-category="ingredients">
 	        <ul>
-	            <c:forEach var="func" items="${ctg}">
-	                    <li><a href="#">${ingredient.ingredient}</a></li>
-	            </c:forEach> 
+	            <!-- [성분별] 하위 카테고리 출력 부분 : ajax 통신으로 진행 -->
+	            
 	        </ul>
 	    </div>
 	    <div class="subCtgMenu" data-category="brands">
 	        <ul>
-	           <c:forEach var="func" items="${ctg}">
-	                    <li><a href="#">${brand.supBrand}</a></li>
-	            </c:forEach>
+	           <!-- [브랜드별] 하위 카테고리 출력 부분 : ajax 통신으로 진행 -->
 	        </ul>
 	    </div>
 	</div>
@@ -98,7 +83,7 @@
 	      
 	
 	<section>
-	    <!-- 상품 데이터 반복 출력 -->  <!-- 수정사항2. 전체 상품 데이터, brand, function, ingredient 태그 선택 시 출력되는 상품 데이터 -->
+	    <!-- 상품 데이터 반복 출력 -->  
 	    <div class="products">
 	    
 	    	<!-- 전체 상품  출력 -->  
@@ -111,7 +96,6 @@
 		        <p>${sup.supBrand}</p>
 	           </div>
 	        </c:forEach>
-	        
 	        
 	        
 	        <!-- brand 태그 선택시 상품 출력 -->  <!-- 막상 해시태그값을 선택했을 때 상품이 나오는 js파일은 없다. 그냥 jsp로 -->
@@ -164,7 +148,8 @@
 	
 	<nav>
 	   
-	   <div class="pagination">
+	    <!-- 페이지네이션 -->
+	    <div class="pagination">
 	        <a href="#" class="prev <c:if test='${currentPage == 1}'>disabled</c:if>" data-page="${currentPage - 1}"><i class="fa-solid fa-caret-left"></i></a>
 	        <c:forEach var="i" begin="1" end="${totalPages}">
 	            <a href="#" class="page" onclick="changePage(${i})">${i}</a>
