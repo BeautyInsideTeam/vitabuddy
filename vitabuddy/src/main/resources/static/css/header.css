@@ -41,4 +41,9 @@ header a:hover {
 .mainMenuFixed{
 	position:fixed;
 	top:0px; /*위쪽 여백이 없음*/
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> merge_features/Login

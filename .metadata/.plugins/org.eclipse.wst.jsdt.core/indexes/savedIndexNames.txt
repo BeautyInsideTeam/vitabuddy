@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+C:\Users\leeje\Desktop\BeautyInside\Project_teamreposit\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+263542780.index
+137408154.index
+156683267.index
+865456685.index
+3085340497.index
+2566647535.index
+4278309232.index

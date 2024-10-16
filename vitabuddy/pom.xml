@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+=======
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>>>>>>> merge_features/Login
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
+<<<<<<< HEAD
 		<version>3.3.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.vitabuddy</groupId>
 	<artifactId>final-project</artifactId>
+=======
+		<version>3.3.3</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.vitabuddy</groupId>
+	<artifactId>VitaBuddy</artifactId>
+>>>>>>> merge_features/Login
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>vitabuddy</name>
 	<description>final project</description>
+<<<<<<< HEAD
 	<url/>
 	<licenses>
 		<license/>
@@ -26,6 +40,20 @@
 		<developerConnection/>
 		<tag/>
 		<url/>
+=======
+	<url />
+	<licenses>
+		<license />
+	</licenses>
+	<developers>
+		<developer />
+	</developers>
+	<scm>
+		<connection />
+		<developerConnection />
+		<tag />
+		<url />
+>>>>>>> merge_features/Login
 	</scm>
 	<properties>
 		<java.version>17</java.version>
@@ -44,6 +72,7 @@
 			<artifactId>flyway-core</artifactId>
 		</dependency>
 		<!-- JSP 의존성 설정 -->
+<<<<<<< HEAD
       <dependency>
          <groupId>org.apache.tomcat.embed</groupId>
          <artifactId>tomcat-embed-jasper</artifactId>
@@ -79,6 +108,44 @@
          <artifactId>spring-boot-starter-security</artifactId>
       </dependency>
       
+=======
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+		</dependency>
+
+		<!-- spring boot auto restart(설정, 클래스가 바뀌면 auto restart) -->
+		<!-- 스프링 레거시 프로젝트에서는 자바코드가 바뀌면 자동으로 서버가 다시시작되는데 부트에서는 그런것이 없기 때문에 서버가 재시작할 
+			수 있도록 설정을 해주어야 함 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- 패스워드 암호화 의존성 주입 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+>>>>>>> merge_features/Login
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-database-oracle</artifactId>
@@ -110,6 +177,53 @@
 			<version>3.0.3</version>
 			<scope>test</scope>
 		</dependency>
+<<<<<<< HEAD
+=======
+
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+
+
+		<!-- springboot security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- java-jwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.12.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.12.3</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.12.3</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+
+
+
+>>>>>>> merge_features/Login
 	</dependencies>
 
 	<build>
@@ -119,6 +233,10 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+<<<<<<< HEAD
+=======
+
+>>>>>>> merge_features/Login
 	</build>
 
 </project>

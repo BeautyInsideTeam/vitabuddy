@@ -25,4 +25,9 @@
 					</div>
             	</div>
             	<hr>
+<<<<<<< HEAD
             </header>
+=======
+            </header>
+            
+>>>>>>> merge_features/Login

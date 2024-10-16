@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+
+section {
+    padding: 40px 20px;
+    background-color: #eae6e1; 
+    border-radius: 10px;  
+    max-width: 1200px;
+    height:406px;
+    margin: 50px auto;
+    align-itens:center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;  /* 버튼들을 가로로 나란히 배치 */
+    gap: 20px;  /* 버튼 사이 간격 */
+}
+
+
+section h3 {
+    font-size: 35px;
+    color: #583b1f;
+    margin-top:40px;
+    margin-bottom: 15px;
+}
+
+section p {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 150px;
+}
+
+.btn {
+  max-width: 150px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 300;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btnFilled{
+	width:150px;
+	background-color:#583b1f;
+	color:#e5e0da;
+}
+
+.btnUnfilled{
+	width:150px;
+	background-color:#eae6e1;
+	color:#583b1f;
+	border: solid 1.5px #583b1f; 
+}
+
+
+/* 버튼 hover 효과 */
+.btnFilled:hover {
+    background-color: #71543d;
+    font-weight: 900;
+    transition: background-color 0.3s ease;
+}
+
+.btnUnfilled:hover {
+    background-color: #71543d;  
+    color: white;
+    font-weight:900;
+    transition: background-color 0.3s ease;
+}

@@ -7,4 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/button.css'/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/page.css'/>">
 	<script src="https://kit.fontawesome.com/649b576283.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
 	<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
+=======
+	<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
+
+>>>>>>> merge_features/Login

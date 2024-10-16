@@ -1,0 +1,7 @@
+INDEX VERSION 1.131
+C:\Users\leeje\Desktop\BeautyInside\Project_teamreposit\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1002152207.index
+\vitabuddy\src\main\java
+C:\Users\leeje\Desktop\BeautyInside\Project_teamreposit\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2774415033.index
+\final-project\src\main\java
+C:\Users\leeje\Desktop\BeautyInside\Project_teamreposit\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\475908619.index
+\VitaBuddy\src\main\java
