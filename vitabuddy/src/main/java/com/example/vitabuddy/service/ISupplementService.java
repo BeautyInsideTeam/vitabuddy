@@ -8,15 +8,26 @@ import com.example.vitabuddy.model.SupplementVO;
 
 public interface ISupplementService {
 
-	//영양제 전체 출력 (상점페이지 처음 들어갔을 때-태그 적용안된 디폴트값)
-	public ArrayList<SupplementVO> getAllSupplements();
-	
-	//pagination test코드
+	//전체 상품 페이지네이션
 	public int countSupplements();
-	
-	//pagination test코드 2
-	//public ArrayList<SupplementVO> getSupplementsByPage(int page, int size);
 	public ArrayList<SupplementVO> pagingList(int page);
+	
+	//[기능] 페이지네이션
+	public int countfunctionSupplements(String decodedTag); 
+	public ArrayList<SupplementVO> pagingfunctionList(String decodedTag, int page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+	
+	//[성분] 페이지네이션
+	public int countingredientSupplements(String decodedTag); 
+	public ArrayList<SupplementVO> pagingingredientList(String decodedTag, int page); 
+	
+	//[브랜드] 페이지네이션
+	public int countbrandSupplements(String decodedTag);
+	public ArrayList<SupplementVO> pagingbrandList(String decodedTag, int page);
+	
+	//키워드 상품 검색 페이지네이션
+	public int countkeywordSupplements(String keyword);  
+	public ArrayList<SupplementVO> pagingkeywordList(String keyword, int page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+	
 	
 	
 	//태그 목록 출력

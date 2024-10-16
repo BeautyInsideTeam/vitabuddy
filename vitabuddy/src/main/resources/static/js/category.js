@@ -36,8 +36,9 @@ $(function() {
 			    //수정사항4. for반복문으로 대체 (reponse[i] 하나하나에 링크를 걸어야 함 - endpoint 지정
 				for (let i = 0; i < response.length; i++) {
 				    // 해당 해시태그에 맞는 상품을 검색할 엔드포인트 URL 설정
-				    let categoryEndpoint = '/supplements/tagsearch?category=' + selectedCategory + '&tag=' + encodeURIComponent(response[i]);
-				
+				    let page=1
+					 
+					let categoryEndpoint = '/supplements/tagsearch?category=' + selectedCategory + '&tag=' + encodeURIComponent(response[i]) + '&page=' + page;
 				    // <a> 태그에 클릭 가능한 링크와 해시태그 추가
 				    subCategoryMenu.append('<li><a href="' + categoryEndpoint + '">#' + response[i].replace(/\"/g, "") + '</a></li>');
 				}

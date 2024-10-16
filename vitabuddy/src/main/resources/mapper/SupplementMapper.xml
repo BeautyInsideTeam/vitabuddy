@@ -43,63 +43,14 @@
 		<result property="supImg" column="supImg"/>
 	</resultMap>
 
-<!-- 모든 상품 출력하기 - 201개가 출력 (아무 필터링 거치지 않고 상점페이지로 처음 접속했을 대 -->
-<select id="getAllSupplements" resultMap="supMap">
-	select supId, supName, supPrice, supBrand, supImg
-	from supplement
-</select>
 
-
-
-<!-- 특정 해시태그 선택했을 때 해당 상품 출력 - functions -->
-<select id="functionSupplements" parameterType="String"  resultMap="supMap">
-	
-	select s.supId, s.supName, s.supPrice, s.supBrand, s.supImg
-	from supplement s
-	join supplement_function sf on s.supId=sf.supId
-	join function f on sf.functionId = f.functionId
-	where f.function = #{tag}
-
-</select>
-
-
-<select id="ingredientSupplements" parameterType="String"  resultMap="supMap">
-
-	select s.supId, s.supName, s.supPrice, s.supBrand, s.supImg
-	from supplement s, ingredientsupplement ins, ingredient i
-    where s.supId = ins.supid and ins.ingredientId = i.ingredientId
-    and i.ingredient = #{tag}
-
-</select>
-
-
-
-<!-- 특정 해시태그 선택했을 때 해당 상품 출력 - brands -->
-<select id="brandSupplements" parameterType="String"  resultMap="supMap">
-
-	select s.supId, s.supName, s.supPrice, s.supBrand, s.supImg
-	from supplement s
-	where supBrand=#{tag}
-
-</select>
-
-
-<!-- 키워드 상품 검색 - 상점 페이지 상단에 있는 검색창  -->
-<select id="searchbysupKeyword" parameterType="String" resultMap="supMap">
-	select supId, supName, supPrice, supBrand, supImg
-	from supplement  
-	 WHERE supName LIKE '%' || #{keyword} || '%'
-</select>
-
-
-<!-- pagination test -->
+<!-- 전체 상품 갯수 -->
 <select id="countSupplements" resultType="int">
 	select count(*) from supplement
 
 </select>
 
-
-<!-- pagination test final -->
+<!-- 전체 상품 리스트 페이지네이션 출력 코드 -->
 <select id="pagingList" parameterType="java.util.HashMap" resultMap="supMap">
 	<![CDATA[
     SELECT * FROM (
@@ -107,13 +58,113 @@
         FROM (
             SELECT supId, supName, supPrice, supBrand, supImg
             FROM supplement
-            ORDER BY supId DESC
         )
         WHERE ROWNUM <= #{start} + #{limit}
     )
     WHERE rn > #{start}
     ]]>
 </select>
+
+<!-- [기능별] 특정 기능 태그 클릭 시, 해당하는 상품 갯수   -->
+<select id="countfunctionSupplements" resultType="int">
+	SELECT count(*)
+	  FROM supplement s
+	  JOIN supplement_function sf ON s.SupId = sf.SupID
+	  JOIN function f ON sf.FunctionID = f.FunctionID
+	  WHERE f.function = #{tag}
+	
+</select>
+
+<!-- [성분별] 특정 기능 태그 클릭 시, 상품 리스트 출력 페이지네이션 코드-->
+<select id="pagingfunctionList" parameterType="java.util.HashMap" resultMap="supMap">
+	<![CDATA[
+    SELECT * FROM (
+        SELECT ROWNUM AS rn, supId, supName, supPrice, supBrand, supImg
+        FROM (
+            SELECT s.supId, s.supName, s.supPrice, s.supBrand, s.supImg
+            FROM supplement s
+            join supplement_function sf on s.supId=sf.supId
+			join function f on sf.functionId = f.functionId
+            where f.function = #{decodedTag}
+        )
+        WHERE ROWNUM <= #{start} + #{limit}
+    )
+    WHERE rn > #{start}
+    ]]>
+    
+</select>
+
+<!-- [성분별] 특정 성분 태그 클릭 시, 해당하는 상품 갯수   -->
+<select id="countingredientSupplements" resultType="int">
+  select count(*)
+	from supplement s, ingredientsupplement ins, ingredient i
+    where s.supId = ins.supid and ins.ingredientId = i.ingredientId
+    and i.ingredient = #{tag}
+</select>
+
+<!-- [성분별] 특정 성분 태그 클릭 시, 상품 리스트 출력 페이지네이션 코드-->
+<select id="pagingingredientList" parameterType="java.util.HashMap" resultMap="supMap">
+	<![CDATA[
+    SELECT * FROM (
+        SELECT ROWNUM AS rn, supId, supName, supPrice, supBrand, supImg
+        FROM (
+            SELECT s.supId, s.supName, s.supPrice, s.supBrand, s.supImg
+            FROM supplement s, ingredientsupplement ins, ingredient i
+            where s.supId = ins.supid and ins.ingredientId = i.ingredientId
+    		and i.ingredient = #{decodedTag}
+        )
+        WHERE ROWNUM <= #{start} + #{limit}
+    )
+    WHERE rn > #{start}
+    ]]>
+</select>
+
+<!-- [브랜드별]특정 브랜드 태그 클릭 시, 해당하는 상품 갯수   -->
+<select id="countbrandSupplements" resultType="int">
+	select count(*) from supplement where supBrand=#{tag}
+</select>
+
+<!-- [브랜드별] 특정 브랜드 태그 클릭 시, 상품 리스트 출력 페이지네이션 코드-->
+<select id="pagingbrandList" parameterType="java.util.HashMap" resultMap="supMap">
+	<![CDATA[
+    SELECT * FROM (
+        SELECT ROWNUM AS rn, supId, supName, supPrice, supBrand, supImg
+        FROM (
+            SELECT supId, supName, supPrice, supBrand, supImg
+            FROM supplement
+            WHERE supBrand=#{decodedTag}
+        )
+        WHERE ROWNUM <= #{start} + #{limit}
+    )
+    WHERE rn > #{start}
+    ]]>
+</select>
+
+
+<!-- [키워드검색]특정 키워드 검색 시, 해당하는 상품 갯수   -->
+<select id="countkeywordSupplements" resultType="int">
+	select count(*)
+	from supplement  
+	 WHERE supName LIKE '%' || #{keyword} || '%'
+</select>
+
+<!-- [키워드검색]특정 키워드 검색 시, 해당 상품 리스트 출력 페이지네이션 코드-->
+<select id="pagingkeywordList" parameterType="java.util.HashMap" resultMap="supMap">
+	<![CDATA[
+    SELECT * FROM (
+        SELECT ROWNUM AS rn, supId, supName, supPrice, supBrand, supImg
+        FROM (
+            SELECT supId, supName, supPrice, supBrand, supImg
+            FROM supplement
+            WHERE supName LIKE '%' || #{keyword} || '%'
+        )
+        WHERE ROWNUM <= #{start} + #{limit}
+    )
+    WHERE rn > #{start}
+    ]]>
+
+</select>
+
 
 
 

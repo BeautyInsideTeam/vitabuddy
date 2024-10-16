@@ -2,6 +2,7 @@ package com.example.vitabuddy.service;
 
 
 import java.util.ArrayList;
+
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.vitabuddy.dao.IMemberDAO;
 import com.example.vitabuddy.dao.ISupplementDAO;
 import com.example.vitabuddy.model.SupplementVO;
 
@@ -23,28 +23,6 @@ public class SupplementService implements ISupplementService {
 	
 	@Autowired
 	PasswordEncoder pwdEncoder;
-	
-	//-----------------------------------------------------------
-	//모든 영양제 출력 - 상점 페이지 최초 접속 시
-	@Override
-	public ArrayList<SupplementVO> getAllSupplements() {
-		ArrayList<SupplementVO> supplements = dao.getAllSupplements(); 
-		
-		for (SupplementVO supplement : supplements) {
-		    try {
-		        if (supplement.getSupImg() != null) {
-		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
-		            supplement.setBase64SupImg(base64Img); // Base64로 인코딩된 이미지 설정
-		        }
-		    } catch (Exception e) {
-		        System.out.println("Error encoding image for supplement: " + supplement.getSupName());
-		        e.printStackTrace();
-		    }
-		}
-
-		
-		return supplements;
-	}
 	
 	//-----------------------------------------------------------
 	//pagination test 코드
@@ -91,6 +69,130 @@ public class SupplementService implements ISupplementService {
 		return pagingList;
 	}
 	//-----------------------------------------------------------
+	@Override
+	public int countbrandSupplements(String decodedTag) {
+		// TODO Auto-generated method stub
+		return dao.countbrandSupplements(decodedTag);
+	}
+	
+	
+	@Override
+	public ArrayList<SupplementVO> pagingbrandList(String decodedTag, int page) {
+		int pageLimit = 12;
+		int pagingStart = (page-1) * pageLimit;
+		Map<String, Object> pagingParams = new HashMap<>();
+		pagingParams.put("decodedTag", decodedTag);
+		pagingParams.put("start", pagingStart);
+		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
+		ArrayList<SupplementVO> pagingbrandList = dao.pagingbrandList(pagingParams);
+		
+		//이미지 출력 코드
+		for (SupplementVO supplement : pagingbrandList) {
+		    try {
+		        if (supplement.getSupImg() != null) {
+		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
+		            supplement.setBase64SupImg(base64Img); // Base64로 인코딩된 이미지 설정
+		        }
+		    } catch (Exception e) {
+		        System.out.println("Error encoding image for supplement: " + supplement.getSupName());
+		        e.printStackTrace();
+		    }
+		}
+		return pagingbrandList;
+	}
+	
+	@Override
+	public int countfunctionSupplements(String decodedTag) {
+		return dao.countfunctionSupplements(decodedTag);
+	}
+
+	@Override
+	public ArrayList<SupplementVO> pagingfunctionList(String decodedTag, int page) {
+		int pageLimit = 12;
+		int pagingStart = (page-1) * pageLimit;
+		Map<String, Object> pagingParams = new HashMap<>();
+		pagingParams.put("decodedTag", decodedTag);
+		pagingParams.put("start", pagingStart);
+		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
+		ArrayList<SupplementVO> pagingfunctionList = dao.pagingfunctionList(pagingParams);
+		
+		//이미지 출력 코드
+		for (SupplementVO supplement : pagingfunctionList) {
+		    try {
+		        if (supplement.getSupImg() != null) {
+		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
+		            supplement.setBase64SupImg(base64Img); // Base64로 인코딩된 이미지 설정
+		        }
+		    } catch (Exception e) {
+		        System.out.println("Error encoding image for supplement: " + supplement.getSupName());
+		        e.printStackTrace();
+		    }
+		}
+		return pagingfunctionList;
+	}
+
+	@Override
+	public int countingredientSupplements(String decodedTag) {
+		return dao.countingredientSupplements(decodedTag);
+	}
+
+	@Override
+	public ArrayList<SupplementVO> pagingingredientList(String decodedTag, int page) {
+		int pageLimit = 12;
+		int pagingStart = (page-1) * pageLimit;
+		Map<String, Object> pagingParams = new HashMap<>();
+		pagingParams.put("decodedTag", decodedTag);
+		pagingParams.put("start", pagingStart);
+		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
+		ArrayList<SupplementVO> pagingingredientList = dao.pagingingredientList(pagingParams);
+		
+		//이미지 출력 코드
+		for (SupplementVO supplement : pagingingredientList) {
+		    try {
+		        if (supplement.getSupImg() != null) {
+		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
+		            supplement.setBase64SupImg(base64Img); // Base64로 인코딩된 이미지 설정
+		        }
+		    } catch (Exception e) {
+		        System.out.println("Error encoding image for supplement: " + supplement.getSupName());
+		        e.printStackTrace();
+		    }
+		}
+		return pagingingredientList;
+	}
+
+
+	@Override
+	public int countkeywordSupplements(String keyword) {
+		return dao.countkeywordSupplements(keyword);
+	}
+
+	@Override
+	public ArrayList<SupplementVO> pagingkeywordList(String keyword, int page) {
+		int pageLimit = 12;
+		int pagingStart = (page-1) * pageLimit;
+		Map<String, Object> pagingParams = new HashMap<>();
+		pagingParams.put("keyword", keyword);
+		pagingParams.put("start", pagingStart);
+		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
+		ArrayList<SupplementVO> pagingkeywordList = dao.pagingkeywordList(pagingParams);
+		
+		//이미지 출력 코드
+		for (SupplementVO supplement : pagingkeywordList) {
+		    try {
+		        if (supplement.getSupImg() != null) {
+		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
+		            supplement.setBase64SupImg(base64Img); // Base64로 인코딩된 이미지 설정
+		        }
+		    } catch (Exception e) {
+		        System.out.println("Error encoding image for supplement: " + supplement.getSupName());
+		        e.printStackTrace();
+		    }
+		}
+		return pagingkeywordList;
+	}
+
+	
 
 	
 	
@@ -99,6 +201,7 @@ public class SupplementService implements ISupplementService {
 	//-----------------------------------------------------------
 	//브랜드, 기능, 성분 해시태그
 
+	
 	@Override
 	public ArrayList<String> getFunctionTags() {
 		

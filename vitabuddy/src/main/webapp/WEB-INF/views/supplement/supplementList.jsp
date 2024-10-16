@@ -14,6 +14,7 @@
 <script src="<c:url value='/js/category.js'/>"></script>
 <%-- <script src="<c:url value='/js/search.js'/>"></script> <!-- 검색 js 추가 -->--%>
 <script src="<c:url value='/js/search.js'/>"></script> <!-- 검색 js 수정 -->
+
 <script src="<c:url value='/js/pageSupplementList.js'/>"></script> <!-- 페이지 js 추가 -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/supplementList.css'/>"> <!-- css 링크 수정 -->
 
@@ -114,7 +115,7 @@
 	        
 	        
 	        <!-- brand 태그 선택시 상품 출력 -->  <!-- 막상 해시태그값을 선택했을 때 상품이 나오는 js파일은 없다. 그냥 jsp로 -->
-	        <c:forEach var="brandsup" items="${brandsupList}">
+	        <c:forEach var="brandsup" items="${pagingbrandsupList}">
 	           <div class="productItem">
 	           <a href="<c:url value='/api/supplement/supplementDetail/${brandsup.supId}'/>">   <!-- 상품 상세 연결 링크 수정 -->
 	           <img class="prdImg" src="data:image/png;base64,${brandsup.base64SupImg}" width="300" height="300"> </a>  <!-- 상품 이미지 출력 코드 : 클릭했을 때, 해당 상품의 supId로 넘어간다 (제품 상세페이지로 이동) -->
@@ -125,7 +126,7 @@
 	        </c:forEach> 
 	        
 	        <!-- function 태그 선택시 상품 출력 -->
-	        <c:forEach var="funcsup" items="${functionsupList}">
+	        <c:forEach var="funcsup" items="${pagingfunctionsupList}">
 	           <div class="productItem">
 	  		   <a href="<c:url value='/api/supplement/supplementDetail/${funcsup.supId}'/>">   <!-- 상품 상세 연결 링크 수정 -->
 	           <img class="prdImg" src="data:image/png;base64,${funcsup.base64SupImg}" width="300" height="300"> </a>  <!-- 상품 이미지 출력 코드 : 클릭했을 때, 해당 상품의 supId로 넘어간다 (제품 상세페이지로 이동) -->
@@ -137,7 +138,7 @@
 	        
 	        
 	        <!-- ingredients 태그 선택시 상품 출력 -->
-	        <c:forEach var="ingresup" items="${ingredientsupList}">
+	        <c:forEach var="ingresup" items="${pagingingredientsupList}">
 	           <div class="productItem">
 	           <a href="<c:url value='/api/supplement/supplementDetail/${ingresup.supId}'/>">   <!-- 상품 상세 연결 링크 수정 -->
 	           <img class="prdImg" src="data:image/png;base64,${ingresup.base64SupImg}" width="300" height="300"> </a>  <!-- 상품 이미지 출력 코드 : 클릭했을 때, 해당 상품의 supId로 넘어간다 (제품 상세페이지로 이동) -->
@@ -172,30 +173,7 @@
 	    </div>
 	    
 	</nav> 
-	
-	
-	
-	<!-- test 페이지네이션 -->
-<%-- 	<nav aria-label="Page navigation">
-	  <ul class="pagination">
-	    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
-	      <a class="page-link" href="?page=${currentPage - 1}&size=${size}" aria-label="Previous">
-	        <span aria-hidden="true">&laquo;</span>
-	      </a>
-	    </li>
-	    <c:forEach var="i" begin="1" end="${totalPages}">
-	      <li class="page-item ${currentPage == i ? 'active' : ''}">
-	        <a class="page-link" href="?page=${i}&size=${size}">${i}</a>
-	      </li>
-	    </c:forEach>
-	    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
-	      <a class="page-link" href="?page=${currentPage + 1}&size=${size}" aria-label="Next">
-	        <span aria-hidden="true">&raquo;</span>
-	      </a>
-	    </li>
-	  </ul>
-	</nav> --%>
-	
+
 
 <!--  footer -->         
 <c:import url="/WEB-INF/views/layout/footer.jsp" /> 

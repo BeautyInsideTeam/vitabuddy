@@ -5,7 +5,9 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,10 +42,12 @@ public class SupplementController {
 		model.addAttribute("pagingsupList", pagingsupList);
 		model.addAttribute("totalSupplements", totalSupplements);
 		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("currentPage", page);
 		
 		System.out.println("pagingsupList = " + pagingsupList.size());   // (지워도됨) test출력 
 		System.out.println("totalSupplements = " + totalSupplements); 
 		System.out.println("totalPages = " + totalPages); 
+		System.out.println("currentPage = " + page); 
 		
 		return "supplement/supplementList"; 
 			
@@ -111,35 +115,72 @@ public class SupplementController {
 	//특정 해시태그 1개를 선택하면, 그 해시태그를 가진 상품들을 출력한다
 	@GetMapping("/supplements/tagsearch")
     public String searchSupplements(@RequestParam("category") String category,
-                                 @RequestParam("tag") String tag,
+                                 @RequestParam("tag") String tag,@RequestParam(value="page", required=false, defaultValue="1") int page,
                                  Model model) {
-		
+
 		System.out.println("태그값 " + tag + " 카테고리값 " + category); //url에 포함된 태그값 출력
+		
 		
 		//태그 사이 띄어쓰기 : [#간 건강] -> url에서는 [#간%20건강]으로 변환되는 현상 -> 다시 띄어쓰기로 디코딩  
 		String decodedTag = URLDecoder.decode(tag, StandardCharsets.UTF_8);  
 		
 		//[브랜드별] 카테고리에서 해시태그 선택했을 경우
         if (category.equals("brands")) {
-        	ArrayList<SupplementVO> brandsupList = supplementService.brandSupplements(decodedTag);
-    		System.out.println(decodedTag + " 영양제");
-    		model.addAttribute("brandsupList", brandsupList);
-    		System.out.println(brandsupList); //test 츨력
+        	ArrayList<SupplementVO> pagingbrandsupList = supplementService.pagingbrandList(decodedTag, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+        	int totalbrandSupplements = supplementService.countbrandSupplements(decodedTag);  //선택한 브랜드 태그에 해당하는 상품 갯수
+     	    int totalPages = (int) Math.ceil((double) totalbrandSupplements / 12); //총 페이지 갯수
+
+     	
+     	    model.addAttribute("pagingbrandsupList", pagingbrandsupList);
+	   		model.addAttribute("totalbrandSupplements", totalbrandSupplements);
+	   		model.addAttribute("totalPages", totalPages);
+	   		model.addAttribute("currentPage", page);
+	   		
+	   		System.out.println("pagingbrandsupList = " + pagingbrandsupList.size());   // (지워도됨) test출력 
+			System.out.println("totalbrandSupplements = " + totalbrandSupplements); 
+			System.out.println("totalPages = " + totalPages); 
+			System.out.println("currentPage = " + page); 
+     	    
+     	    
     	
         }
         //[기능별] 카테고리에서 해시태그 선택했을 경우
         else if (category.equals("functions")) {
-        	ArrayList<SupplementVO> functionsupList = supplementService.functionSupplements(decodedTag);
-    		System.out.println(decodedTag + " 영양제");
-    		model.addAttribute("functionsupList", functionsupList);
-    		System.out.println(functionsupList); //test 츨력
+        	
+        	ArrayList<SupplementVO> pagingfunctionsupList = supplementService.pagingfunctionList(decodedTag, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+        	int totalfunctionSupplements = supplementService.countfunctionSupplements(decodedTag);  //선택한 브랜드 태그에 해당하는 상품 갯수
+     	    int totalPages = (int) Math.ceil((double) totalfunctionSupplements / 12); //총 페이지 갯수
+
+     	
+     	    model.addAttribute("pagingfunctionsupList", pagingfunctionsupList);
+	   		model.addAttribute("totalfunctionSupplements", totalfunctionSupplements);
+	   		model.addAttribute("totalPages", totalPages);
+	   		model.addAttribute("currentPage", page);
+	   		
+	   		System.out.println("pagingfunctionsupList = " + pagingfunctionsupList.size());   // (지워도됨) test출력 
+			System.out.println("totalfunctionSupplements = " + totalfunctionSupplements); 
+			System.out.println("totalPages = " + totalPages); 
+			System.out.println("currentPage = " + page); 
+			
         }
         //[성분별] 카테고리에서 해시태그 선택했을 경우
         else {	
-        	ArrayList<SupplementVO> ingredientsupList = supplementService.ingredientSupplements(decodedTag);
-    		System.out.println(decodedTag + " 영양제");
-    		model.addAttribute("ingredientsupList", ingredientsupList);
-    		System.out.println(ingredientsupList); //test 츨력
+        	
+        	ArrayList<SupplementVO> pagingingredientsupList = supplementService.pagingingredientList(decodedTag, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+        	int totalingredientSupplements = supplementService.countingredientSupplements(decodedTag);  //선택한 브랜드 태그에 해당하는 상품 갯수
+     	    int totalPages = (int) Math.ceil((double) totalingredientSupplements / 12); //총 페이지 갯수
+
+     	
+     	    model.addAttribute("pagingingredientsupList", pagingingredientsupList);
+	   		model.addAttribute("totalingredientSupplements", totalingredientSupplements);
+	   		model.addAttribute("totalPages", totalPages);
+	   		model.addAttribute("currentPage", page);
+	   		
+	   		System.out.println("pagingingredientsupList = " + pagingingredientsupList.size());   // (지워도됨) test출력 
+			System.out.println("totalingredientSupplements = " + totalingredientSupplements); 
+			System.out.println("totalPages = " + totalPages); 
+			System.out.println("currentPage = " + page);
+		
     		
         }
         
@@ -148,18 +189,31 @@ public class SupplementController {
     }
 	
 	@ResponseBody
-	@RequestMapping("/search")
-	public ArrayList<SupplementVO> searchbysupKeyword(@RequestParam("keyword") String keyword, Model model){
+	@GetMapping("/search")
+	public Map<String, Object> searchbysupKeyword(@RequestParam("keyword") String keyword, @RequestParam(value="page", required=false) int page, Model model){
 		
-		ArrayList<SupplementVO> keywordsupList = supplementService.searchbysupKeyword(keyword);
+		ArrayList<SupplementVO> pagingkeywordsupList = supplementService.pagingkeywordList(keyword, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+    	int totalkeywordSupplements = supplementService.countkeywordSupplements(keyword);  //선택한 브랜드 태그에 해당하는 상품 갯수
+ 	    int totalPages = (int) Math.ceil((double) totalkeywordSupplements / 12); //총 페이지 갯수
+ 	
+   		System.out.println("pagingkeywordsupList = " + pagingkeywordsupList.size());   // (지워도됨) test출력
+		System.out.println("totalkeywordSupplements = " + totalkeywordSupplements);
+		System.out.println("totalPages = " + totalPages);
+		System.out.println("currentPage = " + page);
 		
-		model.addAttribute("keywordsupList", keywordsupList);  
-		System.out.println(keywordsupList.size());  //test 출력
+		Map<String, Object> resultMap = new HashMap<>();
+	    resultMap.put("pagingkeywordsupList", pagingkeywordsupList);
+	    resultMap.put("totalkeywordSupplements", totalkeywordSupplements);
+	    resultMap.put("totalPages", totalPages);
+	    resultMap.put("currentPage", page);
 		
-		return keywordsupList;
+		return resultMap;  //ajax 통신으로 전달 - search.js 의 response (response.totalkeywordSupplements 형태로 값 추출)
+		
 		
 	}
 	
+
+
 	
 	
 	
