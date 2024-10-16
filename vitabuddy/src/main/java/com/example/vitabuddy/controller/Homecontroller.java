@@ -30,7 +30,7 @@ public class Homecontroller {
 	
 	@RequestMapping("/")
 	public String home() {
-		return "member/myPage";
+		return "home";
 	}
 
 	

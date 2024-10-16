@@ -11,6 +11,13 @@ public interface ISupplementService {
 	//영양제 전체 출력 (상점페이지 처음 들어갔을 때-태그 적용안된 디폴트값)
 	public ArrayList<SupplementVO> getAllSupplements();
 	
+	//pagination test코드
+	public int countSupplements();
+	
+	//pagination test코드 2
+	//public ArrayList<SupplementVO> getSupplementsByPage(int page, int size);
+	public ArrayList<SupplementVO> pagingList(int page);
+	
 	
 	//태그 목록 출력
 	public ArrayList<String> getFunctionTags();

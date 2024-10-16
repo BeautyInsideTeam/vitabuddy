@@ -3,6 +3,8 @@ package com.example.vitabuddy.service;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -45,6 +47,56 @@ public class SupplementService implements ISupplementService {
 	}
 	
 	//-----------------------------------------------------------
+	//pagination test 코드
+	@Override
+	public int countSupplements() {
+		// TODO Auto-generated method stub
+		return dao.countSupplements();
+	}
+	
+	//pagination test 코드2
+	/*@Override
+	public ArrayList<SupplementVO> getSupplementsByPage(int page, int size) {
+		int offset = (page-1) * size;
+		return dao.selectSupplementsWithPagination(size, offset);
+	}*/
+
+	@Override
+	public ArrayList<SupplementVO> pagingList(int page) {
+		/*
+		 * 1페이지당 보여지는 글 갯수가 3일 때 (예를 들어)
+		 * 1페이지 -> 0
+		 * 2페이지 -> 3
+		 * 3페이지 -> 6
+		 */
+		int pageLimit = 12;
+		int pagingStart = (page-1) * pageLimit;
+		Map<String, Integer> pagingParams = new HashMap<>();
+		pagingParams.put("start", pagingStart);
+		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
+		ArrayList<SupplementVO> pagingList = dao.pagingList(pagingParams);
+		
+		//이미지 출력 코드
+		for (SupplementVO supplement : pagingList) {
+		    try {
+		        if (supplement.getSupImg() != null) {
+		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
+		            supplement.setBase64SupImg(base64Img); // Base64로 인코딩된 이미지 설정
+		        }
+		    } catch (Exception e) {
+		        System.out.println("Error encoding image for supplement: " + supplement.getSupName());
+		        e.printStackTrace();
+		    }
+		}
+		return pagingList;
+	}
+	//-----------------------------------------------------------
+
+	
+	
+	
+	
+	//-----------------------------------------------------------
 	//브랜드, 기능, 성분 해시태그
 
 	@Override
@@ -52,6 +104,9 @@ public class SupplementService implements ISupplementService {
 		
 		return dao.getFunctionTags();
 	}
+
+
+
 	@Override
 	public ArrayList<String> getIngredientTags() {
 		

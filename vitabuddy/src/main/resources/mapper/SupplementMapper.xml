@@ -92,4 +92,29 @@
 </select>
 
 
+<!-- pagination test -->
+<select id="countSupplements" resultType="int">
+	select count(*) from supplement
+
+</select>
+
+
+<!-- pagination test final -->
+<select id="pagingList" parameterType="java.util.HashMap" resultMap="supMap">
+	<![CDATA[
+    SELECT * FROM (
+        SELECT ROWNUM AS rn, supId, supName, supPrice, supBrand, supImg
+        FROM (
+            SELECT supId, supName, supPrice, supBrand, supImg
+            FROM supplement
+            ORDER BY supId DESC
+        )
+        WHERE ROWNUM <= #{start} + #{limit}
+    )
+    WHERE rn > #{start}
+    ]]>
+</select>
+
+
+
 </mapper>

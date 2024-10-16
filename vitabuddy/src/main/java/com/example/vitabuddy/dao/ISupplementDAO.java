@@ -2,6 +2,7 @@ package com.example.vitabuddy.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.example.vitabuddy.model.SupplementVO;
 
@@ -25,6 +26,16 @@ public interface ISupplementDAO {
 	//키워드 상품 검색 - 상점 페이지 상단에 있는 검색창
 	public ArrayList<SupplementVO> searchbysupKeyword(String keyword);
 	
+	
+	//------------------------------------------------------------------
+	//pagination test코드
+	public int countSupplements();
+	
+	//pagination test코드 2
+	//public ArrayList<SupplementVO> selectSupplementsByPage(int start, int pageSize);
+	//public ArrayList<SupplementVO> selectSupplementsWithPagination(int size, int offset);
+	public ArrayList<SupplementVO> pagingList(Map<String, Integer> pagingParams);
+		
 	
 	
 }

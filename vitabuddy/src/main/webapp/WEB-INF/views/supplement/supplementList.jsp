@@ -101,7 +101,7 @@
 	    <div class="products">
 	    
 	    	<!-- 전체 상품  출력 -->  
-	    	<c:forEach var="sup" items="${allSupList}">
+	    	<c:forEach var="sup" items="${pagingsupList}">
 	           <div class="productItem">
 	           <a href="<c:url value='/api/supplement/supplementDetail/${sup.supId}'/>">
 	           <img class="prdImg" src="data:image/png;base64,${sup.base64SupImg}" width="300" height="300"> </a>
@@ -110,6 +110,8 @@
 		        <p>${sup.supBrand}</p>
 	           </div>
 	        </c:forEach>
+	        
+	        
 	        
 	        <!-- brand 태그 선택시 상품 출력 -->  <!-- 막상 해시태그값을 선택했을 때 상품이 나오는 js파일은 없다. 그냥 jsp로 -->
 	        <c:forEach var="brandsup" items="${brandsupList}">
@@ -160,15 +162,40 @@
 	</section>        
 	
 	<nav>
-	    <!-- 페이지네이션 -->
-	    <div class="pagination">
+	   
+	   <div class="pagination">
 	        <a href="#" class="prev <c:if test='${currentPage == 1}'>disabled</c:if>" data-page="${currentPage - 1}"><i class="fa-solid fa-caret-left"></i></a>
 	        <c:forEach var="i" begin="1" end="${totalPages}">
 	            <a href="#" class="page" onclick="changePage(${i})">${i}</a>
 	        </c:forEach>
 	        <a href="#" class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage + 1}"><i class="fa-solid fa-caret-right"></i></a>
 	    </div>
-	</nav>
+	    
+	</nav> 
+	
+	
+	
+	<!-- test 페이지네이션 -->
+<%-- 	<nav aria-label="Page navigation">
+	  <ul class="pagination">
+	    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+	      <a class="page-link" href="?page=${currentPage - 1}&size=${size}" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+	    <c:forEach var="i" begin="1" end="${totalPages}">
+	      <li class="page-item ${currentPage == i ? 'active' : ''}">
+	        <a class="page-link" href="?page=${i}&size=${size}">${i}</a>
+	      </li>
+	    </c:forEach>
+	    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+	      <a class="page-link" href="?page=${currentPage + 1}&size=${size}" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+	  </ul>
+	</nav> --%>
+	
 
 <!--  footer -->         
 <c:import url="/WEB-INF/views/layout/footer.jsp" /> 

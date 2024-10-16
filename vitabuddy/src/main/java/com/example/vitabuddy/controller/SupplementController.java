@@ -1,6 +1,7 @@
 package com.example.vitabuddy.controller;
 
 import java.net.URLDecoder;
+
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.vitabuddy.model.SupplementVO;
@@ -23,22 +26,28 @@ public class SupplementController {
 	SupplementService supplementService;
 	
 	
-	//--------------전체 상품리스트 출력 (처음 상점 페이지 접속 시)-------------------
-	@RequestMapping("/product/prdList")
-	public String supplementListView(Model model) {
+	//pagination test
+	@GetMapping("/product/prdList")
+	public String paging(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
 		
-		ArrayList<SupplementVO> allSupList = supplementService.getAllSupplements();
-		/*System.out.println("영양제 정보 출력");
+		ArrayList<SupplementVO> pagingsupList = supplementService.pagingList(page);
+	    int totalSupplements = supplementService.countSupplements();
+	    int totalPages = (int) Math.ceil((double) totalSupplements / 12);
+
+
+		System.out.println("pagingsupList = " + pagingsupList.size());  // (지워도됨) test 출력 12개 잘 나온다
 		
-		//test 출력 - 201개 콘솔창에 나와서 주석처리
-	    for (SupplementVO supplement : supplements) {
-	        System.out.println(supplement);  //각 SupplementVO의 supBrand 값 출력
-	    }*/
-	    
-	    model.addAttribute("allSupList", allSupList);
-		return "supplement/supplementList";  
+		model.addAttribute("pagingsupList", pagingsupList);
+		model.addAttribute("totalSupplements", totalSupplements);
+		model.addAttribute("totalPages", totalPages);
+		
+		System.out.println("pagingsupList = " + pagingsupList.size());   // (지워도됨) test출력 
+		System.out.println("totalSupplements = " + totalSupplements); 
+		System.out.println("totalPages = " + totalPages); 
+		
+		return "supplement/supplementList"; 
+			
 	}
-	
 	
 	
 	//-------------태그 리스트 출력; AJAX 통신------------------------------------
@@ -62,6 +71,7 @@ public class SupplementController {
 	}
 	
 
+	
 	//ingredients 태그 목록 출력
 	@ResponseBody
 	@GetMapping("/api/supplement/ingredients")
