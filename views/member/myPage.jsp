@@ -104,6 +104,7 @@
 			</div>
 		</div>
 	</section>
-	<%@ include file="footer.jsp" %><!-- 푸터 삽입 -->
+<%-- 	<%@ include file="footer.jsp" %><!-- 푸터 삽입 --> --%>
+<c:import url="/WEB-INF/views/layout/footer.jsp" /> 
 </body>
 </html>
