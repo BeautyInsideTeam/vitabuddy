@@ -22,17 +22,17 @@
 					<label>이름</label>
 			        <input type="text" value=" ${getMember.getUserName() }" class="name" name="userName" readonly />
 					<label>복용 중인 영양제</label> <!--이거 데이터 들어오면 수정 요망-->
-			        <textarea textarea rows="10%" cols="100%" value="${getMember.getUserTabletList()}" style="width: 75%;" readonly></textarea>
+			        <textarea rows="10%" cols="100%" value="${getMember.getUserTabletList()}" style=" resize: none; width: 75%;" readonly></textarea>
 					<!-- <label>올바른 영양제 복용법</label>
 					<textarea textarea rows="10%" cols="100%"readonly></textarea>	 -->
-					<div class="box_rowContents" style="display:flex; justify-content: space-between;padding-right:44%;  /* padding-left:20%; */"> <!-- 약 시너지-->
-						<div class="horizontal_box"padding-right:20%; padding-left:20%;>
+					<div class="box_rowContents" style="display:flex; justify-content: space-between;padding-right:44%;"> 
+						<div class="horizontal_box"  readonly;>	
 							<label>추천 성분</label>
-							<textarea style="width:250%;"></textarea>
+							<textarea rows=20%; style="width:250%; resize: none;"></textarea>
 						</div>
-						<div class="horizontal_box"padding-right:20%; padding-left:20%;>
+						<div class="horizontal_box"  readonly; >
 							<label>성분간 상호작용</label>
-							<textarea style="width:250%;"></textarea>
+							<textarea rows=20%; style="width:250%; resize: none;"></textarea>
 						</div>
 					</div>
 				
