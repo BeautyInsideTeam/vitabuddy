@@ -6,10 +6,10 @@ CREATE TABLE Review (
     Rating VARCHAR2(10),
     ReviewHashtag VARCHAR(50),
     ReviewDate DATE,
-    Content VARCHAR2(200),
+    Content VARCHAR2(400),
     StartDate DATE,
     EndDate DATE,
-    ReviewImg VARCHAR2(50),
+    ReviewImg VARCHAR2(200),
     FOREIGN KEY (UserID) REFERENCES users(UserID), 
     FOREIGN KEY (SupID) REFERENCES supplement(SupID) 
 );

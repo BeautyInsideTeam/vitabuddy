@@ -22,7 +22,8 @@
 <c:import url="/WEB-INF/views/layout/top.jsp" />
 	
 	<section>
-	    <h1>FIND YOUR NUTRITION</h1>
+		<!-- 기본 상점 페이지로 돌아가는 url; 로고를 누르면 상점 페이지 초기화되도록 -->
+	    <a href="<c:url value='/supplement/supplementList'/>"><h1>FIND YOUR NUTRITION</h1></a>
 	    <br>
 	    <hr>
 	    
@@ -149,13 +150,23 @@
 	<nav>
 	   
 	    <!-- 페이지네이션 -->
-	    <div class="pagination">
-	        <a href="#" class="prev <c:if test='${currentPage == 1}'>disabled</c:if>" data-page="${currentPage - 1}"><i class="fa-solid fa-caret-left"></i></a>
-	        <c:forEach var="i" begin="1" end="${totalPages}">
-	            <a href="#" class="page" onclick="changePage(${i})">${i}</a>
-	        </c:forEach>
-	        <a href="#" class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage + 1}"><i class="fa-solid fa-caret-right"></i></a>
-	    </div>
+	    <!-- a 태그 button으로 수정 1017 페이지네이션 수정 -->
+		    <div class="pagination">
+			    <!-- 이전 버튼 -->
+			    <button class="prev <c:if test='${currentPage == 1}'>disabled</c:if>" data-page="${currentPage - 1}" onClick="goToPage(${currentPage - 1})">
+			        <i class="fa-solid fa-caret-left"></i>
+			    </button>
+			
+			    <!-- 페이지 번호 버튼 -->
+			    <c:forEach var="i" begin="1" end="${totalPages}">
+			        <button class="page <c:if test='${i == currentPage}'> active</c:if>" onClick="goToPage(${i})" data-page="${i}">${i}</button>
+			    </c:forEach>
+			
+			    <!-- 다음 버튼 -->
+			    <button class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage + 1}" onClick="goToPage(${currentPage + 1})">
+			        <i class="fa-solid fa-caret-right"></i>
+			    </button>
+			</div>
 	    
 	</nav> 
 
