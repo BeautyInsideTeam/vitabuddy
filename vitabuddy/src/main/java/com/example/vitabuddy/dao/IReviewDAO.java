@@ -4,6 +4,8 @@ import com.example.vitabuddy.model.ReviewVO;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface IReviewDAO {
 
 	// 리뷰 조회 기능
@@ -20,5 +22,8 @@ public interface IReviewDAO {
 	
 	// 리뷰 번호를 통한 리뷰 조회.
 	ReviewVO getReviewByNo(String reviewNo);
+	
+	 // 특정 사용자에 대한 리뷰 조회
+    List<ReviewVO> getReviewsByUserId(@Param("userId") String userId);
 
 }

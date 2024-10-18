@@ -48,5 +48,10 @@ public class ReviewService implements IReviewService {
 	public ReviewVO getReviewByNo(String reviewNo) {
 	    return dao.getReviewByNo(reviewNo);
 	}
+	
+	// 회원별 리뷰 조회.
+	public List<ReviewVO> getUserReviews(String userId) {
+        return dao.getReviewsByUserId(userId);
+    }
 
 }
