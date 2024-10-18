@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.vitabuddy.dao.IReviewDAO">
+
+    <resultMap id="reviewResultMap" type="com.example.vitabuddy.model.ReviewVO">
+        <result property="reviewNo" column="REVIEWNO" jdbcType="VARCHAR"/>
+        <result property="reviewTitle" column="REVIEWTITLE" jdbcType="VARCHAR"/>
+        <result property="userId" column="USERID" jdbcType="VARCHAR"/>
+        <result property="supId" column="SUPID" jdbcType="INTEGER"/>
+        <result property="rating" column="RATING" jdbcType="VARCHAR"/>
+        <result property="reviewHashtag" column="REVIEWHASHTAG" jdbcType="VARCHAR"/>
+        <result property="reviewDate" column="REVIEWDATE" jdbcType="DATE"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="startDate" column="STARTDATE" jdbcType="DATE"/>
+        <result property="endDate" column="ENDDATE" jdbcType="DATE"/>
+        <result property="reviewImg" column="REVIEWIMG" jdbcType="VARCHAR"/>
+        <result property="supName" column="SUPNAME" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertReview" parameterType="com.example.vitabuddy.model.ReviewVO">
+        INSERT INTO REVIEW (REVIEWNO, REVIEWTITLE, USERID, SUPID, RATING, REVIEWHASHTAG, REVIEWDATE, CONTENT, STARTDATE, ENDDATE, REVIEWIMG)
+        VALUES (#{reviewNo, jdbcType=VARCHAR}, #{reviewTitle, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{supId, jdbcType=INTEGER},
+                #{rating, jdbcType=VARCHAR}, #{reviewHashtag, jdbcType=VARCHAR}, #{reviewDate, jdbcType=DATE}, 
+                #{content, jdbcType=VARCHAR}, #{startDate, jdbcType=DATE}, #{endDate, jdbcType=DATE}, #{reviewImg, jdbcType=VARCHAR})
+    </insert>
+
+    <select id="reviewLists" parameterType="int" resultMap="reviewResultMap">
+        SELECT REVIEWNO, REVIEWTITLE, USERID, SUPID, RATING, REVIEWHASHTAG, REVIEWDATE,
+               CONTENT, STARTDATE, ENDDATE, REVIEWIMG
+        FROM REVIEW
+        WHERE SUPID = #{supId, jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteReview" parameterType="map">
+        DELETE FROM REVIEW
+        WHERE REVIEWNO = #{reviewNo, jdbcType=VARCHAR} AND USERID = #{userId, jdbcType=VARCHAR}
+    </delete>
+
+    <update id="updateReview" parameterType="com.example.vitabuddy.model.ReviewVO">
+        UPDATE REVIEW
+        SET 
+            REVIEWTITLE = #{reviewTitle, jdbcType=VARCHAR},
+            RATING = #{rating, jdbcType=VARCHAR},
+            REVIEWHASHTAG = #{reviewHashtag, jdbcType=VARCHAR},
+            STARTDATE = #{startDate, jdbcType=DATE},
+            ENDDATE = #{endDate, jdbcType=DATE},
+            CONTENT = #{content, jdbcType=VARCHAR},
+            REVIEWIMG = #{reviewImg, jdbcType=VARCHAR}
+        WHERE REVIEWNO = #{reviewNo, jdbcType=VARCHAR} AND USERID = #{userId, jdbcType=VARCHAR}
+    </update>
+
+    <select id="getReviewByNo" parameterType="string" resultMap="reviewResultMap">
+        SELECT REVIEWNO, REVIEWTITLE, USERID, SUPID, RATING, REVIEWHASHTAG, REVIEWDATE,
+               CONTENT, STARTDATE, ENDDATE, REVIEWIMG
+        FROM REVIEW
+        WHERE REVIEWNO = #{reviewNo, jdbcType=VARCHAR}
+    </select>
+
+	<select id="getReviewsByUserId" parameterType="string" resultMap="reviewResultMap">
+	    SELECT r.ReviewNo, r.ReviewTitle, s.SupName AS supName, r.ReviewDate 
+	    FROM Review r 
+	    JOIN Supplement s ON r.SupID = s.SupID 
+	    WHERE r.UserId = #{userId} 
+	    ORDER BY r.ReviewDate DESC
+	</select>
+
+
+</mapper>

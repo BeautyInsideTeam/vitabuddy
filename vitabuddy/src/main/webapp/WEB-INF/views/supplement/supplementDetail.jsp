@@ -237,14 +237,19 @@
 						<!-- 삭제 버튼 style="display:inline;" 제거 class="deleteReview" 추가 -->
 						<td colspan="2"><!-- 수정 삭제 버튼 한 칸에/ 순서 변경-->
 							<c:if test="${review.userId == sessionScope.sid}">
-                    			<form method="post" action="/supplement/supplementDetail/${supplementDetail.supId}/review/${review.reviewNo}/delete">
-                        			<button type="submit" class="deleteReview">삭제</button>
-                    			</form>
-                			</c:if>
+						        <button class="deleteReview" 
+						                data-review-id="${review.reviewNo}" 
+						                data-sup-id="${supplementDetail.supId}">
+						            삭제
+						        </button>
+						    </c:if>
 						    <c:if test="${review.userId == sessionScope.sid}">
-							<a href="/supplement/supplementDetail/${supplementDetail.supId}/review/${review.reviewNo}/edit">
-							    <button type="button" class="editButton">수정</button>
-							</a>
+						        <button 
+						            class="editButton" 
+						            data-sup-id="${supplementDetail.supId}" 
+						            data-review-no="${review.reviewNo}">
+						            수정
+						        </button>
 						    </c:if>
 							
                 		</td>
