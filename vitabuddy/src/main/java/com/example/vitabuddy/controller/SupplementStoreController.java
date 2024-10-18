@@ -28,14 +28,6 @@ public class SupplementStoreController {
 	@Autowired 
 	SupplementStoreService supplementService;
 	
-	//localhost:8080 -> home 페이지 이동
-	@RequestMapping("/")
-	public String home() {
-		return "home";
-	}
-	
-	
-	
 	//pagination
 	@GetMapping("/supplement/supplementList")
 	public String paging(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
