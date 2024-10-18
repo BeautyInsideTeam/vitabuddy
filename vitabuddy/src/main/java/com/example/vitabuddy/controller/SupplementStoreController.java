@@ -2,6 +2,7 @@ package com.example.vitabuddy.controller;
 
 import java.net.URLDecoder;
 
+
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -18,23 +19,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.vitabuddy.model.SupplementVO;
-import com.example.vitabuddy.service.SupplementService;
+import com.example.vitabuddy.model.SupplementStoreVO;
+import com.example.vitabuddy.service.SupplementStoreService;
 
 @Controller
-public class SupplementController {
+public class SupplementStoreController {
 	
 	@Autowired 
-	SupplementService supplementService;
+	SupplementStoreService supplementService;
+	
+	//localhost:8080 -> home 페이지 이동
+	@RequestMapping("/")
+	public String home() {
+		return "home";
+	}
 	
 	
-	//pagination test
+	
+	//pagination
 	@GetMapping("/supplement/supplementList")
 	public String paging(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
 		
-		ArrayList<SupplementVO> pagingsupList = supplementService.pagingList(page);
+		ArrayList<SupplementStoreVO> pagingsupList = supplementService.pagingList(page);
 	    int totalSupplements = supplementService.countSupplements();
-	    int totalPages = (int) Math.ceil((double) totalSupplements / 12);
+	    int totalPages = (int) Math.ceil((double) totalSupplements / 12);  //12 의미 : 한 페이지에 나올 상품 갯수가 12개이다
 
 
 		System.out.println("pagingsupList = " + pagingsupList.size());  // (지워도됨) test 출력 12개 잘 나온다
@@ -126,7 +134,7 @@ public class SupplementController {
 		
 		//[브랜드별] 카테고리에서 해시태그 선택했을 경우
         if (category.equals("brands")) {
-        	ArrayList<SupplementVO> pagingbrandsupList = supplementService.pagingbrandList(decodedTag, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+        	ArrayList<SupplementStoreVO> pagingbrandsupList = supplementService.pagingbrandList(decodedTag, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
         	int totalbrandSupplements = supplementService.countbrandSupplements(decodedTag);  //선택한 브랜드 태그에 해당하는 상품 갯수
      	    int totalPages = (int) Math.ceil((double) totalbrandSupplements / 12); //총 페이지 갯수
 
@@ -147,7 +155,7 @@ public class SupplementController {
         //[기능별] 카테고리에서 해시태그 선택했을 경우
         else if (category.equals("functions")) {
         	
-        	ArrayList<SupplementVO> pagingfunctionsupList = supplementService.pagingfunctionList(decodedTag, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+        	ArrayList<SupplementStoreVO> pagingfunctionsupList = supplementService.pagingfunctionList(decodedTag, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
         	int totalfunctionSupplements = supplementService.countfunctionSupplements(decodedTag);  //선택한 브랜드 태그에 해당하는 상품 갯수
      	    int totalPages = (int) Math.ceil((double) totalfunctionSupplements / 12); //총 페이지 갯수
 
@@ -166,7 +174,7 @@ public class SupplementController {
         //[성분별] 카테고리에서 해시태그 선택했을 경우
         else {	
         	
-        	ArrayList<SupplementVO> pagingingredientsupList = supplementService.pagingingredientList(decodedTag, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+        	ArrayList<SupplementStoreVO> pagingingredientsupList = supplementService.pagingingredientList(decodedTag, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
         	int totalingredientSupplements = supplementService.countingredientSupplements(decodedTag);  //선택한 브랜드 태그에 해당하는 상품 갯수
      	    int totalPages = (int) Math.ceil((double) totalingredientSupplements / 12); //총 페이지 갯수
 
@@ -192,7 +200,7 @@ public class SupplementController {
 	@GetMapping("/search")
 	public Map<String, Object> searchbysupKeyword(@RequestParam("keyword") String keyword, @RequestParam(value="page", required=false) int page, Model model){
 		
-		ArrayList<SupplementVO> pagingkeywordsupList = supplementService.pagingkeywordList(keyword, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
+		ArrayList<SupplementStoreVO> pagingkeywordsupList = supplementService.pagingkeywordList(keyword, page);  //특정 brand 태그 클릭 시, 해당 상품 출력
     	int totalkeywordSupplements = supplementService.countkeywordSupplements(keyword);  //선택한 브랜드 태그에 해당하는 상품 갯수
  	    int totalPages = (int) Math.ceil((double) totalkeywordSupplements / 12); //총 페이지 갯수
  	

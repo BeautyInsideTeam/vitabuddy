@@ -1,6 +1,6 @@
 package com.example.vitabuddy.model;
 
-public class SupplementVO {
+public class SupplementStoreVO {
 	
 	private int supId;
 	private String supName;

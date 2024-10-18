@@ -3,6 +3,7 @@ package com.example.vitabuddy.service;
 
 import java.util.ArrayList;
 
+
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,14 +13,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.vitabuddy.dao.ISupplementDAO;
-import com.example.vitabuddy.model.SupplementVO;
+import com.example.vitabuddy.dao.ISupplementStoreDAO;
+import com.example.vitabuddy.model.SupplementStoreVO;
 
 @Service
-public class SupplementService implements ISupplementService {
+public class SupplementStoreService implements ISupplementStoreService {
 	@Autowired
-	@Qualifier("ISupplementDAO")
-	ISupplementDAO dao;
+	@Qualifier("ISupplementStoreDAO")
+	ISupplementStoreDAO dao;
 	
 	@Autowired
 	PasswordEncoder pwdEncoder;
@@ -40,7 +41,7 @@ public class SupplementService implements ISupplementService {
 	}*/
 
 	@Override
-	public ArrayList<SupplementVO> pagingList(int page) {
+	public ArrayList<SupplementStoreVO> pagingList(int page) {
 		/*
 		 * 1페이지당 보여지는 글 갯수가 3일 때 (예를 들어)
 		 * 1페이지 -> 0
@@ -52,10 +53,10 @@ public class SupplementService implements ISupplementService {
 		Map<String, Integer> pagingParams = new HashMap<>();
 		pagingParams.put("start", pagingStart);
 		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
-		ArrayList<SupplementVO> pagingList = dao.pagingList(pagingParams);
+		ArrayList<SupplementStoreVO> pagingList = dao.pagingList(pagingParams);
 		
 		//이미지 출력 코드
-		for (SupplementVO supplement : pagingList) {
+		for (SupplementStoreVO supplement : pagingList) {
 		    try {
 		        if (supplement.getSupImg() != null) {
 		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
@@ -77,17 +78,17 @@ public class SupplementService implements ISupplementService {
 	
 	
 	@Override
-	public ArrayList<SupplementVO> pagingbrandList(String decodedTag, int page) {
+	public ArrayList<SupplementStoreVO> pagingbrandList(String decodedTag, int page) {
 		int pageLimit = 12;
 		int pagingStart = (page-1) * pageLimit;
 		Map<String, Object> pagingParams = new HashMap<>();
 		pagingParams.put("decodedTag", decodedTag);
 		pagingParams.put("start", pagingStart);
 		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
-		ArrayList<SupplementVO> pagingbrandList = dao.pagingbrandList(pagingParams);
+		ArrayList<SupplementStoreVO> pagingbrandList = dao.pagingbrandList(pagingParams);
 		
 		//이미지 출력 코드
-		for (SupplementVO supplement : pagingbrandList) {
+		for (SupplementStoreVO supplement : pagingbrandList) {
 		    try {
 		        if (supplement.getSupImg() != null) {
 		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
@@ -107,17 +108,17 @@ public class SupplementService implements ISupplementService {
 	}
 
 	@Override
-	public ArrayList<SupplementVO> pagingfunctionList(String decodedTag, int page) {
+	public ArrayList<SupplementStoreVO> pagingfunctionList(String decodedTag, int page) {
 		int pageLimit = 12;
 		int pagingStart = (page-1) * pageLimit;
 		Map<String, Object> pagingParams = new HashMap<>();
 		pagingParams.put("decodedTag", decodedTag);
 		pagingParams.put("start", pagingStart);
 		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
-		ArrayList<SupplementVO> pagingfunctionList = dao.pagingfunctionList(pagingParams);
+		ArrayList<SupplementStoreVO> pagingfunctionList = dao.pagingfunctionList(pagingParams);
 		
 		//이미지 출력 코드
-		for (SupplementVO supplement : pagingfunctionList) {
+		for (SupplementStoreVO supplement : pagingfunctionList) {
 		    try {
 		        if (supplement.getSupImg() != null) {
 		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
@@ -137,17 +138,17 @@ public class SupplementService implements ISupplementService {
 	}
 
 	@Override
-	public ArrayList<SupplementVO> pagingingredientList(String decodedTag, int page) {
+	public ArrayList<SupplementStoreVO> pagingingredientList(String decodedTag, int page) {
 		int pageLimit = 12;
 		int pagingStart = (page-1) * pageLimit;
 		Map<String, Object> pagingParams = new HashMap<>();
 		pagingParams.put("decodedTag", decodedTag);
 		pagingParams.put("start", pagingStart);
 		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
-		ArrayList<SupplementVO> pagingingredientList = dao.pagingingredientList(pagingParams);
+		ArrayList<SupplementStoreVO> pagingingredientList = dao.pagingingredientList(pagingParams);
 		
 		//이미지 출력 코드
-		for (SupplementVO supplement : pagingingredientList) {
+		for (SupplementStoreVO supplement : pagingingredientList) {
 		    try {
 		        if (supplement.getSupImg() != null) {
 		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
@@ -168,17 +169,17 @@ public class SupplementService implements ISupplementService {
 	}
 
 	@Override
-	public ArrayList<SupplementVO> pagingkeywordList(String keyword, int page) {
+	public ArrayList<SupplementStoreVO> pagingkeywordList(String keyword, int page) {
 		int pageLimit = 12;
 		int pagingStart = (page-1) * pageLimit;
 		Map<String, Object> pagingParams = new HashMap<>();
 		pagingParams.put("keyword", keyword);
 		pagingParams.put("start", pagingStart);
 		pagingParams.put("limit", pageLimit);  //map 에 담아서 넘겨준다
-		ArrayList<SupplementVO> pagingkeywordList = dao.pagingkeywordList(pagingParams);
+		ArrayList<SupplementStoreVO> pagingkeywordList = dao.pagingkeywordList(pagingParams);
 		
 		//이미지 출력 코드
-		for (SupplementVO supplement : pagingkeywordList) {
+		for (SupplementStoreVO supplement : pagingkeywordList) {
 		    try {
 		        if (supplement.getSupImg() != null) {
 		            String base64Img = Base64.getEncoder().encodeToString(supplement.getSupImg());
@@ -226,9 +227,9 @@ public class SupplementService implements ISupplementService {
 	//특정 해시태그 1개를 선택하면, 그 해시태그를 가진 상품들을 출력한다
 	
 	@Override
-	public ArrayList<SupplementVO> brandSupplements(String tag) {
-		ArrayList<SupplementVO> brandsupplements = dao.brandSupplements(tag); 
-		for (SupplementVO brandsupplement : brandsupplements) {
+	public ArrayList<SupplementStoreVO> brandSupplements(String tag) {
+		ArrayList<SupplementStoreVO> brandsupplements = dao.brandSupplements(tag); 
+		for (SupplementStoreVO brandsupplement : brandsupplements) {
 		    try {
 		        if (brandsupplement.getSupImg() != null) {
 		            String base64Img = Base64.getEncoder().encodeToString(brandsupplement.getSupImg());
@@ -244,9 +245,9 @@ public class SupplementService implements ISupplementService {
 
 	}
 	@Override
-	public ArrayList<SupplementVO> functionSupplements(String tag) {
-		ArrayList<SupplementVO> functionsupplements = dao.functionSupplements(tag);
-		for (SupplementVO functionsupplement : functionsupplements) {
+	public ArrayList<SupplementStoreVO> functionSupplements(String tag) {
+		ArrayList<SupplementStoreVO> functionsupplements = dao.functionSupplements(tag);
+		for (SupplementStoreVO functionsupplement : functionsupplements) {
 		    try {
 		        if (functionsupplement.getSupImg() != null) {
 		            String base64Img = Base64.getEncoder().encodeToString(functionsupplement.getSupImg());
@@ -262,9 +263,9 @@ public class SupplementService implements ISupplementService {
 		
 	}
 	@Override
-	public ArrayList<SupplementVO> ingredientSupplements(String tag) {
-		ArrayList<SupplementVO> ingredientsupplements = dao.ingredientSupplements(tag);
-		for (SupplementVO ingredientsupplement : ingredientsupplements) {
+	public ArrayList<SupplementStoreVO> ingredientSupplements(String tag) {
+		ArrayList<SupplementStoreVO> ingredientsupplements = dao.ingredientSupplements(tag);
+		for (SupplementStoreVO ingredientsupplement : ingredientsupplements) {
 		    try {
 		        if (ingredientsupplement.getSupImg() != null) {
 		            String base64Img = Base64.getEncoder().encodeToString(ingredientsupplement.getSupImg());
@@ -285,9 +286,9 @@ public class SupplementService implements ISupplementService {
 	////키워드 상품 검색 - 상점 페이지 상단에 있는 검색창
 	
 	@Override
-	public ArrayList<SupplementVO> searchbysupKeyword(String keyword) {
-		ArrayList<SupplementVO> keywordsupplements = dao.searchbysupKeyword(keyword);
-		for (SupplementVO keywordsupplement : keywordsupplements) {
+	public ArrayList<SupplementStoreVO> searchbysupKeyword(String keyword) {
+		ArrayList<SupplementStoreVO> keywordsupplements = dao.searchbysupKeyword(keyword);
+		for (SupplementStoreVO keywordsupplement : keywordsupplements) {
 		    try {
 		        if (keywordsupplement.getSupImg() != null) {
 		            String base64Img = Base64.getEncoder().encodeToString(keywordsupplement.getSupImg());
