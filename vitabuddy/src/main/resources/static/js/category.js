@@ -26,6 +26,7 @@ $(function() {
                 // 기존 하위 카테고리 내용 삭제 후 새 데이터 로드
                 var subCategoryMenu = $('.subCtgMenu[data-category="' + selectedCategory + '"] ul'); //데이터가 들어갈 공간을 변수로 정의
                 $('.subCtgMenu ul').empty();  //누적으로 카테고리 태그가 나타나는 현상 방지
+                $('.subCtgMenu').hide();//테두리가 누적으로 생기는 현상 방지
              
                 console.log(response);    // 서버에서 받은 응답 데이터 출력하는 코드
 
