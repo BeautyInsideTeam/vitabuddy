@@ -1,4 +1,10 @@
 @charset "UTF-8";
+
+*{
+	/* 옆에 여백 없앰 */
+    box-sizing: border-box;	
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f7f4ef;
@@ -15,18 +21,22 @@ footer {
 	width:100%;
 	bottom: 0px;
 	position:absolute;  
-}
+} 
 /* section{
 	padding-bottom: 110px;
 } */
 p {
 	margin-left:10px;
+	/* 폰트 사이즈 수정 */
+	font-size: x-large;
 }
 table{
 	width:100%;
 	margin-bottom:20px;
 	border-collapse:collapse;
 	text-align:center;
+	/* 폰트 사이즈 수정 */
+	font-size: large;
 }
 
 th{
@@ -37,11 +47,12 @@ td{
 	border: 1px solid #7e7b46;
 }
 .important{
-	width:40%
+	/* 수정 */
+	width:25%;
 }
-.board{
+/* .board{
 	margin-bottom:20px;
-}
+} */
 
 
 .container {
@@ -55,27 +66,32 @@ td{
     background-color: #e5e0da;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     color: #7e7b46;
+    /* 추가 */
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
 }
 
-.horizontal_box .name{
+/* .horizontal_box .name{
 	width:20%;
-}
-.temp {
+} */
+/* .temp {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	column-gap: 40px;
 	margin-left: 20px;
 	margin-right: 20px;
-}
+} */
+/* 
 .horizontal_box {
 	display: flex;
 	flex-direction: column;
 	row-gap: 10px;
 	width:80%;padding-right:20%; padding-left:20%;
-}
-.horizontal_box label {
-	font-size: x-large;
+} */
+/* .horizontal_box label {
     display: block;
     padding: 0 10px 0 10px;
     color: #7e7b46;
@@ -93,25 +109,85 @@ td{
 	resize: none; 
 	width: 75%;
 }
+ */
+
+.box {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: left; 
+    justify-content: center; 
+    height: 100%;
+}
+
+.mySupplement {
+    width: 100%; 
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: left; 
+
+}
+
+.box_rowContents {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%;
+}
+
+.horizontal_box {
+    width: 48%; 
+    height: 100%;
+    box-sizing: border-box;
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+    align-items: left; 
+    justify-content: center; 
+}
+
+ 
+.box p {
+    padding: 0;
+    color: #7e7b46;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.mySupplement{
+	width: 100%;
+	height: 150px;;
+	background: #e9e5e0;
+    overflow: auto;
+}
+
+.recommend,
+.interaction{
+	width: 100%;
+	height: 300px;;
+	background: #e9e5e0;
+    overflow: auto;
+}
+/* 10/21 추가 */
 
 .box_rowContents {
 	display:flex; 
 	justify-content:space-between;
-    padding-right:25%;
+/*     padding-right:25%; */
 	flex-direction: row;
 	gap:5%;
 }
-.box_rowContents .horizontal_box{
+/* .box_rowContents .horizontal_box{
 	width:250%; 
 	resize: none;
 	padding-right:0%; 
 	padding-left:0%;
-}
+} */
 
-.box_rowContents .horizontal_box textarea{
+/* .box_rowContents .horizontal_box textarea{
 	width: 100%;
 }
-
+ */
 label{
 	color: #7e7b46;
 }
@@ -121,28 +197,27 @@ label{
 }
 
 h1 {
-	font-size: xxx-large;
     text-align: center;
     color: #7e7b46;
+    /* 폰트 사이즈 수정 */
+	 font-size: xxx-large;
 }
-h3{
-	font-size: x-large;
-	
-}
+
 h4 {
     display: block;
     margin-top: 10px;
     color: #7e7b46;
 }
 
-input, textarea {
-	display: inline-black;
+/* input, textarea {
+	10/21 오타 display: inline-black;
+	display: inline-block;
 	width: 100%;
     padding: 10px 0 10px 0;
     background-color: #e9e5e0;
     border-style:none;
     border-radius: 5px;
-}
+} */
 
 .phone-number {
 	display: inline;
@@ -177,14 +252,18 @@ input, textarea {
 .submit-btn {
     display: block;
     
-    width: 200px;
+    width: 30%;
+    max-width: 250px;
     margin: 20px auto;
     padding: 10px;
     background-color: #7e7b46;
     color: white;
     border: none;
-    border-radius: 20px;
+    /* 버튼 모양 수정 */
+    border-radius: 30px;
     cursor: pointer;
+    /* 폰트 사이즈 수정 */
+    font-size: large;
     
 }
 .search-box {
@@ -224,14 +303,27 @@ select {
     width: 10%;
 }
 
-.review-section{
+/* .review-section{
 	padding-right:20%; 
 	padding-left:20%;
-}
+} */
 
-.purchase-section{
+/* .purchase-section{
 	padding-right:20%; 
 	padding-left:20%;
+} */
+
+.review-section{
+	width: 90%;
+}	
+.purchase-section{
+	width: 90%;
+	}
+.myReviewNo{
+	width: 10%;
+}
+.reviewDate{
+	width: 15%;
 }
 
 .moveTopBtn {
@@ -259,4 +351,34 @@ html {
 	html{
 		scroll-behavior: auto;
 	}
+}
+
+
+/* 10/21 추가 */
+li{
+	font-weight: 300;
+	font-size: large;
+}
+select{
+	min-height: 20px;
+	font-size: large;
+}
+.interactionList, .recommendList{
+	margin-top: 15px;
+	font-size: large;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+h3{
+	font-size: x-large;
+}
+label{
+	font-size: large;
+}
+.purchase-section table{
+	margin-top: 15px;
+}
+
+.review-section table{
+	margin-top: 10px;
 }
