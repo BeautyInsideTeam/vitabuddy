@@ -3,6 +3,8 @@
 *{
 	margin:0 auto;
 	font-family:myriad;
+		/* 옆에 여백 없앰 */
+    box-sizing: border-box;	
 
 } 
 
@@ -39,12 +41,13 @@ h1{
 	margin-left:30px;
 }
 
+/* 중복되는 코드 제거
 #wrap {
     background-color: #e5e0da;
     text-align: center;
     position: relative;
-    min-height: 100vh;
-}
+    min-height: 100vh; 상품과 페이지네이션 사이 거리가 너무 멀어짐
+} */
 
 .search {
     display: flex;
@@ -56,8 +59,9 @@ h1{
 .searchBox {
     position: relative;
     display: flex; 
-    border: 1px solid #583b1f; 
-    width:500px;
+    border: 0.09em solid #583b1f; /* 테두리 두꼐 수정 */
+    /* 너비 % 수정 */
+    width:35%;
 }
 
 .searchTxt {
@@ -95,31 +99,41 @@ h1{
 }
 
 .productItem {
+	/* 너비 맞춤 */
+	width: 50%;
     padding: 15px;
-    text-align: left;
+    text-align: left; 
     color:#583b1f; 
 }
 
 .productItem img {
-    width: 200px;
-    height: 200px;
+	/* 너비 높이 맞춤 */
+    width: 100%;
+    height: auto;
     object-fit: cover;
+    /* 테두리 추가*/
+    border: 0.1em solid #7e7b46;  /* 테두리 두꼐 수정 */
 }
 
 .productItem p {
-    margin: 10px 0;
+	/* 너비 맞춤 */
+	width: 80%;
+	/* 여백 수정 */
+    margin: 0;
     font-size: 16px;
     align:left;
+    margin-top: 10px;
 }
 
 /* 페이지네이션 스타일 */
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    /* 여백 높이 수정 */
+    margin-top: 10%;
 }
 
-.pagination a {
+/* .pagination a {
     display: inline-block;
     padding: 10px 15px;
     margin: 0 5px;
@@ -127,9 +141,29 @@ h1{
     color: #583b1f;
     background-color: #e5e0da;
     transition: background-color 0.3s;
+} */
+
+/* 버튼으로 바꾼 페이지네이션 css 수정*/
+.pagination button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    color: #583b1f;
+    background-color: #e5e0da;
+    transition: background-color 0.3s;
+    /* 글자 크기 수정 */
+    font-size: 1.0em;
+    /* 페이지네이션 밑 여백 추가 */
+    margin-bottom: 20px;
 }
 
-.pagination a:hover:not(.disabled) {
+/* .pagination a:hover:not(.disabled) {
+    background-color: #d0c9c2;
+} */
+
+/* 버튼으로 바꾼 페이지네이션 css 수정*/
+.pagination button:hover:not(.disabled) {
     background-color: #d0c9c2;
 }
 
@@ -144,9 +178,10 @@ h1{
     justify-content: center;
     list-style: none; /* 기본 li 점 제거 */
     padding: 0;
-    margin: 0;
-    margin-left:150px;
-    margin-right:150px;
+    /* 가운데 맞춤 */
+    margin: 0 auto;
+    /* margin-left:150px;
+    margin-right:150px; */
 }
 
 #category li {
@@ -175,9 +210,10 @@ h1{
     grid-gap: 10px;
     padding: 0;
     list-style: none;
-    border:1px solid #7e7b46;
-    margin-left:150px;
-    margin-right:150px;
+    border:0.1em solid #7e7b46;  /* 테두리 두꼐 수정 */
+    /* 양쪽 여백 %로 맞춤 */
+    margin-left:10.5%;
+    margin-right:10.5%;
 }
 
 .subCtgMenu li {
@@ -195,12 +231,24 @@ h1{
 .ordNav {
     float: right;
     margin-top: 10px;
-    margin-right: 150px;
+    /* 여백 %로 맞춤 */
+    margin-right: 10.5%;
 }
 
 /* 네비게이션 섹션 */
 nav {
     overflow: auto;
     padding-bottom: 20px; 
+}
+
+/* 현재 선택된 페이지에 표시 */
+.pagination .active {
+    font-weight: bold; /* 글자 두껍게 */
+    text-decoration: underline;
+} 
+
+/* 버튼 기본 테두리 제거 */
+button{
+	border: none;
 }
 

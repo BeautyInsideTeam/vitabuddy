@@ -10,10 +10,11 @@
 
 <c:import url="/WEB-INF/views/layout/head.jsp" />    
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
+
 <script src="<c:url value='/js/category.js'/>"></script>
-<!-- 검색 js 추가 --><script src="<c:url value='/js/search.js'/>"></script>
-<!-- 페이지 js 추가 --><script src="<c:url value='/js/pageSupplementList.js'/>"></script>
-<!-- css 링크 수정 --><link rel="stylesheet" type="text/css" href="<c:url value='/css/supplementList.css'/>">
+<script src="<c:url value='/js/search.js'/>"></script> <!-- 검색 js 수정 -->
+<script src="<c:url value='/js/pageSupplementList.js'/>"></script> <!-- 페이지 js 추가 -->
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/supplementList.css'/>"> <!-- css 링크 수정 -->
 
 </head>
 <body>
@@ -21,7 +22,8 @@
 <c:import url="/WEB-INF/views/layout/top.jsp" />
 	
 	<section>
-	    <h1>FIND YOUR NUTRITION</h1>
+		<!-- 기본 상점 페이지로 돌아가는 url; 로고를 누르면 상점 페이지 초기화되도록 -->
+	    <a href="<c:url value='/supplement/supplementList'/>"><h1>FIND YOUR NUTRITION</h1></a>
 	    <br>
 	    <hr>
 	    
@@ -40,44 +42,31 @@
 	<!-- 상위 카테고리 -->
 	<div id="category">
 	    <ul>
-	        <li data-category="function"><a href="#">기능별</a></li>
-	        <li data-category="ingredient"><a href="#">성분별</a></li>
-	        <li data-category="brand"><a href="#">브랜드별</a></li>
+	        <li data-category="functions"><a href="#">기능별</a></li>  <!-- 수정사항1. function 을 functions로 바꿈 s 추가 (이하동일) -->
+	        <li data-category="ingredients"><a href="#">성분별</a></li>
+	        <li data-category="brands"><a href="#">브랜드별</a></li>
 	    </ul>
 	</div>
 	
 	
 	<!-- 하위 카테고리 -->
 	<div id="subCtg">
-	    <div class="subCtgMenu" data-category="function">	<%-- 하위카테고리 출력 부분 삭제 --%>
+	    <div class="subCtgMenu" data-category="functions">
 	        <ul>
-	        
-	        	<%-- <c:forEach var="func" items="${ctg}"> 
-	                    <li><a href="#">${func.function}</a></li>
-	            </c:forEach> --%>
 	            
-	            <!-- <li><a href="#">기능1</a></li>
-	            <li><a href="#">기능2</a></li>
-	            <li><a href="#">기능3</a></li>
-	            <li><a href="#">기능4</a></li>
-	            <li><a href="#">기능5</a></li>
-	            <li><a href="#">기능6</a></li>
-	            <li><a href="#">기능7</a></li>
-	            <li><a href="#">기능8</a></li> -->
+	            <!-- [기능별] 하위 카테고리 출력 부분 : ajax 통신으로 진행 -->
+	            
 	        </ul>
 	    </div>
-	    <div class="subCtgMenu" data-category="ingredient">
+	    <div class="subCtgMenu" data-category="ingredients">
 	        <ul>
-	            <%-- <c:forEach var="func" items="${ctg}">
-	                    <li><a href="#">${ingredient.ingredient}</a></li>
-	            </c:forEach> --%>
+	            <!-- [성분별] 하위 카테고리 출력 부분 : ajax 통신으로 진행 -->
+	            
 	        </ul>
 	    </div>
-	    <div class="subCtgMenu" data-category="brand">
+	    <div class="subCtgMenu" data-category="brands">
 	        <ul>
-	            <%-- <c:forEach var="func" items="${ctg}">
-	                    <li><a href="#">${brand.supBrand}</a></li>
-	            </c:forEach> --%>
+	           <!-- [브랜드별] 하위 카테고리 출력 부분 : ajax 통신으로 진행 -->
 	        </ul>
 	    </div>
 	</div>
@@ -90,21 +79,61 @@
 	            <option value="sales">구매순</option>
 	        </select>
 	    </div> 
-	</nav>            
+	</nav>      
+	
+	      
 	
 	<section>
-	    <!-- 상품 데이터 반복 출력 -->
+	    <!-- 상품 데이터 반복 출력 -->  
 	    <div class="products">
-	    <c:forEach var="sup" items="${supList}">
+	    
+	    	<!-- 전체 상품  출력 -->  
+	    	<c:forEach var="sup" items="${pagingsupList}">
 	           <div class="productItem">
-	    <!-- 상품 상세 연결 링크 수정 --><a href="<c:url value='/api/supplement/supplementDetail/${sup.supId}'/>">
-	            <img src="${sup.supImg}" alt="${sup.supName}">
-		        </a>
+	           <a href="<c:url value='/api/supplement/supplementDetail/${sup.supId}'/>">
+	           <img class="prdImg" src="data:image/png;base64,${sup.base64SupImg}" width="300" height="300"> </a>
 		        <p>${sup.supName}</p>
-		        <p>${sup.supPrice}</p>
+		        <p><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${sup.supPrice}"/></p>  <!-- 한국 통화 표시 -->
 		        <p>${sup.supBrand}</p>
 	           </div>
 	        </c:forEach>
+	        
+	        
+	        <!-- brand 태그 선택시 상품 출력 -->  <!-- 막상 해시태그값을 선택했을 때 상품이 나오는 js파일은 없다. 그냥 jsp로 -->
+	        <c:forEach var="brandsup" items="${pagingbrandsupList}">
+	           <div class="productItem">
+	           <a href="<c:url value='/api/supplement/supplementDetail/${brandsup.supId}'/>">   <!-- 상품 상세 연결 링크 수정 -->
+	           <img class="prdImg" src="data:image/png;base64,${brandsup.base64SupImg}" width="300" height="300"> </a>  <!-- 상품 이미지 출력 코드 : 클릭했을 때, 해당 상품의 supId로 넘어간다 (제품 상세페이지로 이동) -->
+		        <p>${brandsup.supName}</p>
+		        <p><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${brandsup.supPrice}"/></p>
+		        <p>${brandsup.supBrand}</p>
+	           </div>
+	        </c:forEach> 
+	        
+	        <!-- function 태그 선택시 상품 출력 -->
+	        <c:forEach var="funcsup" items="${pagingfunctionsupList}">
+	           <div class="productItem">
+	  		   <a href="<c:url value='/api/supplement/supplementDetail/${funcsup.supId}'/>">   <!-- 상품 상세 연결 링크 수정 -->
+	           <img class="prdImg" src="data:image/png;base64,${funcsup.base64SupImg}" width="300" height="300"> </a>  <!-- 상품 이미지 출력 코드 : 클릭했을 때, 해당 상품의 supId로 넘어간다 (제품 상세페이지로 이동) -->
+		        <p>${funcsup.supName}</p>
+		        <p><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${funcsup.supPrice}"/></p>
+		        <p>${funcsup.supBrand}</p>
+	           </div>
+	        </c:forEach>
+	        
+	        
+	        <!-- ingredients 태그 선택시 상품 출력 -->
+	        <c:forEach var="ingresup" items="${pagingingredientsupList}">
+	           <div class="productItem">
+	           <a href="<c:url value='/api/supplement/supplementDetail/${ingresup.supId}'/>">   <!-- 상품 상세 연결 링크 수정 -->
+	           <img class="prdImg" src="data:image/png;base64,${ingresup.base64SupImg}" width="300" height="300"> </a>  <!-- 상품 이미지 출력 코드 : 클릭했을 때, 해당 상품의 supId로 넘어간다 (제품 상세페이지로 이동) -->
+		        <p>${ingresup.supName}</p>
+		        <p><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${ingresup.supPrice}"/></p>
+		        <p>${ingresup.supBrand}</p>
+	           </div>
+	        </c:forEach>
+	        
+	       
 	        <%-- <div class="productItem">
 	            <a href="<c:url value='/product/detailView/${sup.supNo}'/>">
 	            <img src="sup.supImg" alt="${sup.supName}">
@@ -113,20 +142,34 @@
 		        <p>sup.supPrice</p>
 		        <p>sup.supBrand</p>
 	           </div> --%>
+	           
 		</div>
 	   
 	</section>        
 	
 	<nav>
+	   
 	    <!-- 페이지네이션 -->
-	    <div class="pagination">
-	        <a href="#" class="prev <c:if test='${currentPage == 1}'>disabled</c:if>" data-page="${currentPage - 1}"><i class="fa-solid fa-caret-left"></i></a>
-	        <c:forEach var="i" begin="1" end="${totalPages}">
-	            <a href="#" class="page" onclick="changePage(${i})">${i}</a>
-	        </c:forEach>
-	        <a href="#" class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage + 1}"><i class="fa-solid fa-caret-right"></i></a>
-	    </div>
-	</nav>
+	    <!-- a 태그 button으로 수정 1017 페이지네이션 수정 -->
+		    <div class="pagination">
+			    <!-- 이전 버튼 -->
+			    <button class="prev <c:if test='${currentPage == 1}'>disabled</c:if>" data-page="${currentPage - 1}" onClick="goToPage(${currentPage - 1})">
+			        <i class="fa-solid fa-caret-left"></i>
+			    </button>
+			
+			    <!-- 페이지 번호 버튼 -->
+			    <c:forEach var="i" begin="1" end="${totalPages}">
+			        <button class="page <c:if test='${i == currentPage}'> active</c:if>" onClick="goToPage(${i})" data-page="${i}">${i}</button>
+			    </c:forEach>
+			
+			    <!-- 다음 버튼 -->
+			    <button class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage + 1}" onClick="goToPage(${currentPage + 1})">
+			        <i class="fa-solid fa-caret-right"></i>
+			    </button>
+			</div>
+	    
+	</nav> 
+
 
 <!--  footer -->         
 <c:import url="/WEB-INF/views/layout/footer.jsp" /> 
