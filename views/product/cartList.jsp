@@ -30,9 +30,8 @@
                                 <th class="ordPrice" colspan="2">주문금액</th>
                             </tr>
                         </thead>
-                        
+                                            	<!-- 장바구니가 빈 경우 -->
                     	<c:choose>
-                    	<!-- 장바구니가 빈 경우 -->
                             <c:when test="${empty cart}">
                                 <tbody>
                                     <tr><td colspan="6">장바구니가 비어있습니다.</td></tr>
