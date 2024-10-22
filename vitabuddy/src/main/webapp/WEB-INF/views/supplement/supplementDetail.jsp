@@ -329,13 +329,9 @@
 				</div>
 			</nav>
 
-<<<<<<< HEAD
+
 			<!-- </div> -->						
-=======
-<!-- 		</div> -->
-			
-			
->>>>>>> SubLeader_Project
+
 			<!-- footer 포함 -->
 			<c:import url="/WEB-INF/views/layout/footer.jsp" /> 
 		</div>

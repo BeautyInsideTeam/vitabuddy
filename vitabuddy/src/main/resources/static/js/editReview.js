@@ -1,5 +1,8 @@
+/**
+ * 
+ */
 $(document).ready(function () {
-    $("#reviewForm").on("submit", function (event) {
+    $("#reviewForm").on("submit", function () {
         event.preventDefault(); // 기본 제출 방지
 
         // 리뷰 수정 확인 알림
