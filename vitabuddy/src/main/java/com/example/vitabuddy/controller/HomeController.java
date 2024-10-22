@@ -24,6 +24,7 @@ public class HomeController {
         return "supplement/supplementList";  // supplementList.jsp로 연결
     }
     
+    //안녕?
     @RequestMapping("/wish")
 	public String wish() {
 		return "member/wishlistView";
