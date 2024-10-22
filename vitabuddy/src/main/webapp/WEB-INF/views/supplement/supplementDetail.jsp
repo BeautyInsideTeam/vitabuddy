@@ -192,7 +192,7 @@
 								<option value="#소화가 편해요">#소화가 편해요</option>
 								<option value="#근육회복에 좋아요">#근육회복에 좋아요</option>
 								<option value="#탈모예방에 좋아요">#탈모예방에 좋아요</option>
-								<option value="#눈이 편안해요">#눈이 편안해요</option>
+								<option value="#눈이 편안해요">눈이 편안해요</option>
 								<c:forEach var="tag" items="${taglist}">
 									<option value="${tag.tagNo}">${tag.tagName}</option>
 								</c:forEach>
@@ -215,7 +215,9 @@
 				<br>
 				<!-- 사진 첨부 -->
 				<input class="Upload" type="file" id="uploadFile" name="reviewImg" multiple>
+
 				<br>
+
 				<!-- submit -->
 				<input type="submit" value="작성하기" class="btn btnFilled">
 			</form>
@@ -260,8 +262,6 @@
 						        </button>
 						    </c:if>						
                 		</td>
-
-
 					</tr>
 
 					<!-- 작성자 정보 -->
@@ -329,9 +329,9 @@
 				</div>
 			</nav>
 
-
-			<!-- </div> -->						
-
+<!-- 		</div> -->
+			
+			
 			<!-- footer 포함 -->
 			<c:import url="/WEB-INF/views/layout/footer.jsp" /> 
 		</div>

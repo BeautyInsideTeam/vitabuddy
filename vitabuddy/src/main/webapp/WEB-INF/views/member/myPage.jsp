@@ -104,7 +104,7 @@
                 <!-- </form> --><!-- 10/21 폼 태그 삭제 -->
             </div>
             <!-- 예시: sessionScope에서 사용자 ID 가져와서 URL 파라미터로 추가 -->
-            <button class="submit-btn" onclick="location.href='/member/myInfoChangeForm?userId=${sessionScope.sid}'">회원 정보 수정하기</button>
+            <button class="submit-btn" onclick="location.href='/member/myInfoChangeForm?userId=${sessionScope.sid}'">회원 정보/ 영양제 관리</button>
             <!-- 내가 작성한 리뷰 목록 -->
                     <div class="review-section">
                         <h3>내가 작성한 리뷰 목록</h3>
