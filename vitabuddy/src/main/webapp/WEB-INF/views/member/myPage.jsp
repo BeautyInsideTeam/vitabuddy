@@ -23,14 +23,14 @@
 			<div class="box"><!--10/21 클래스명 horizental-box>box로 수정-->
                <!--  <form> --><!-- 10/21 폼 태그 삭제 -->
                     <!-- 복용 중인 영양제 -->
-                    <p>복용 중인 영양제</p><!-- label>p -->
-					<div class="mySupplement"><!--10/21 textarea>div로 변경-->
-<!-- 10/21 ul 태그 추가 --><ul>
-                        <c:forEach var="supplement" items="${userSupplements}">
-	<!-- 10/21 li 태그 추가 --><li>${fn:trim(supplement.supName)} - ${fn:trim(supplement.supBrand)}&#13;&#10;</li>
-                        </c:forEach>
-<!-- 10/21 ul 태그 추가 --></ul>
-                    </div>
+                    <p>복용 중인 영양제</p>
+				<div class="mySupplement">
+				    <c:forEach var="supplement" items="${userSupplements}" varStatus="status">
+				        <div class="supplement-item">
+				            <span>${fn:trim(supplement.supName)} - ${fn:trim(supplement.supBrand)}</span>
+				  		</div>
+				    </c:forEach>
+				</div>
                     
                     <!-- <label>올바른 영양제 복용법</label>
                     <textarea textarea rows="10%" cols="100%"readonly></textarea>    -->
