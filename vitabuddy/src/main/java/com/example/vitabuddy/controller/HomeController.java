@@ -27,7 +27,7 @@ public class HomeController {
     //임시 추가 - 찜목록 wishList 페이지 확인을 위한 링크 requestMapping 걸어둠
     @RequestMapping("/wish")
 	public String wish() {
-		return "member/wishlistView";
+		return "member/wishList";
 	}
     
 }
