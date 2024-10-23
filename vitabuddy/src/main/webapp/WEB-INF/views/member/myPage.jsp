@@ -58,7 +58,7 @@
 							    </c:forEach>
 							</c:forEach>-->
 							<c:forEach var="entry" items="${allRecommendLists}" >
-							    <b>${entry.key + 1}.</b> <!-- key 대신 index로 순서 지정 -->
+							   <b>${entry.key + 1}.</b> <!--key 대신 index로 순서 지정 -->
 							    <c:choose>
 							        <c:when test="${not empty entry.value}">
 							            <c:forEach var="recommendVO" items="${entry.value}">
@@ -68,7 +68,6 @@
 							            </c:forEach>
 							        </c:when>
 							        <c:otherwise>
-							            <!-- 데이터가 없을 때 []를 출력 -->
 							            <b>추천 성분</b>: [ ] <br><br>
 							        </c:otherwise>
 							    </c:choose>

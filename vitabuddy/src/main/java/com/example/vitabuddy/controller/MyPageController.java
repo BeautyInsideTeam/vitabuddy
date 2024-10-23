@@ -1,6 +1,7 @@
 package com.example.vitabuddy.controller;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,11 +18,11 @@ import com.example.vitabuddy.dto.UserSupplementDTO;
 
 import com.example.vitabuddy.model.InteractionVO;
 import com.example.vitabuddy.model.ReviewVO;
+import com.example.vitabuddy.service.IReviewService;
 import com.example.vitabuddy.service.InteractionService;
 import com.example.vitabuddy.model.RecommendVO;
 import com.example.vitabuddy.model.ReviewVO;
 import com.example.vitabuddy.service.RecommendService;
-import com.example.vitabuddy.service.ReviewService;
 import com.example.vitabuddy.service.SupplementService;
 
 @Controller
@@ -32,7 +33,7 @@ public class MyPageController {
 	private SupplementService supService;
 
 	@Autowired
-	private ReviewService reviewService;
+	private IReviewService reviewService;
 
 	@Autowired
 	private InteractionService intService;

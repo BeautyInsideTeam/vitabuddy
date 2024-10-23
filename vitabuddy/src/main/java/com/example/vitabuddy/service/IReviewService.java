@@ -20,5 +20,8 @@ public interface IReviewService {
 
 	// 리뷰 번호를 통한 리뷰 조회.
 	ReviewVO getReviewByNo(String reviewNo);
+	
+	// 특정 사용자에 대한 리뷰 조회 기능
+    List<ReviewVO> getUserReviews(String userId);
 
 }
