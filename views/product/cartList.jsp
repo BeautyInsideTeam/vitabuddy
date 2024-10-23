@@ -68,8 +68,6 @@
 												    <i class="fa-solid fa-trash"></i>
 												</button>
 
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
