@@ -44,14 +44,16 @@
                                         <tr>
                                             <td rowspan="3">${status.index + 1}</td>
                                             <td rowspan="3" class="tableImg">
-                                                <a href="<c:url value='/api/supplement/supplementDetail/${sup.supId}'/>">
+                                            <!-- sup.supId>cartList.cartList로 수정 -->
+                                            <!-- cart로 된 모든 변수 cartList로 수정 -->
+                                                <a href="<c:url value='/api/supplement/supplementDetail/${cartList.supId}'/>">
                                                     <img class="supImg" src="data:image/png;base64,${supImgBase64}">
                                                 </a>
                                             </td>              
-                                            <td class="supDetail">${sup.supName}</td>
+                                            <td class="supDetail">${cartList.supName}</td>
                                             <td>
-                                                <span class="price" data-price="${cart.supPrice}">
-                                                    <fmt:formatNumber value="${cart.supPrice}" pattern="#,###" />
+                                                <span class="price" data-price="${cartList.supPrice}">
+                                                    <fmt:formatNumber value="${cartList.supPrice}" pattern="#,###" />
                                                 </span> 원
                                             </td>
                                             <td>수량 : 
@@ -60,18 +62,22 @@
 												<input type="button" class="plusBtn" value="+">
                                             </td>
                                             <td rowspan="3" class="deleteBtn">
-                                                <input type="hidden" name="supId" value="${cart.supId}">
-                                                <button class="deleteCartBtn" type="button" data-sup-id="${cart.supId}" value="삭제">
+                                                <input type="hidden" name="supId" value="${cartList.supId}">
+                                          <!-- 버튼에 데이터 속성 추가 -->
+                                                <button class="deleteCartBtn" type="button" data-sup-id="${cartList.supId}" data-cart-id="${cartList.cartId}" data-user-id="${sessionScope.sid}" value="삭제">
+												    <i class="fa-solid fa-trash"></i>
+												</button>
+
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="supDetail">${cart.supBrand}</td><td></td><td></td>
+                                            <td class="supDetail">${cartList.supBrand}</td><td></td><td></td>
                                         </tr>
                                         <tr>
                                             <td></td><td></td>
-                                            <td><span class="amount"><fmt:formatNumber value="${cart.supPrice}" pattern="#,###" /></span> 원</td>
+                                            <td><span class="amount"><fmt:formatNumber value="${cartList.supPrice}" pattern="#,###" /></span> 원</td>
                                         </tr>
                                     </tbody>
                                   </c:forEach>
