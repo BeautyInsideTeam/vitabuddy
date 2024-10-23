@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+     font-family: 'myriad'; /* 폰트 수정 */
     background-color: #f7f4ef;
     margin: 0;
     padding: 0;
@@ -300,6 +300,7 @@ button {
 }
 li {
     padding-left: 10px; /* 기호와 텍스트 사이의 거리 */
+    padding-bottom: 0.5em; /* 다른 줄과의 거리 */
 }
 
 #supplementList button:hover,
@@ -308,11 +309,10 @@ li {
     color: #fff; 
     border: 1px solid #7e7b46; 
     border-radius: 5px; 
-    font-size: 1.2em; 
+    font-size: 1em; 
     margin-left: 10px; 
 }
 
 li::marker {
     font-size: 1em;
 }
-
