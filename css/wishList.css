@@ -41,28 +41,7 @@ table{
     font-size: 100%;
 }
 
-table thead th {
-	text-align: center;
-	display: table-cell;
-    vertical-align: inherit;
-    font-weight: bold;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
 
-.selectText{
-	position: absolute;
-    align:center;
-    cursor: pointer;
-	color: #a9a27e;
-}
-.selectDelete{
-	position: absolute;
-	margin-left: 4%;
-	color: #a9a27e;
-    cursor: pointer;
-}
 
 .listHead{
 	
@@ -72,6 +51,7 @@ table thead th {
 }
 
 td{
+	border-top: 1px solid #7e7b46;
 	border-bottom: 1px solid #7e7b46;
 	margin: 0;
 	padding: 20px 0;
@@ -80,6 +60,7 @@ td{
 .itemImage{
 	padding-right: 1px;
     vertical-align: top;
+    padding-left: 1em;
 }
 
 .itemInfo{
@@ -90,43 +71,21 @@ td{
 }
 
 .status{
-	item-align:center;
+	text-align:center;
 	margin-bottom: 8px;    
 }
 
-.addCart{
-	padding: 5px;
-	 background-color: #a9a27e;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-left: auto;
-    text-align:center;
-    margin-bottom:5%;
-    
+
+.plusCartBtn{
+	font-size: 1.5em;
+	cursor: pointer;
 }
 
-
-.selectBox.check{
-	margin-left: 40%;
+.deleteCartBtn{
+	font-size: 1.5em;
+	cursor: pointer;
 }
-.del{
-	padding: 5px;
-    background-color: #a9a27e;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-left: auto;
-     text-align:center;
-}
-
-input[type="checkbox" i] {
-	background-color: initial;
-    cursor: default;
-    appearance: auto;
-    box-sizing: border-box;
-    border: initial;
-    margin-left: 40%;
+.supDetail{
+	font-size: 1em;
+	padding-left: 2em;
 }
