@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -14,6 +13,9 @@
 			<script src="<c:url value='/js/rating.js'/>"></script>
 			<script src="<c:url value='/js/deleteReview.js'/>"></script>
 			<script src="<c:url value='/js/editReviewForm.js'/>"></script>
+		<!-- 찜목록 추가, 장바구니 추가 -->
+			<script src="<c:url value='/js/addWish.js'/>"></script>
+			<script src="<c:url value='/js/addCartSupDetail.js'/>"></script>
 		<link rel="stylesheet" type="text/css" href="<c:url value='/css/supplementDetail.css'/>">
 		<c:import url="/WEB-INF/views/layout/head.jsp" />
 	</head>
@@ -21,7 +23,12 @@
 		<div id="wrap">
 			<!-- top 메뉴 포함 -->
 			<c:import url="/WEB-INF/views/layout/top.jsp" />
-
+			
+				<!-- 로그인 여부 데이터 속성으로 설정 --> 
+				<c:set var="isLoggedIn" value="${not empty sessionScope.sid}" />
+				<!-- 로그인 여부 저장 -->
+				<div id="loginStatus" data-login="${isLoggedIn}"></div>
+				
 			<!-- 상품 프로필 -->
 			<section class="prdProfile">
 				<!-- 공백 삭제 <br><br> -->
@@ -61,11 +68,13 @@
 
 					<!-- 찜목록 및 장바구니 추가 -->
 					<tr>
+					
+					<!-- 찜목록, 장바구니 추가 버튼에 data 속성 추가 -->
 						<td colspan="2">
-							<a href="#" id="addWish" data-prd-id="${supplementDetail.supId}">찜목록 추가</a>
+							<a href="#" id="addWish" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">찜목록 추가</a>
 						</td>
 						<td colspan="2">
-							<a href="#" id="addCart" data-prd-id="${supplementDetail.supId}">장바구니 추가</a>
+							<a href="#" id="addCart" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">장바구니 추가</a>
 						</td>
 						<td></td>
 					</tr>
@@ -181,14 +190,24 @@
 
 					<!-- 해시태그 -->
 					<tr>
-						<td><select id="hashtag" name="reviewHashtag">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
+						<td>
+							<select id="hashtag" name="reviewHashtag">
+								<option value="">없음</option>
+								<option value="#가성비최고">#가성비최고</option>
+								<option value="#효과빠름">#효과빠름</option>
+								<option value="#복용간편">#복용간편</option>
+								<option value="#지속적인 효과">#지속적인 효과</option>
+								<option value="#어린이도 잘먹어요">#어린이도 잘먹어요</option>
+								<option value="#피로회복에 좋아요">#피로회복에 좋아요</option>
+								<option value="#소화가 편해요">#소화가 편해요</option>
+								<option value="#근육회복에 좋아요">#근육회복에 좋아요</option>
+								<option value="#탈모예방에 좋아요">#탈모예방에 좋아요</option>
+								<option value="#눈이 편안해요">눈이 편안해요</option>
 								<c:forEach var="tag" items="${taglist}">
 									<option value="${tag.tagNo}">${tag.tagName}</option>
 								</c:forEach>
-						</select></td>
+							</select>
+						</td>
 
 						<!-- 복용기간 설정 -->
 						<td><input type="date" id="date1" name="startDate"
@@ -238,16 +257,20 @@
 						<!-- 삭제 버튼 style="display:inline;" 제거 class="deleteReview" 추가 -->
 						<td colspan="2"><!-- 수정 삭제 버튼 한 칸에/ 순서 변경-->
 							<c:if test="${review.userId == sessionScope.sid}">
-                    			<form method="post" action="/supplement/supplementDetail/${supplementDetail.supId}/review/${review.reviewNo}/delete">
-                        			<button type="submit" class="deleteReview">삭제</button>
-                    			</form>
-                			</c:if>
+								<button class="deleteReview" 
+								   data-review-id="${review.reviewNo}" 
+								   data-sup-id="${supplementDetail.supId}">
+								   삭제
+								</button>
+							</c:if>
 						    <c:if test="${review.userId == sessionScope.sid}">
-							<a href="/supplement/supplementDetail/${supplementDetail.supId}/review/${review.reviewNo}/edit">
-							    <button type="button" class="editButton">수정</button>
-							</a>
-						    </c:if>
-							
+						        <button 
+						            class="editButton" 
+						            data-sup-id="${supplementDetail.supId}" 
+						            data-review-no="${review.reviewNo}">
+						            수정
+						        </button>
+						    </c:if>						
                 		</td>
 					</tr>
 
