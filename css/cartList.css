@@ -69,6 +69,8 @@ h1 {
     background-color: transparent;
     width: 100%; 
     text-align: center;
+    /* 아이콘 사이즈 찜목록과 통일 */
+    font-size: 1.5em;
 }
 
 .deleteCartBtn:hover {
