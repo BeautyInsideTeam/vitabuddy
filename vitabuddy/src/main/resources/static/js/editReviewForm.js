@@ -23,7 +23,7 @@ $(document).ready(function () {
 		
 
         // 경로 설정하여 팝업 창 열기
-        const popupUrl = `/supplement/supplementDetail/${supId}/review/${reviewNo}/editForm`;
+        const popupUrl = `/api/supplement/supplementDetail/${supId}/review/${reviewNo}/editForm`;
         
         const popup = window.open(
         

@@ -89,7 +89,7 @@
 											<!-- 10/21 div 태그 추가 -->
 											<div class="interactionList">												
 												<li>
-												<strong>[${interaction.ingredient1} - ${interaction.ingredient2}]&#13;&#10;</strong><br>
+												<b>[${interaction.ingredient1} - ${interaction.ingredient2}]&#13;&#10;</b><br>
 												<b>문제</b>: ${fn:trim(interaction.interactionDetail)}&#13;&#10;<br><br> 												
 												<b>올바른 복용법</b>: ${fn:trim(interaction.interactionDosage)}&#13;&#10;&#13;&#10;
 												</li>

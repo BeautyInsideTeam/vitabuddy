@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/supplement")
+@RequestMapping("/api/supplement")
 public class ReviewController {
 
     @Autowired
@@ -57,7 +57,7 @@ public class ReviewController {
         }
 
         ReviewVO reviewVO = new ReviewVO();
-        String reviewNo = UUID.randomUUID().toString(); // 리뷰 ID 생성
+        String reviewNo = UUID.randomUUID().toString();
         reviewVO.setReviewNo(reviewNo);
         reviewVO.setSupId(supId);
         reviewVO.setUserId(userId);

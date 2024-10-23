@@ -26,7 +26,7 @@ footer {
 
 p {
     margin-left: 10px;
-    font-size: x-large;
+    font-size: 24px;
 }
 
 table {
@@ -102,6 +102,7 @@ th, td {
     display: flex;
     justify-content: space-between;
     width: 100%;
+   	margin-bottom: 10%;
 }
 
 .horizontal_box {
@@ -139,7 +140,7 @@ label {
 h1 {
     text-align: center;
     color: #7e7b46;
-    font-size: xxx-large;
+    font-size: 36px;
 }
 
 h4 {
@@ -210,10 +211,13 @@ select {
 
 .review-section {
     width: 90%;
+        margin-top: 5%;
 }
 
 .purchase-section {
     width: 90%;
+    margin-top: 5%;
+    margin-bottom: 10%;
 }
 
 .myReviewNo {
@@ -224,7 +228,7 @@ select {
     width: 15%;
 }
 
-.moveTopBtn {
+/* .moveTopBtn {
     text-align: center;
     width: 20%;
     padding: 10px;
@@ -235,27 +239,26 @@ select {
     margin: 0 auto;
     cursor: pointer;
 }
-
+ */
 html {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
 }
 
-li {
-    font-weight: 300;
-    font-size: large;
+li{
+	font-size: 16px;
 }
 
 .interactionList, .recommendList {
     margin-top: 15px;
-    font-size: large;
+    font-size: 24px;
     margin-left: 25px;
     margin-right: 25px;
 }
 
 h3 {
-    font-size: x-large;
+    font-size: 24px;
 }
 
 .purchase-section table, .review-section table {
@@ -263,25 +266,28 @@ h3 {
 }
 
 /* 10/21 추가 */
-li{
-	font-weight: 300;
-	font-size: large;
-}
+
 select{
 	min-height: 20px;
-	font-size: large;
+	font-size: 16px;
 }
+.recommentList{
+	padding-left: 3%;
+    padding-top: 3%;
+    padding-right: 3%;
+}
+
 .interactionList, .recommendList{
 	margin-top: 15px;
-	font-size: large;
+	font-size: 24px;
 	margin-left: 25px;
 	margin-right: 25px;
 }
-h3{
-	font-size: x-large;
-}
+
+
+
 label{
-	font-size: large;
+	font-size: 16px;
 }
 .purchase-section table{
 	margin-top: 15px;
@@ -289,4 +295,11 @@ label{
 
 .review-section table{
 	margin-top: 10px;
+}
+
+/* 10/22 추가 */
+
+.mySupplement{
+	margin-bottom: 5%;
+	    padding-top: 1.5%;
 }

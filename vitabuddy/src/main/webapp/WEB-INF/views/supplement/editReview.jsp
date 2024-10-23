@@ -17,7 +17,7 @@
 <body>
 	<section class="reviewCorrect">
 		<form method="post" id="reviewForm" enctype="multipart/form-data"
-				action="/supplement/supplementDetail/${sup.supId}/review/${review.reviewNo}/edit">
+				action="/api/supplement/supplementDetail/${sup.supId}/review/${review.reviewNo}/edit">
 				<input type="hidden" name="reviewNo" value="${review.reviewNo}">
 				<input type="hidden" name="userId" value="${sessionScope.sid}">
 				<input type="hidden" name="supId" value="${supplementDetail.supId}">
