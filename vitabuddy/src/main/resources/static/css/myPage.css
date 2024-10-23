@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'myriad'; /* 폰트 수정 */
     background-color: #f7f4ef;
     margin: 0;
     padding: 0;
@@ -146,24 +146,6 @@ h4 {
     color: #7e7b46;
 }
 
-.phone-number {
-    display: inline;
-}
-
-.phone-number input {
-    width: 20%;
-    display: inline-block;
-}
-
-.zipcode button {
-    padding: 10px;
-    width: 200px;
-    background-color: #a9a27e;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
 
 .submit-btn {
     display: block;
@@ -176,30 +158,9 @@ h4 {
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 1.2em;
 }
 
-.search-box {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #e9e5e0;
-}
-
-.search-box i {
-    color: #888;
-    margin-left: 10px;
-}
-
-.search-box input {
-    border: none;
-    outline: none;
-    width: 100%;
-    background-color: transparent;
-    font-size: 1em;
-}
 
 select {
     float: right;
@@ -226,13 +187,6 @@ select {
 .reviewDate {
     width: 15%;
 }
-
-html {
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-}
-
 
 .interactionList, .recommendList {
     margin-top: 15px;

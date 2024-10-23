@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'myriad'; /* 폰트 수정 */
     background-color: #f7f4ef;
     margin: 0;
     padding: 0;
@@ -19,7 +19,7 @@ footer {
 
 .inner{
 	display:flex;
-	font-family: 'Arial', sans-serif;
+	font-family: 'myriad'; /* 폰트 수정 */
     background-color: #f7f4ef;
     width:100%;
     margin: 0;
@@ -30,19 +30,18 @@ footer {
     display:flex;
 }
 
-.moveTopBtn {
-	align:center;
-	text-align: center;
-	width: 20%;
-   padding: 0.5%; 
+ .moveTopBtn {
+    align:center;
+    text-align: center;
+    width: 20%;
+   padding: 10px; 
     background-color: #7e7b46;
     color: white;
     border: none;
     border-radius: 20px;
     margin: 0 auto; 
      cursor: pointer;
-}
-
+} 
 html {
 	margin: 0;
 	padding: 0;
