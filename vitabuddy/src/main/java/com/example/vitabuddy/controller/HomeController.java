@@ -18,12 +18,6 @@ public class HomeController {
 		return "home";
 	}
 	
-	// 3. 찜 목록.
-	@RequestMapping("/supplement/wishList")
-	public String wish() {
-		return "supplement/wishList";
-	}
-	
 	// 4. 상점 페이지 추가
     @RequestMapping("/supplementList")
     public String supplementList() {
