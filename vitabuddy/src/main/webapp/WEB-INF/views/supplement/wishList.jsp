@@ -26,32 +26,6 @@
 			   	    		<col width="143">
 		   	    		</colgroup>	
 		   	    			<tbody class="listBody">
-		   	    	 디자인 테스트용으로 쓰임 	
-		   	    	
-		   	    					<tr class="wishItem">
-				   	    				<td>
-				   	    					
-				   	    				</td>
-				   	    				<td class="itemImage">
-				   	    					<a href="<c:url value='/api/supplement/supplementDetail/${cartList.supId}'/>">
-				   	    						<img class="supImg" src="data:image/png;base64,${supImgBase64}" width="150" height="150">
-				   	    					</a>
-				   	    				</td>
-				   	    				<td class="supDetail">
-				   	    					 <p>${sup.supName} 테스트 상품명</p>
-				   	    					 <p>${sup.supBrand} 예시 브랜드 이름 </p>
-				   	    					 <p><fmt:formatNumber value="${sup.supPrice}" pattern="#,###" /> 얼추 가격</p>
-				   	    				</td>
-				   	    				<td	class="status">
-				   	    					<div class="plusCartBtn" type="button" data-sup-id="${wishList.supId}" data-wish-id="${wishList.wishId}" data-user-id="${sessionScope.sid}" >
-												    <i class="fa-solid fa-cart-plus" value="장바구니에 담기"></i>
-											</div>
-											<p></p>
-				   	    					<div class="deleteCartBtn" type="button" data-sup-id="${wishList.supId}" data-wish-id="${wishList.wishId}" data-user-id="${sessionScope.sid}" >
-												    <i class="fa-solid fa-trash" value="찜 목록에서 삭제하기"></i>
-											</div>
-				   	    				</td>
-				   	    			</tr>
 			   	    		<c:choose>
 			   	    			<%-- 장바구니가 있는 경우  --%> 
 			   	    			 <c:when test="${not empty wishList}">
