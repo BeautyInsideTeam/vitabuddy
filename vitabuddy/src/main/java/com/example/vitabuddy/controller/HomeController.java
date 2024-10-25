@@ -11,19 +11,17 @@ public class HomeController {
 	public String intro() {
 		return "intro";
 	}
-	
+
 	// 2. 메인홈페이지.
 	@RequestMapping("/home")
 	public String home() {
 		return "home";
 	}
-	
-	// 4. 상점 페이지 추가
-    @RequestMapping("/supplementList")
-    public String supplementList() {
-        return "supplement/supplementList";  // supplementList.jsp로 연결
-    }
-    
-    
-}
 
+	// 4. 상점 페이지 추가
+	@RequestMapping("/supplementList")
+	public String supplementList() {
+		return "supplement/supplementList"; // supplementList.jsp로 연결
+	}
+
+}

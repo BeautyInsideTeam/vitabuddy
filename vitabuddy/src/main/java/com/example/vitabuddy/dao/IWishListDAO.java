@@ -1,16 +1,22 @@
 package com.example.vitabuddy.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.example.vitabuddy.model.WishListVO;
 
 public interface IWishListDAO {
 
-	// 1.찜 목록 조회
+	// 1. 찜 목록 조회
 	ArrayList<WishListVO> getWishList(String userId);
 
-	// 2.찜 목록 추가
+	// 2. 찜 목록 추가
 	void insertWishList(WishListVO wishListVO);
 
-	// 3.찜 목록 삭제
-	void deleteWishList(WishListVO wishListVO);
+	// 3.찜 목록 중복 확인 
+	int checkDuplicateWish(String userId, int supId);
+
+	// 4. 찜 목록 삭제 (supId와 userId 기준으로 삭제)
+	public int deleteWishList(HashMap<String, Object> delete);
+
 }
