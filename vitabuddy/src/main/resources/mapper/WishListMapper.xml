@@ -33,7 +33,7 @@
     <delete id="deleteWishList" parameterType="HashMap">
     DELETE FROM wishList
     WHERE supId = #{supId} AND userId = #{userId}
-</delete>
+	</delete>
 
 
 </mapper>

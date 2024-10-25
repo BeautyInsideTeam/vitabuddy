@@ -20,17 +20,17 @@ public class WishListController {
 	@Autowired
 	private WishListService wishService;
 
-	// 1. 찜 목록 조회 (회원 전용)
+	// 1. 찜 목록 조회
 	@GetMapping("/wishList")
 	public String getWishList(HttpSession session, Model model) {
-		String userId = (String) session.getAttribute("sid"); // 세션에서 사용자 ID를 가져옴
+		String userId = (String) session.getAttribute("sid"); 
 		if (userId == null) {
 			return "redirect:/intro";
 		}
 
 		model.addAttribute("wishList", wishService.getWishList(userId));
 
-		return "supplement/wishList"; // 찜 목록 JSP 페이지로 이동
+		return "supplement/wishList"; 
 	}
 
 	// 2. 찜 목록에 상품 추가
@@ -40,7 +40,7 @@ public class WishListController {
 		// 찜 목록에 중복 확인 및 추가
 		wishService.insertWishList(wishListVO);
 
-		return "찜 목록에 추가되었습니다."; // 성공 메시지 반환
+		return "찜 목록에 추가되었습니다."; 
 	}
 
 	// 3. 찜 목록에서 상품 삭제
