@@ -27,7 +27,7 @@
 	
 	</div>
 					<br>
-<section>
+<section class="home">
 	<!-- 메인메뉴 -->
 	<div class="mainMenu">
 	
@@ -48,6 +48,25 @@
 	</c:if>
 	</div>
 </section>	
+<br><br>
+<section class="home">
+	<h2>인기상품</h2>
+	<h3>브랜드별 인기상품</h3>
+	
+	<div class="bestItems">
+	    
+	    	<!-- 전체 상품  출력 -->  
+	    	<c:forEach var="sup" items="${brandBestItem}">
+	           <div class="bestItem">
+	           <a href="<c:url value='/api/supplement/supplementDetail/${sup.supId}'/>">
+	           <img class="prdImg" src="data:image/png;base64,${sup.base64SupImg}" width="200" height="200"> </a>
+		        <p>${sup.supName}</p>
+		        <p>${sup.supBrand}</p>
+		        <p><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${sup.supPrice}"/></p>  <!-- 한국 통화 표시 -->
+	           </div>
+	        </c:forEach>
+
+</section>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
 

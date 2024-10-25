@@ -1,0 +1,185 @@
+@charset "UTF-8";
+* {
+	font-family: myriad;
+	box-sizing: border-box;	
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#wrap {
+    width: 100%; 
+    text-align: center;
+    position: relative;
+    background-color: #f7f4ef;
+    margin: 0 auto; 
+}
+
+
+a {
+	text-decoration: none;
+}
+
+/* 제목 */
+
+h1 {
+    text-align: center;
+    color: #7b6e48;
+}
+
+h3 {
+    text-align: center;
+    color: #7b6e48;
+}
+
+/* 여백 */
+p {
+    margin-left:10px;
+    margin-bottom: 5%;
+}
+
+
+/* 섹션 스타일 */
+.container {
+    padding: 20px;
+    width: 80%;
+    margin: 50px auto;
+    height:auto;
+    border-radius: 10px;
+    background-color: #e5e0da;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: #7b6e48;
+}
+
+/* 주문상품 목록 */
+.prdList{
+	width: 36%;
+	margin-top: 20px;
+	margin-bottom: 30px;
+	margin: 0 auto;
+	
+}
+
+table {
+	width: 100%;
+	border: 1.2px solid #7b6e48; 
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+
+.supImg{
+	width: 100px;
+	height: 100px;
+}
+
+img{
+	width: 100px;
+	height: 100px;
+	border: 1px solid #7b6e48;
+	margin: 0;
+}
+.supName{
+	text-align: left;
+	padding-left: 10px;
+}
+
+
+/* 주문 정보 */
+.horizontal_box {
+    padding-right:32%;
+    padding-left:32%;
+    row-gap: 10px;
+    margin-top: 20px;
+}
+.horizontal_box label {
+    display: block;
+    padding: 0 10px 0 10px;
+    color: #7b6e48;
+    width:150px;
+    text-align: left;
+}
+.horizontal_box select,
+.horizontal_box input,
+.horizontal_box textarea{
+    width: 97%;
+    padding: 10px;
+    color: #7b6e48;
+    background-color: #e9e5e0;
+    border-style:none;
+    border-radius: 5px;
+}
+.box_rowContents {
+    display: flex;
+    flex-direction: row;
+}
+
+.phone-number {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    gap: 5px; 
+    width: 100%; 
+}
+
+.phone-number label {
+    width: auto; 
+    margin-right: 10px; 
+    text-align: left;
+}
+
+.userPh{
+	text-align: center;
+}
+
+
+span {
+    margin: 0 8px; 
+} 
+
+/* 우편번호 */
+.zipcode button {
+    padding: 10px;
+    background-color: #a9a27e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    position:absolute; 
+    right: 28%;
+    width: 7%;
+    height: auto;
+}
+.submit-btn {
+    display: block;
+    width: 15%;
+    margin: 2% auto;
+    padding: 1%;
+    background-color: #a9a27e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    
+} 
+
+.box_rowContents button{
+    padding: 1%;
+    background-color: #a9a27e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    width: 7%;
+    height: 3%;
+    justify-content: center;
+    white-space: nowrap;
+    
+} 

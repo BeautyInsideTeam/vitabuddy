@@ -23,7 +23,6 @@ public class MemberUpdateController {
 	MemberUpdateService memService;
 
 	@Autowired
-
 	SupplementService supService;
 
 	// 마이페이지 > 회원정보 수정폼으로 이동
