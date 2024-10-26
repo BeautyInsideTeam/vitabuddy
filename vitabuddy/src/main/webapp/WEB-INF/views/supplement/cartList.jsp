@@ -9,7 +9,7 @@
     <title>장바구니</title>
     <c:import url="/WEB-INF/views/layout/head.jsp" />  
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/cartList.css'/>">
-    <script src="<c:url value='/js/ordPricetest.js' />"></script>
+    <script src="<c:url value='/js/ordPrice.js' />"></script>
     <script src="<c:url value='/js/deleteCart.js' />"></script>    
 </head>
 <body>
@@ -39,7 +39,7 @@
                             </c:when>
                             <c:otherwise>
                             <!-- 장바구니에 상품이 있을 경우 -->
-                                <c:forEach var="cartList" items="${cartLists}" varStatus="status">  <!-- 수정사항 : item을 cartList로 받고, var를 cart로 -->
+                                <c:forEach var="cartList" items="${cartLists}" varStatus="status"> 
                                     <tbody>
                                         <tr>
                                             <td rowspan="3">${status.index + 1}</td> <!-- cartId로 하면 cart고유값이 그대로 노출된다 (cartId를 사용할 경우, 1, 2, 3 중에서 2번을 삭제했다고 하면, 화면에 1, 3 이라고 뜸) >> status.index를 사용하도록 함 -->
@@ -58,7 +58,7 @@
                                             </td>
                                             <td>수량 : 
                                                 <input type="button" class="minusBtn" value="-"> 
-												<input type="text" class="cartQty" name="cartQty" value="${cartList.cartQty}"  size="1" readonly>   <!-- 1023수정사항 : DB에서 cartQty를 가지고 옴 - 상세페이지에서 장바구니 추가 버튼을 누르면 1개씩 누적값이 쌓이므로, DB에서 가져오기! -->
+												<input type="text" class="cartQty" name="cartQty" value="${cartList.cartQty}"  size="1" readonly>   <!-- 1023수정사항 : DB에서 cartQty를 가지고 옴-->
 												<input type="button" class="plusBtn" value="+"> 
                                             </td>
                                             <td rowspan="3" class="deleteBtn">

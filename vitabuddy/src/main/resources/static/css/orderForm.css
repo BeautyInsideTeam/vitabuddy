@@ -2,6 +2,7 @@
 * {
 	font-family: myriad;
 	box-sizing: border-box;	
+	position: relative;
 }
 
 html, body {
@@ -26,12 +27,12 @@ a {
 
 h1 {
     text-align: center;
-    color: #7b6e48;
+    color: #7e7b46;
 }
 
 h3 {
     text-align: center;
-    color: #7b6e48;
+    color: #7e7b46;
 }
 
 /* 여백 */
@@ -42,29 +43,35 @@ p {
 
 
 /* 섹션 스타일 */
-.container {
-    padding: 20px;
+.prdList{
+	padding: 20px;
     width: 80%;
     margin: 50px auto;
     height:auto;
     border-radius: 10px;
     background-color: #e5e0da;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    color: #7b6e48;
-}
-
-/* 주문상품 목록 */
-.prdList{
-	width: 36%;
-	margin-top: 20px;
-	margin-bottom: 30px;
-	margin: 0 auto;
+    color: #7e7b46;
+    margin-bottom: 0;
 	
 }
 
-table {
+.order{
+    padding: 20px;
+    width: 80%;
+    margin: 30px auto;
+    height:auto;
+    border-radius: 10px;
+    background-color: #e5e0da;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: #7e7b46;
+	margin-bottom: 30px;
+}
+
+.prdList table {
 	width: 100%;
-	border: 1.2px solid #7b6e48; 
+	margin: 0 auto;
+	border: 1.2px solid #7e7b46; 
 	margin-top: 20px;
 	margin-bottom: 20px;
 	padding: 10px;
@@ -78,7 +85,7 @@ table {
 img{
 	width: 100px;
 	height: 100px;
-	border: 1px solid #7b6e48;
+	border: 1px solid #7e7b46;
 	margin: 0;
 }
 .supName{
@@ -88,77 +95,69 @@ img{
 
 
 /* 주문 정보 */
-.horizontal_box {
-    padding-right:32%;
-    padding-left:32%;
-    row-gap: 10px;
+.ordRcv {
+    color: #7e7b46;
+    text-align: left; 
+    margin: 0 auto; 
+    width: 50%; 
+}
+
+.ordRcv table {
+    width: 60%; 
+    margin: 0 auto; /* 테이블을 중앙에 배치 */
     margin-top: 20px;
-}
-.horizontal_box label {
-    display: block;
-    padding: 0 10px 0 10px;
-    color: #7b6e48;
-    width:150px;
-    text-align: left;
-}
-.horizontal_box select,
-.horizontal_box input,
-.horizontal_box textarea{
-    width: 97%;
+    margin-bottom: 20px;
     padding: 10px;
-    color: #7b6e48;
+}
+
+.ordRcv td {
+    width: 20%; 
+}
+
+.ordRcv td[colspan="3"]{
+    width: 55%; 
+    padding: 5px;
+}
+
+
+table select,
+table input,
+table textarea,
+.btn{
+    width: 100%;
+    padding: 10px;
+    color: #7e7b46;
     background-color: #e9e5e0;
     border-style:none;
     border-radius: 5px;
-}
-.box_rowContents {
-    display: flex;
-    flex-direction: row;
-}
-
-.phone-number {
-    display: flex;
-    flex-direction: row; 
-    align-items: center; 
-    gap: 5px; 
-    width: 100%; 
-}
-
-.phone-number label {
-    width: auto; 
-    margin-right: 10px; 
-    text-align: left;
-}
-
-.userPh{
-	text-align: center;
-}
-
-
-span {
-    margin: 0 8px; 
-} 
-
-/* 우편번호 */
-.zipcode button {
-    padding: 10px;
-    background-color: #a9a27e;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-left: auto;
-    position:absolute; 
-    right: 28%;
-    width: 7%;
     height: auto;
 }
+
+.ordRcvPh {
+    width: 30%; 
+    text-align: center; 
+    box-sizing: border-box; 
+}
+
+.phoneNumber {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.phoneNumber span {
+    margin: 0 5px; 
+}
+
+
+/* 우편번호 */
+
 .submit-btn {
     display: block;
     width: 15%;
     margin: 2% auto;
     padding: 1%;
-    background-color: #a9a27e;
+    background-color: #7e7b46;
     color: white;
     border: none;
     border-radius: 20px;
@@ -166,9 +165,9 @@ span {
     
 } 
 
-.box_rowContents button{
+button{
     padding: 1%;
-    background-color: #a9a27e;
+    background-color: #7e7b46;
     color: white;
     border: none;
     border-radius: 20px;
@@ -176,10 +175,51 @@ span {
     margin-left: auto;
     text-align: center;
     align-items: center;
-    display: flex;
-    width: 7%;
-    height: 3%;
-    justify-content: center;
-    white-space: nowrap;
-    
+    font-size: 1em;    
 } 
+
+.btn{
+    width: 100%;
+    height: 30px;
+    white-space: nowrap; /* 줄바꿈 방지 */
+    padding: 1%;
+    background-color: #7e7b46;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0;
+    text-align: center;
+    align-items: center;
+}
+
+.searchBtn .btn {
+	height: auto;
+    white-space: nowrap; 
+    padding: 8px 10px; 
+}
+.searchBtn{
+	padding: 0;
+	padding-left: 10px
+}
+접기
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

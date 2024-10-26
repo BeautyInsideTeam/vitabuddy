@@ -8,11 +8,8 @@ $(document).ready(function() {
             return; 
         }
 
-        //const supId = $(this).data('sup-id');
         const cartId = $(this).data('cart-id');  // cartId 추가
-        //const userId = $(this).data('user-id');  // userId 추가
-        //const self = this; // this 값 저장
-        //var cartId = $('#cartId').text().trim(); // cartId 텍스트 가져오기
+        
 		console.log(cartId);
         $.ajax({
             type: 'post',
@@ -22,7 +19,6 @@ $(document).ready(function() {
             success: function(response) {
             	if(response == 1 ){
                 alert('삭제되었습니다');
-                //$(self).closest('tbody').remove();  // 삭제 버튼이 포함된 가장 가까운 tbody 삭제
                 location.href="/cartList";   //삭제 완료 이후, 장바구니 목록 재요청
                 }
             },

@@ -38,6 +38,9 @@ public class CartListController {
 	@RequestMapping("/cartList")
 	public String cartList(Model model, HttpSession session) {
 		String userId = (String)session.getAttribute("sid");  //로그인된 userId 추출
+		if(userId == null) {
+			return "redirect:/intro";
+		}
 		ArrayList<CartListVO> cartLists = cartListService.cartList(userId);
 		model.addAttribute("cartLists", cartLists);
 		return "supplement/cartList";
@@ -133,10 +136,10 @@ public class CartListController {
 	
 	//주문 완료 로직 처리 - [결제하기] 버튼 눌렀을 때 로직 처리
 	@RequestMapping("/supplement/orderComplete")
-	public String orderComplete(OrderInfoVO vo, @RequestParam String userPh1, @RequestParam String userPh2, @RequestParam String userPh3, HttpSession session) {
+	public String orderComplete(OrderInfoVO vo, @RequestParam String ordRcvPh1, @RequestParam String ordRcvPh2, @RequestParam String ordRcvPh3, HttpSession session) {
 		
 		//3개의 영역으로 분할된 전화번호 통합 및 vo 세팅
-		String ordRcvPhone = userPh1 + "-" + userPh2 + "-" + userPh3;
+		String ordRcvPhone = ordRcvPh1 + "-" + ordRcvPh2 + "-" + ordRcvPh3;
 		vo.setOrdRcvPhone(ordRcvPhone);
 				
 		//orderId 생성 로직 - [주문당시날짜시분초_랜덤숫자4개] 형식으로 진행할 예정임

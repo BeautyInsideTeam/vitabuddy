@@ -60,10 +60,14 @@
 <!-- 주문자의 정보를 OrderInfo 테이블에 저장 -->
 <insert id="insertOrderInfo" parameterType="com.example.vitabuddy.model.OrderInfoVO">
 	insert into OrderInfo (orderId, userId, ordRcvReceiver, ordRcvZipcode, ordRcvAddress1, ordRcvAddress2, ordRcvPhone, ordRcvEmail, ordRcvMsg, ordPay)
-	values (#{orderId}, #{userId}, #{ordRcvReceiver}, #{ordRcvZipcode}, #{ordRcvAddress1}, #{ordRcvAddress2}, #{ordRcvPhone}, #{ordRcvEmail}, #{ordRcvMsg}, #{ordPay})
+	values ( #{orderId}, #{userId}, #{ordRcvReceiver}, #{ordRcvZipcode}, #{ordRcvAddress1}, #{ordRcvAddress2}, #{ordRcvPhone}, #{ordRcvEmail}, #{ordRcvMsg, jdbcType=VARCHAR}, #{ordPay})
 </insert>
 
 
+<!-- 주문완료 후, userId를 받아서 해당 cart 제거하기 -->
+<delete id="deleteCartAfterOrder" parameterType="String">
+	delete from cart where userId=#{userId}
+</delete>
 
 
  

@@ -34,6 +34,6 @@ public interface ICartListDAO {
 	//--------------------주문정보 로직 분리 (CartListService 참고)
 	public void insertOrderInfo(OrderInfoVO vo);
 	public void insertOrderProduct(HashMap<String, Object> map); 
-
+	public void deleteCartAfterOrder(String userId);
 
 }

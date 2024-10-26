@@ -23,7 +23,7 @@ $(document).ready(function() {
             }),
             contentType:'application/json',
             success:function(response) {
-            	if(response == 1){    //1023수정사항 : if문 추가
+            	if(response == 1){    //수정사항 : if문 추가
                 alert('장바구니에 추가되었습니다');
                 }
             },
@@ -33,4 +33,13 @@ $(document).ready(function() {
         });
         }
     });
+
+//1025 - 뒤로가기 버튼 1번 눌렀을 때 한번에 상점 페이지로 넘어갈 수 있는 코드 (detail.jsp 페이지 href="" 로 수정함)
+$(window).on("pageshow", function (event) {
+    if (event.originalEvent.persisted) {
+      window.location.reload();
+    }
+  });
+  
+  
 });

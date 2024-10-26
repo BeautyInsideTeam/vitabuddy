@@ -99,6 +99,11 @@ public class CartListService implements ICartListService {
 		map.put("userId", vo.getUserId());
 		dao.insertOrderProduct(map);
 		
+		//주문 완료 후, 장바구니에 있는 데이터 삭제
+		dao.deleteCartAfterOrder(vo.getUserId());
+
+		
+		
 	}
 	
 	
