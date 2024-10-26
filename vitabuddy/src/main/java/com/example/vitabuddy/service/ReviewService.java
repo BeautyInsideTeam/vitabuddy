@@ -1,5 +1,6 @@
 package com.example.vitabuddy.service;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.vitabuddy.dao.IReviewDAO;
 import com.example.vitabuddy.model.ReviewVO;
+import com.example.vitabuddy.model.SupplementStoreVO;
 
 @Service
 public class ReviewService implements IReviewService {
@@ -50,4 +52,7 @@ public class ReviewService implements IReviewService {
     public List<ReviewVO> getUserReviews(String userId) {
         return dao.getReviewsByUserId(userId);
     }
+    
+    
+
 }
