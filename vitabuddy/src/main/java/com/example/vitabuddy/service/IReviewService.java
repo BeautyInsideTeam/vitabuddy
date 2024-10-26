@@ -3,6 +3,7 @@ package com.example.vitabuddy.service;
 import java.util.List;
 
 import com.example.vitabuddy.model.ReviewVO;
+import com.example.vitabuddy.model.SupplementStoreVO;
 
 public interface IReviewService {
 
@@ -23,4 +24,7 @@ public interface IReviewService {
 
 	// 특정 사용자에 대한 리뷰 조회 기능
 	List<ReviewVO> getUserReviews(String userId);
+	
+	// 브랜드별 상위 1개의 상품을 가져오는 기능
+    List<SupplementStoreVO> getTopSupplementsByBrand();
 }
