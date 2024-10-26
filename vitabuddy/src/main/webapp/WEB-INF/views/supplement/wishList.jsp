@@ -9,7 +9,8 @@
     <meta charset="UTF-8">
     <title>찜 목록</title>
     <c:import url="/WEB-INF/views/layout/head.jsp" />
-    <script src="<c:url value='/js/deleteWish.js'/>"></script>	
+    <script src="<c:url value='/js/deleteWish.js'/>"></script>
+    <script src="<c:url value='/js/addCartWish.js'/>"></script>	
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/wishList.css'/>">
 </head>
 <body>

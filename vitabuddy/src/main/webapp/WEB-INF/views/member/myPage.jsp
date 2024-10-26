@@ -58,7 +58,7 @@
 							    </c:forEach>
 							</c:forEach>-->
 							<c:forEach var="entry" items="${allRecommendLists}" >
-							    <b>${entry.key + 1}.</b> <!-- key 대신 index로 순서 지정 -->
+							   <b>${entry.key + 1}.</b> <!--key 대신 index로 순서 지정 -->
 							    <c:choose>
 							        <c:when test="${not empty entry.value}">
 							            <c:forEach var="recommendVO" items="${entry.value}">
@@ -68,7 +68,6 @@
 							            </c:forEach>
 							        </c:when>
 							        <c:otherwise>
-							            <!-- 데이터가 없을 때 []를 출력 -->
 							            <b>추천 성분</b>: [ ] <br><br>
 							        </c:otherwise>
 							    </c:choose>
@@ -89,7 +88,7 @@
 											<!-- 10/21 div 태그 추가 -->
 											<div class="interactionList">												
 												<li>
-												<b>[${interaction.ingredient1} - ${interaction.ingredient2}]&#13;&#10;</b><br>
+												<strong>[${interaction.ingredient1} - ${interaction.ingredient2}]&#13;&#10;</strong><br>
 												<b>문제</b>: ${fn:trim(interaction.interactionDetail)}&#13;&#10;<br><br> 												
 												<b>올바른 복용법</b>: ${fn:trim(interaction.interactionDosage)}&#13;&#10;&#13;&#10;
 												</li>
@@ -146,20 +145,17 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- 구매 내역 -->
-                    <div class="purchase-section">
+                    <!-- 구매 내역 : 10/25 myPage 구매내역 부분 수정 -->
+  					<div class="purchase-section">
                         <h3>구매 내역</h3>
-                        <select>
+                        <label for="order">정렬 기준:</label>
+                        <select name="order">
                             <option>현재 주문 처리 상태</option>
-                            <option>입금 전</option>
                             <option>배송 준비 중</option>
                             <option>배송 중</option>
                             <option>배송 완료</option>
-                            <option>취소</option>
-                            <option>반품</option>
-                            <option>환불</option>
                         </select>
-<!-- 10/21 br태그 추가 --><br>
+						<br> <!-- 10/21 br 태그 추가 -->
                         <table width="100%" id="productInfo">
                             <thead>
                                 <tr>
@@ -172,9 +168,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td colspan="6" align="center">주문 내역이 없습니다.</td>
-                                </tr>
+                            	 <c:choose>
+                                    <c:when test="${not empty orderItems}">
+                                    <c:forEach var="ord" items="${orderItems}" varStatus="status">
+                                        <tr>
+                                            <td>${ord.ordDate}</td>
+                                            <td><img src="data:image/png;base64,${supImgBase64}" width="100" height="100"></td>
+                                            <td>${ord.supName}</td>
+                                            <td>${ord.ordQuantity}</td>
+                                            <td>
+			                                  <fmt:formatNumber value="${ord.supPrice}" pattern="#,###" />
+			                                 원</td>
+                                            <td>배송 준비 중</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <tr>
+                                            <td colspan="6" align="center">주문 내역이 없습니다.</td>
+                                        </tr>
+                                     </c:otherwise>
+                                </c:choose>
                             </tbody>
                         </table>
                     </div>

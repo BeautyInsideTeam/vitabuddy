@@ -56,4 +56,16 @@ public class WishListService implements IWishListService {
         return dao.deleteWishList(delete);
     }
 
+	// 4. 찜 목록에서 장바구니로 상품 추가.
+	@Override
+	public int addWishListtoCartList(int supId, String userId) {
+		HashMap<String, Object> toCart = new HashMap<>();
+		toCart.put("supId", supId);
+		toCart.put("userId", userId);
+		
+		return dao.addWishListtoCartList(toCart);
+	}
+	
+	
+
 }

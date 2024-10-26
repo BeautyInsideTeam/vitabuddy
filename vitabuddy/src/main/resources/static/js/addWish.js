@@ -25,9 +25,7 @@ $(document).ready(function () {
         }),
         contentType: "application/json",
         success: function (response) {
-          alert("찜목록에 추가되었습니다.");
-          // 찜 목록 페이지로 리디렉션
-          window.location.href = "/supplement/wishList";
+          alert("찜목록에 추가되었습니다.");       
         },
         error: function () {
           alert("찜목록 추가 실패");

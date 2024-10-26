@@ -11,9 +11,9 @@
 		<title>상품 상세 조회</title>
 			<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 			<script src="<c:url value='/js/rating.js'/>"></script>
-			<script src="<c:url value='/js/insertReview.js'/>"></script>
 			<script src="<c:url value='/js/deleteReview.js'/>"></script>
 			<script src="<c:url value='/js/editReviewForm.js'/>"></script>
+		<!-- 찜목록 추가, 장바구니 추가 -->
 			<script src="<c:url value='/js/addWish.js'/>"></script>
 			<script src="<c:url value='/js/addCartSupDetail.js'/>"></script>
 		<link rel="stylesheet" type="text/css" href="<c:url value='/css/supplementDetail.css'/>">
@@ -23,13 +23,12 @@
 		<div id="wrap">
 			<!-- top 메뉴 포함 -->
 			<c:import url="/WEB-INF/views/layout/top.jsp" />
+			
+				<!-- 로그인 여부 데이터 속성으로 설정 --> 
+				<c:set var="isLoggedIn" value="${not empty sessionScope.sid}" />
+				<!-- 로그인 여부 저장 -->
+				<div id="loginStatus" data-login="${isLoggedIn}"></div>
 				
-			<!-- 로그인 여부 데이터 속성으로 설정 --> 
-			<c:set var="isLoggedIn" value="${not empty sessionScope.sid}" />
-			<!-- 로그인 여부 저장 -->
-			<div id="loginStatus" data-login="${isLoggedIn}"></div>
-
-
 			<!-- 상품 프로필 -->
 			<section class="prdProfile">
 				<!-- 공백 삭제 <br><br> -->
@@ -69,11 +68,13 @@
 
 					<!-- 찜목록 및 장바구니 추가 -->
 					<tr>
+					
+					<!-- 찜목록, 장바구니 추가 버튼에 data 속성 추가 -->
 						<td colspan="2">
 							<a href="#" id="addWish" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">찜목록 추가</a>
 						</td>
 						<td colspan="2">
-							<a href="#" id="addCart" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">장바구니 추가</a>
+							<a href="" id="addCart" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">장바구니 추가</a>  <!-- 10/25 수정사항 href 공백으로 유지하기 -->
 						</td>
 						<td></td>
 					</tr>
@@ -139,7 +140,8 @@
 				<!-- 리뷰작성 -->
 				<!-- div를 section으로 변경 1018 -->
 		<section class="reviewWrite">
-			<form method="post" id="reviewForm" enctype="multipart/form-data"> <!-- sup.supId -> supplement.supId -->
+			<form method="post" id="reviewForm" enctype="multipart/form-data"
+				action="/supplement/supplementDetail/${supplementDetail.supId}/review"> <!-- sup.supId -> supplement.supId -->
 				<input type="hidden" name="reviewNo" value="${review.reviewNo}">
 				<input type="hidden" name="userId" value="${sessionScope.sid}">
 				<input type="hidden" name="supId" value="${supplementDetail.supId}">
@@ -229,8 +231,7 @@
 				<!-- submit -->
 				<input type="submit" value="작성하기" class="btn btnFilled">
 			</form>
-		</section>
-		<!-- div를 section으로 변경 1018 -->
+		</section><!-- div를 section으로 변경 1018 -->
 
 		<!-- 리뷰목록 -->
 		<!-- div를 section으로 변경 1018 -->

@@ -57,5 +57,19 @@ public class WishListController {
 		else
 			return 0; // 삭제 실패
 	}
-
+	
+	// 4. 찜 목록에서 장바구니로 상품 추가
+	@PostMapping("/wishList/toCart")
+	@ResponseBody
+	public int addWishListtoCartList(@RequestBody HashMap<String, Object> toCart) {
+		int supId = (int) toCart.get("supId");
+		String userId = (String) toCart.get("userId");
+		
+		int result = wishService.addWishListtoCartList(supId, userId);
+		if(result > 0)
+			return 1;
+		else 
+			return 0;
+	}
+	
 }

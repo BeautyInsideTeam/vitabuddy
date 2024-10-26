@@ -34,6 +34,17 @@
     DELETE FROM wishList
     WHERE supId = #{supId} AND userId = #{userId}
 	</delete>
-
-
+	
+	<!-- 5. 찜 목록에서 장바구니로 상품 추가 & 수량 중복시 수량증가 -->
+	<insert id="addWishListtoCartList" parameterType="map">
+	    MERGE INTO cart c
+	    USING (SELECT #{userId} AS UserID, #{supId} AS SupID FROM dual) w
+	    ON (c.UserID = w.UserID AND c.SupID = w.SupID)
+	    WHEN MATCHED THEN
+	        UPDATE SET c.CartQty = c.CartQty + 1
+	    WHEN NOT MATCHED THEN
+	        INSERT (UserID, SupID, CartQty)
+	        VALUES (#{userId}, #{supId}, 1)
+	</insert>
+	
 </mapper>

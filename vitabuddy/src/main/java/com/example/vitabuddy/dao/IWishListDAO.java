@@ -18,5 +18,8 @@ public interface IWishListDAO {
 
 	// 4. 찜 목록 삭제 (supId와 userId 기준으로 삭제)
 	public int deleteWishList(HashMap<String, Object> delete);
+	
+	// 5. 찜 목록에서 장바구니로 상품 추가
+	public int addWishListtoCartList(HashMap<String, Object> toCart);
 
 }
