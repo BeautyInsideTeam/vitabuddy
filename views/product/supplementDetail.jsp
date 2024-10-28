@@ -11,8 +11,10 @@
 		<title>상품 상세 조회</title>
 			<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 			<script src="<c:url value='/js/rating.js'/>"></script>
+			<script src="<c:url value='/js/insertReview.js'/>"></script>
 			<script src="<c:url value='/js/deleteReview.js'/>"></script>
 			<script src="<c:url value='/js/editReviewForm.js'/>"></script>
+			<script src="<c:url value='/js/supplementDetail.js'/>"></script>
 		<!-- 찜목록 추가, 장바구니 추가 -->
 			<script src="<c:url value='/js/addWish.js'/>"></script>
 			<script src="<c:url value='/js/addCartSupDetail.js'/>"></script>
@@ -37,34 +39,25 @@
 						<td colspan="4">
 							<h2>${supplementDetail.supName}</h2>
 						</td>
-						<td rowspan="6">
+						<td rowspan="6" colspan="2">
 							<!-- 이미지 표시 방식 수정: Base64 인코딩으로 변환된 이미지를 표시 -->
 							<img class="prdImg" src="data:image/png;base64,${supImgBase64}" width="300" height="300" alt="Product Image">
 						</td>
 					</tr>
 
-					<!-- 별점 -->
+					<%-- <!-- 별점 -->
 					<tr>
 						<td>
-					              <%-- <div class="rating">
+					              <div class="rating">
 	         <c:forEach var="i" begin="1" end="5">
 	               <i class="${i <= sup.rating ? 'fa-solid fa-star' : 'fa-regular fa-star'}"></i>
 	           </c:forEach>
-	           </div> --%>
+	           </div>
 	               </td>
 	               <td></td>
 	               <td></td>
-	            </tr>
-	
-	            <tr>
-	               <td>
-	                  <%-- <div class="hashTag"> 
-	         ${sup.supTag} --%>
-
-							</div>
-						</td>
-						<td></td><td></td><td></td><td></td>
-					</tr>
+	               <td></td>
+	            </tr> --%>
 
 					<!-- 찜목록 및 장바구니 추가 -->
 					<tr>
@@ -74,28 +67,47 @@
 							<a href="#" id="addWish" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">찜목록 추가</a>
 						</td>
 						<td colspan="2">
-							<a href="#" id="addCart" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">장바구니 추가</a>
+							<a href="#" id="addCart" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">장바구니 추가</a>  <!-- 10/28 수정사항 href # 재추가. -->
 						</td>
-						<td></td>
+						<!-- <td></td> -->
 					</tr>
 
 					<!-- 가격 정보 -->
 					<tr>
 						<td>가격</td>
-						<td>
+						<td colspan="2">
 							<span id="price" data-price="${supplementDetail.supPrice}">
 								<fmt:formatNumber value="${supplementDetail.supPrice}" pattern="#,###" />
 							</span> 원
 						</td>
-						<td></td><td></td>
+						<td></td>
 					</tr>
 
 					<!-- 브랜드 정보 -->
 					<tr>
 						<td>브랜드</td>
-						<td>${supplementDetail.supBrand}</td>
-						<td></td><td></td>
+						<td colspan="2">${supplementDetail.supBrand}</td>
+						<td></td>
 					</tr>
+					<!-- 해시태그 -->
+					<!-- 상위 2개 해시태그 -->
+					<tr>
+				    <td>해시태그</td>
+				    <td colspan="2">
+				        <div class="hashTag">
+				            <c:choose>
+				                <c:when test="${not empty topHashtags}">
+				                    <c:forEach var="hashtag" items="${topHashtags}">
+				                        ${hashtag.reviewHashtag}&nbsp;&nbsp; 
+				                    </c:forEach>
+				                </c:when>
+				                <c:otherwise>
+				                    <span>해시태그가 없습니다</span>
+				                </c:otherwise>
+				            </c:choose>
+				        </div>
+				    </td>
+				</tr>
 				</table>
 			</section>
 			
@@ -125,13 +137,15 @@
 					
 					<!-- 영양 정보 -->
 					<div>
-						<h3>영양정보</h3>
-						<table>
-							<tr>
-								<td class="supNutri">${supplementDetail.supNutri}</td>
-								<td>${supplementDetail.supNutriInfo}</td>
-							</tr>
-						</table>
+						<h3 id="toggleNutrition" class="clickable">영양정보 <span class="arrow"><i class="fa-solid fa-caret-down"></i></span></h3>
+						<div id="nutritionInfo" class="hidden">
+						    <table>
+						        <tr>
+						            <td class="supNutri">${supplementDetail.supNutri}</td>
+						            <td>${supplementDetail.supNutriInfo}</td>
+						        </tr>
+						    </table>
+						</div>
 					</div>
 				</div>
 				

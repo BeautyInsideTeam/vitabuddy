@@ -50,11 +50,14 @@ button{
     position: relative;
     z-index: 2;
     color: #583b1f;
-    font-size: 5vw; /* 너비에 따라 글자 크기 조정 */
+    /* 글자 크기 조정 */
+    font-size: 4.3vw; /* 너비에 따라 글자 크기 조정 */
     font-weight: 800;
-    text-align: center;
+    /* 제목 글자 우측 정렬 */
+    text-align: right;
     margin-top: 5vh;
-    padding: 0 20px; 
+    /* padding 수정 */
+    padding: 0 5%; 
     line-height: 1.2; 
 }
 
@@ -157,3 +160,13 @@ label {
         font-size: 6vw; /* 더 작은 화면 */
     }
 }
+
+section {/* 섹션 화면 우측 이동 */
+	width: 70%;
+    position: relative;
+    left: 30%; /* 화면의 30%에서 시작 */
+    text-align: center; 
+}
+
+
+
