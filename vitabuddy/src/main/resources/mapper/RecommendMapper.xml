@@ -11,7 +11,7 @@
         <result property="ingredient" column="ingredient"/>
         <result property="interactionRecommend" column="interactionRecommend" /> 
     </resultMap>
-   
+
 
 	<!-- select  -->
 	<select id="recommendIngredients" parameterType="String" resultMap="recommendMap">
@@ -43,4 +43,3 @@
 
 
 </mapper>
-

@@ -20,13 +20,17 @@ public interface IReviewDAO {
 
 	// 리뷰 수정 기능
 	int updateReview(ReviewVO review);
-	
+
 	// 리뷰 번호를 통한 리뷰 조회.
 	ReviewVO getReviewByNo(String reviewNo);
-	
-    // 특정 사용자에 대한 리뷰 조회
-    List<ReviewVO> getReviewsByUserId(@Param("userId") String userId);
-  
 
-    
+	// 특정 사용자에 대한 리뷰 조회
+	List<ReviewVO> getReviewsByUserId(@Param("userId") String userId);
+
+	// 브랜드별 상위 1개의 상품을 가져오는 메서드
+	List<SupplementStoreVO> getTopSupplementsByBrand();
+	
+	// 제품별 상위 2개의 해시태그를 가져오는 메서드
+	List<ReviewVO> getHashtagsByReview(int supId);
+
 }

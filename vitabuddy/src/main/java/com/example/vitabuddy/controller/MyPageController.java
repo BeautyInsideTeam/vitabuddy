@@ -2,6 +2,7 @@ package com.example.vitabuddy.controller;
 
 import java.util.ArrayList;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.vitabuddy.dto.UserSupplementDTO;
-
+import com.example.vitabuddy.model.CartListVO;
 import com.example.vitabuddy.model.InteractionVO;
+import com.example.vitabuddy.model.PurchaseHistoryVO;
 import com.example.vitabuddy.model.ReviewVO;
+import com.example.vitabuddy.service.CartListService;
 import com.example.vitabuddy.service.IReviewService;
 import com.example.vitabuddy.service.InteractionService;
 import com.example.vitabuddy.model.RecommendVO;
@@ -40,6 +43,9 @@ public class MyPageController {
 
 	@Autowired
 	private RecommendService recommendService; // 영양제의 추천 성분을 위한 서비스 주입
+	
+	@Autowired
+	private CartListService cartService;
 
 	// 마이페이지로 이동
 	@GetMapping("/myPage")
@@ -102,7 +108,23 @@ public class MyPageController {
 		List<ReviewVO> userReviews = reviewService.getUserReviews(userId);
 
 		model.addAttribute("reviews", userReviews);
+		
+		
+		
+		//10/28 구매내역 출력 (주문일자, 이미지, 상품 정보(상품명, 브랜드, 가격), 수량, 금액)
+		/*ArrayList<PurchaseHistoryVO> myPagePurchaseLists = cartService.getUserPurchaseHistory(userId);
+		model.addAttribute("myPagePurchaseLists", myPagePurchaseLists);
+		
+		System.out.println("myPagePurchaseLists");*/
+		
+		
+		
 
 		return "member/myPage";
 	}
+	
+	
+	
+	
+	
 }

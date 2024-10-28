@@ -3,7 +3,6 @@ package com.example.vitabuddy.controller;
 import java.net.URLDecoder;
 
 
-
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;

@@ -4,7 +4,6 @@ package com.example.vitabuddy.service;
 import java.util.ArrayList;
 
 
-
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;

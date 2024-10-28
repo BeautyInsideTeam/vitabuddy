@@ -19,7 +19,7 @@ $(document).ready(function() {
             success: function(response) {
             	if(response == 1 ){
                 alert('삭제되었습니다');
-                location.href="/cartList";   //삭제 완료 이후, 장바구니 목록 재요청
+                location.href="/supplement/cartList";   //삭제 완료 이후, 장바구니 목록 재요청
                 }
             },
             error: function() {
@@ -28,4 +28,3 @@ $(document).ready(function() {
         });
     });
 });
-
