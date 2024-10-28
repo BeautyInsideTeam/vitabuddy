@@ -51,6 +51,14 @@ h2{
     color: #583b1f;
 }
 
+.prdProfile table{
+	table-layout: fixed;
+}
+
+td[colspan="4"] {
+    height: 100px; 
+    vertical-align: top; 
+}
 /* 상품 프로필 */
 .prdProfile h3 {
     font-size: 28px;
@@ -63,7 +71,9 @@ table{
 	align-items:left;
 	/* 퍼센트로 단위 변경 width:1000px; */
 	width:90%;
+	
 }
+
 .prdImg{
 	float: right;
 	margin-left: 30px;/* 사진 옆에 공간 띄우기 */
@@ -77,9 +87,11 @@ table{
 
 /* 해시태그 스타일 */
 .hashTag {
+    display: inline-block;
     font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
+	color: #666;
+    margin-right: 5px; /* 태그 간 간격 */
+    padding: 5px;
 }
 
 /* 버튼 스타일 */
@@ -126,6 +138,10 @@ table{
     font-size: 22px;
     color: #583b1f;
     margin-bottom: 10px;
+}
+
+#nutritionInfo{/* 영양 정보 간격 */
+	margin-top: 10px;
 }
 
 .prdInfo p {
@@ -420,6 +436,34 @@ table{
 }
 .rate{
 	float: left;
+}
+
+/* 더보기 링크 스타일 */
+.toggleLink {
+    color: #7e7b46;
+    font-size: 1em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.toggleLink:hover {
+    color: #71543d;
+}
+
+/* 화살표 스타일 */
+.arrow {
+    font-size: 0.8em;
+    transition: transform 0.3s;
+}
+
+.hidden {
+    display: none;
+}
+
+.clickable {
+    cursor: pointer;
+    display: inline;
 }
 
 .prdInfo table {

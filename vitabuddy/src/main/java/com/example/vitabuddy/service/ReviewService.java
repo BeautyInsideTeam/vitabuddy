@@ -80,13 +80,11 @@ public class ReviewService implements IReviewService {
 	}
 	// 이미지 출력 끝
 
+	// 상위 2개 해시태그 출력.
 	@Override
 	public List<ReviewVO> getHashtagsByReview(int supId) {
-		List<ReviewVO> topHashtags = dao.getHashtagsByReview(supId);
-		
-		
-		
-		return null;
+		List<ReviewVO> topHashtags = dao.getHashtagsByReview(supId);					
+		return topHashtags;
 	}
 
 }
