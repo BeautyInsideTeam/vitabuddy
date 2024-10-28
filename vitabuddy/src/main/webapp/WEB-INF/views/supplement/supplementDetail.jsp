@@ -74,7 +74,7 @@
 							<a href="#" id="addWish" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">찜목록 추가</a>
 						</td>
 						<td colspan="2">
-							<a href="" id="addCart" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">장바구니 추가</a>  <!-- 10/25 수정사항 href 공백으로 유지하기 -->
+							<a href="#" id="addCart" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">장바구니 추가</a>  <!-- 10/28 수정사항 href # 재추가. -->
 						</td>
 						<td></td>
 					</tr>

@@ -5,7 +5,7 @@ $(document).ready(function () {
   // 로그인 상태를 가져옴
   var isLoggedIn = $("#loginStatus").data("login");
 
-  $("#addWish").on("click", function (event) {
+  $("#addWish").on("click", function () {
     if (!isLoggedIn) {
       // 로그인 되지 않은 상태
       alert("로그인이 필요한 서비스입니다.");

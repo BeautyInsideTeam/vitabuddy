@@ -23,29 +23,24 @@ public class WishListController {
 	// 1. 찜 목록 조회
 	@GetMapping("/wishList")
 	public String getWishList(HttpSession session, Model model) {
-		String userId = (String) session.getAttribute("sid"); 
-		if (userId == null) {
-			return "redirect:/intro";
-		}
-
+		String userId = (String) session.getAttribute("sid");
 		model.addAttribute("wishList", wishService.getWishList(userId));
-
-		return "supplement/wishList"; 
+		return "supplement/wishList";
 	}
 
 	// 2. 찜 목록에 상품 추가
-	@PostMapping("/wishList/insert")
 	@ResponseBody
+	@PostMapping("/wishList/insert")
 	public String insertWishList(@RequestBody WishListVO wishListVO, HttpSession session) {
 		// 찜 목록에 중복 확인 및 추가
 		wishService.insertWishList(wishListVO);
 
-		return "찜 목록에 추가되었습니다."; 
+		return "찜 목록에 추가되었습니다.";
 	}
 
 	// 3. 찜 목록에서 상품 삭제
-	@PostMapping("/wishList/delete")
 	@ResponseBody
+	@PostMapping("/wishList/delete")
 	public int deleteWishList(@RequestBody HashMap<String, Object> requestBody) {
 		int supId = (int) requestBody.get("supId");
 		String userId = (String) requestBody.get("userId");
@@ -57,19 +52,19 @@ public class WishListController {
 		else
 			return 0; // 삭제 실패
 	}
-	
+
 	// 4. 찜 목록에서 장바구니로 상품 추가
-	@PostMapping("/wishList/toCart")
 	@ResponseBody
+	@PostMapping("/wishList/toCart")
 	public int addWishListtoCartList(@RequestBody HashMap<String, Object> toCart) {
 		int supId = (int) toCart.get("supId");
 		String userId = (String) toCart.get("userId");
-		
+
 		int result = wishService.addWishListtoCartList(supId, userId);
-		if(result > 0)
+		if (result > 0)
 			return 1;
-		else 
+		else
 			return 0;
 	}
-	
+
 }

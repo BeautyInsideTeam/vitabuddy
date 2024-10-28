@@ -43,7 +43,7 @@
 					                        <p>가격: ₩<fmt:formatNumber value="${wishList.supPrice}" pattern="#,###" /></p>
 					                    </td>
 					                    <td class="status">
-					                        <div class="plusCartBtn" type="button" data-sup-id="${wishList.supId}" data-wish-id="${status.index + 1}" data-user-id="${sessionScope.sid}">
+					                        <div class="plusCartBtn" type="button" data-sup-id="${wishList.supId}" data-user-id="${sessionScope.sid}">
 					                            <i class="fa-solid fa-cart-plus" value="장바구니에 담기"></i>
 					                        </div>
 					                        <p></p>
