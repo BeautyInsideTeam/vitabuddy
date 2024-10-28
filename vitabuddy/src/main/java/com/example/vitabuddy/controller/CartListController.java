@@ -38,9 +38,7 @@ public class CartListController {
 	@RequestMapping("/cartList")
 	public String cartList(Model model, HttpSession session) {
 		String userId = (String)session.getAttribute("sid");  //로그인된 userId 추출
-		if(userId == null) {
-			return "redirect:/intro";
-		}
+		
 		ArrayList<CartListVO> cartLists = cartListService.cartList(userId);
 		model.addAttribute("cartLists", cartLists);
 		return "supplement/cartList";

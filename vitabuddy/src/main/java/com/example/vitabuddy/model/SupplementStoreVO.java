@@ -13,7 +13,7 @@ public class SupplementStoreVO {
 	private String supDetail;
 	private byte[] supImg;
 	private String base64SupImg; 
-	
+
 	
 	//Getters and Setters
 	public int getSupId() {

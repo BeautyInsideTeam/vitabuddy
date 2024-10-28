@@ -27,4 +27,6 @@ public interface IReviewDAO {
     // 특정 사용자에 대한 리뷰 조회
     List<ReviewVO> getReviewsByUserId(@Param("userId") String userId);
   
+
+    
 }
