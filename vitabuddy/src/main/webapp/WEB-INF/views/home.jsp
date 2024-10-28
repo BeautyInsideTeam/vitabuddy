@@ -14,7 +14,7 @@
 <div id="wrap">
 <c:import url="/WEB-INF/views/layout/top.jsp" />
 	
-	<h1>VITA BUDDY</h1>
+	<h1>VITABUDDY</h1>
 	
 	<!-- 검색창 -->
 	<div class="search">

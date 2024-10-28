@@ -98,7 +98,21 @@
         WHERE rs.rank = 1
         AND ROWNUM <= 6
     ]]>
-</select>
+	</select>
 
-
+	<!-- 제품별 상위 2개의 해시태그 상세정보 페이지에 출력 -->
+	<select id="getHashtagsByReview" parameterType="int" resultType="com.example.vitabuddy.model.ReviewVO">
+        <![CDATA[
+        SELECT REVIEWHASHTAG AS reviewHashtag
+        FROM (
+            SELECT REVIEWHASHTAG, COUNT(*) AS hashtagCount
+            FROM Review
+            WHERE SUPID = #{supId}
+            GROUP BY REVIEWHASHTAG
+            ORDER BY hashtagCount DESC
+        ) 
+        WHERE ROWNUM <= 2
+        ]]>
+    </select>
+	
 </mapper>

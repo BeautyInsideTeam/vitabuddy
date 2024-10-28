@@ -24,6 +24,7 @@ public class SupplementDetailController {
     @Autowired
     private ReviewService reviewService;
     
+    // 상품상세정보 출력
     @GetMapping("/supplementDetail/{id}")
     public String getSupplementDetail(@PathVariable("id") int supplementDetailId, Model model) {
         // 1. 해당 ID에 맞는 영양제 상세 정보 조회
@@ -44,7 +45,15 @@ public class SupplementDetailController {
         // 4. 영양제 상세 정보를 모델에 추가
         model.addAttribute("supplementDetail", supplementDetail);
         
-        // 5. supplementDetail.jsp 뷰로 이동
+        // 5. 상위 2개 해시태그 출력
+        List<ReviewVO> topHashtags = reviewService.getHashtagsByReview(supplementDetailId);
+        model.addAttribute("topHashtags", topHashtags);
+        
+        // 6. supplementDetail.jsp 뷰로 이동
         return "supplement/supplementDetail"; 
     }
+    
+    
+    
+    
 }

@@ -29,5 +29,8 @@ public interface IReviewDAO {
 
 	// 브랜드별 상위 1개의 상품을 가져오는 메서드
 	List<SupplementStoreVO> getTopSupplementsByBrand();
+	
+	// 제품별 상위 2개의 해시태그를 가져오는 메서드
+	List<ReviewVO> getHashtagsByReview(int supId);
 
 }

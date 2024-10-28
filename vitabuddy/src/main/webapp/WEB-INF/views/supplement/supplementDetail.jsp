@@ -58,10 +58,9 @@
 	
 	            <tr>
 	               <td>
-	                  <%-- <div class="hashTag"> 
-	         ${sup.supTag} --%>
-
-							</div>
+	                  <div class="hashTag"> 
+	         <%-- ${sup.supTag} --%> 해시태그 해시태그2 
+	         		</div>
 						</td>
 						<td></td><td></td><td></td><td></td>
 					</tr>
@@ -96,6 +95,24 @@
 						<td>${supplementDetail.supBrand}</td>
 						<td></td><td></td>
 					</tr>
+					<!-- 상위 2개 해시태그 -->
+					<tr>
+				    <td>해시태그</td>
+				    <td>
+				        <div class="hashTag">
+				            <c:choose>
+				                <c:when test="${not empty topHashtags}">
+				                    <c:forEach var="hashtag" items="${topHashtags}">
+				                        #${hashtag.reviewHashtag} 
+				                    </c:forEach>
+				                </c:when>
+				                <c:otherwise>
+				                    <span>해시태그가 없습니다</span>
+				                </c:otherwise>
+				            </c:choose>
+				        </div>
+				    </td>
+				</tr>
 				</table>
 			</section>
 			
