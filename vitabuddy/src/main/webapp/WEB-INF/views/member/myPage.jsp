@@ -150,9 +150,10 @@
                         <h3>구매 내역</h3>
                         <label for="order">정렬 기준:</label>
                         <select name="order">
-                            <option>현재 주문 처리 상태</option>
-                            <option>배송 준비 중</option>
-                            <option>배송 중</option>
+                            <option>현재 주문 처리 상태</option> <!-- 10/28 option 리스트 4가지 수정 -->
+                            <option>주문 완료</option>
+                            <option>배송 준비</option>
+                            <option>배송 시작</option>
                             <option>배송 완료</option>
                         </select>
 						<br> <!-- 10/21 br 태그 추가 -->
@@ -169,15 +170,15 @@
                             </thead>
                             <tbody>
                             	 <c:choose>
-                                    <c:when test="${not empty orderItems}">
-                                    <c:forEach var="ord" items="${orderItems}" varStatus="status">
+                                    <c:when test="${not empty myPagePurchaseLists}">
+                                    <c:forEach var="ord" items="${myPagePurchaseLists}" varStatus="status">
                                         <tr>
-                                            <td>${ord.ordDate}</td>
-                                            <td><img src="data:image/png;base64,${supImgBase64}" width="100" height="100"></td>
+                                            <td>${ord.orderId}</td>
+                                            <td><img src="data:image/png;base64,${ord.base64SupImg}" width="100" height="100"></td>
                                             <td>${ord.supName}</td>
-                                            <td>${ord.ordQuantity}</td>
+                                            <td>${ord.ordQty}</td>
                                             <td>
-			                                  <fmt:formatNumber value="${ord.supPrice}" pattern="#,###" />
+			                                  <fmt:formatNumber value="${ord.supPrice * ord.ordQty}" pattern="#,###" />
 			                                 원</td>
                                             <td>배송 준비 중</td>
                                         </tr>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.example.vitabuddy.model.CartListVO;
 import com.example.vitabuddy.model.OrderInfoVO;
+import com.example.vitabuddy.model.PurchaseHistoryVO;
 
 public interface ICartListService {
 	
@@ -32,6 +33,9 @@ public interface ICartListService {
 	//-------------------주문 정보 
 	public void insertOrderInfo(OrderInfoVO vo);
 	
+	
+	//10/28 마이페이지 구매내역 출력
+	ArrayList<PurchaseHistoryVO> getUserPurchaseHistory(String userId);
 	
 	
 	

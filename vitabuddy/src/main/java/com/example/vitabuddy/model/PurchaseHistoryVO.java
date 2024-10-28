@@ -38,7 +38,7 @@ public class PurchaseHistoryVO {
 		this.supName = supName;
 	}
 	public String getSupBrand() {
-		return supBrand;
+		return supBrand; 
 	}
 	public void setSupBrand(String supBrand) {
 		this.supBrand = supBrand;

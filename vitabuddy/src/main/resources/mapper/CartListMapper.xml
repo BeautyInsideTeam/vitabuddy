@@ -70,6 +70,18 @@
 </delete>
 
 
+<!-- 10/28 마이페이지 구매 내역 출력 -->
+<select id="getUserPurchaseHistory" parameterType="String" resultType="com.example.vitabuddy.model.PurchaseHistoryVO">
+  SELECT  op.orderId, s.supId, s.supName, s.supPrice, s.supBrand, op.ordQty, s.supImg
+   FROM OrderProduct op
+   JOIN Supplement s ON op.supId = s.supId
+   JOIN OrderInfo oi ON op.orderId = oi.orderId
+   WHERE oi.userId = #{userId}
+   ORDER BY op.orderId desc
+
+</select>
+
+
  
 
  </mapper>

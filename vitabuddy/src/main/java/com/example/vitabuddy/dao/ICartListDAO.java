@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.example.vitabuddy.model.CartListVO;
 import com.example.vitabuddy.model.OrderInfoVO;
+import com.example.vitabuddy.model.PurchaseHistoryVO;
 
 public interface ICartListDAO {
 	
@@ -35,5 +36,10 @@ public interface ICartListDAO {
 	public void insertOrderInfo(OrderInfoVO vo);
 	public void insertOrderProduct(HashMap<String, Object> map); 
 	public void deleteCartAfterOrder(String userId);
+	
+	
+	//10/28 마이페이지 구매내역 출력
+	ArrayList<PurchaseHistoryVO> getUserPurchaseHistory(String userId);
+		
 
 }
