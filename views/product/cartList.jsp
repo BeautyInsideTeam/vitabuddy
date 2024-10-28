@@ -30,24 +30,24 @@
                                 <th class="ordPrice" colspan="2">주문금액</th>
                             </tr>
                         </thead>
-                                            	<!-- 장바구니가 빈 경우 -->
+                        <!-- 장바구니가 빈 경우 -->
                     	<c:choose>
-                            <c:when test="${empty cart}">
+                            <c:when test="${empty cartLists}">
                                 <tbody>
                                     <tr><td colspan="6">장바구니가 비어있습니다.</td></tr>
                                 </tbody>
                             </c:when>
                             <c:otherwise>
                             <!-- 장바구니에 상품이 있을 경우 -->
-                                <c:forEach var="cartList" items="${cart}" varStatus="status">
+                                <c:forEach var="cartList" items="${cartLists}" varStatus="status"> 
                                     <tbody>
                                         <tr>
-                                            <td rowspan="3">${status.index + 1}</td>
+                                            <td rowspan="3">${status.index + 1}</td> <!-- cartId로 하면 cart고유값이 그대로 노출된다 (cartId를 사용할 경우, 1, 2, 3 중에서 2번을 삭제했다고 하면, 화면에 1, 3 이라고 뜸) >> status.index를 사용하도록 함 -->
                                             <td rowspan="3" class="tableImg">
                                             <!-- sup.supId>cartList.cartList로 수정 -->
                                             <!-- cart로 된 모든 변수 cartList로 수정 -->
-                                                <a href="<c:url value='/api/supplement/supplementDetail/${cartList.supId}'/>">
-                                                    <img class="supImg" src="data:image/png;base64,${supImgBase64}">
+                                                <a href="<c:url value='/api/supplement/supplementDetail/${cartList.supId}'/>">  
+                                                    <img class="supImg" src="data:image/png;base64,${cartList.base64SupImg}">  <!-- 1024 수정사항 : ${supImgBase64} -> ${cartList.base64SupImg} 로 수정 -->
                                                 </a>
                                             </td>              
                                             <td class="supDetail">${cartList.supName}</td>
@@ -58,11 +58,11 @@
                                             </td>
                                             <td>수량 : 
                                                 <input type="button" class="minusBtn" value="-"> 
-												<input type="text" class="cartQty" name="cartQty" value="1"  size="1" readonly> 
-												<input type="button" class="plusBtn" value="+">
+												<input type="text" class="cartQty" name="cartQty" value="${cartList.cartQty}"  size="1" readonly>   <!-- 1023수정사항 : DB에서 cartQty를 가지고 옴-->
+												<input type="button" class="plusBtn" value="+"> 
                                             </td>
                                             <td rowspan="3" class="deleteBtn">
-                                                <input type="hidden" name="supId" value="${cartList.supId}">
+                                                <input type="hidden" name="supId" value="${cartList.supId}">  
                                           <!-- 버튼에 데이터 속성 추가 -->
                                                 <button class="deleteCartBtn" type="button" data-sup-id="${cartList.supId}" data-cart-id="${cartList.cartId}" data-user-id="${sessionScope.sid}" value="삭제">
 												    <i class="fa-solid fa-trash"></i>
