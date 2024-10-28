@@ -174,14 +174,22 @@
 			<!-- 시작 페이지 조정 -->
 			<c:if test="${startPage < 1}">
 			    <c:set var="startPage" value="1" />
-			    <c:set var="endPage" value="5" />
 			</c:if>
 			
 			<!-- 끝 페이지 조정 -->
 			<c:if test="${endPage > totalPages}">
 			    <c:set var="endPage" value="${totalPages}" />
-			    <c:set var="startPage" value="${totalPages - 4}" />
 			</c:if>
+			
+			<!-- startPage가 1보다 작아지지 않도록 조정 -->
+			<c:if test="${startPage < 1}">
+			    <c:set var="startPage" value="1" />
+			</c:if>
+			<!-- totalPages보다 endPage가 크지 않도록 조정 -->
+			<c:if test="${endPage > totalPages}">
+			    <c:set var="endPage" value="${totalPages}" />
+			</c:if>
+
 			
 			<div class="pagination">
 			    <!-- 이전 버튼 -->
