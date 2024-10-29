@@ -161,7 +161,6 @@ h4 {
     font-size: 1.2em;
 }
 
-
 select {
     float: right;
     width: 10%;
@@ -200,7 +199,7 @@ h3 {
 }
 
 .purchase-section table, .review-section table {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 /* 10/21 추가 */
@@ -216,10 +215,40 @@ li{
 }
 
 
-.purchase-section table{
-	margin-top: 15px;
+/* .purchase-section table{
+	margin-top: 10px;
 }
 
 .review-section table{
 	margin-top: 10px;
 }
+ */
+
+/*10/29 시간 체크박스 테스트 코드*/
+
+
+.right-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.filter-options {
+    display: flex;
+    gap: 5px;
+}
+
+.filter-bar select {
+    margin-left: auto; 
+    width: 32%; 
+    font-size: 1em;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
