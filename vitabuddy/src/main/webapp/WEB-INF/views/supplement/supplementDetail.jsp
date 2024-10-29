@@ -216,7 +216,7 @@
 								<option value="#소화가 편해요">#소화가 편해요</option>
 								<option value="#근육회복에 좋아요">#근육회복에 좋아요</option>
 								<option value="#탈모예방에 좋아요">#탈모예방에 좋아요</option>
-								<option value="#눈이 편안해요">눈이 편안해요</option>
+								<option value="#눈이 편안해요">#눈이 편안해요</option>
 								<c:forEach var="tag" items="${taglist}">
 									<option value="${tag.tagNo}">${tag.tagName}</option>
 								</c:forEach>

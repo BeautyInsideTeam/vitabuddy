@@ -5,7 +5,7 @@
 <header>
     <div id="headerBox">
         <div id="logoBox">
-            <%-- <a href="<c:url value='/home'/>"><img src="<c:url value=''/>" id="logoImg"></a> --%>
+            <%-- <a href="<c:url value='/home'/>"><img src="<c:url value='/image/logo.png'/>" id="logoImg"></a> --%>
             <a href="<c:url value='/home'/>">VITABUDDY</a>
         </div>
         <div id="topMenu"> 
