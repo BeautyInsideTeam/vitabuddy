@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'myriad'; /* 폰트 수정 */
     background-color: #f7f4ef;
     margin: 0;
     padding: 0;
@@ -18,15 +18,9 @@ body {
     height: 100%;
 }
 
-footer {
-    width: 100%;
-    bottom: 0px;
-    position: absolute;
-}
-
 p {
     margin-left: 10px;
-    font-size: 24px;
+    font-size: 1.5em;
 }
 
 table {
@@ -34,7 +28,7 @@ table {
     margin-bottom: 20px;
     border-collapse: collapse;
     text-align: center;
-    font-size: large;
+    font-size: 1.15em;
 }
 
 th, td {
@@ -73,6 +67,8 @@ th, td {
 
 .mySupplement {
     counter-reset: supplement-counter; /* 번호 초기화 */
+    margin-bottom: 5%; /* 하단 콘텐츠간 여백 */
+	padding-top: 1.5%; /* 콘텐츠 박스 위쪽 여백 */
 }
 
 .mySupplement .supplement-item {
@@ -130,6 +126,7 @@ th, td {
 
 label {
     color: #7e7b46;
+    font-size: 1em;
 }
 
 .left, .right {
@@ -140,7 +137,7 @@ label {
 h1 {
     text-align: center;
     color: #7e7b46;
-    font-size: 36px;
+    font-size: 2.25em;
 }
 
 h4 {
@@ -149,24 +146,6 @@ h4 {
     color: #7e7b46;
 }
 
-.phone-number {
-    display: inline;
-}
-
-.phone-number input {
-    width: 20%;
-    display: inline-block;
-}
-
-.zipcode button {
-    padding: 10px;
-    width: 200px;
-    background-color: #a9a27e;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
 
 .submit-btn {
     display: block;
@@ -179,34 +158,14 @@ h4 {
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    font-size: 18px;
-}
-
-.search-box {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #e9e5e0;
-}
-
-.search-box i {
-    color: #888;
-    margin-left: 10px;
-}
-
-.search-box input {
-    border: none;
-    outline: none;
-    width: 100%;
-    background-color: transparent;
-    font-size: 16px;
+    font-size: 1.2em;
 }
 
 select {
     float: right;
     width: 10%;
+    min-height: 20px;
+	font-size: 1em;
 }
 
 .review-section {
@@ -228,78 +187,67 @@ select {
     width: 15%;
 }
 
-/* .moveTopBtn {
-    text-align: center;
-    width: 20%;
-    padding: 10px;
-    background-color: #a9a27e;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    margin: 0 auto;
-    cursor: pointer;
-}
- */
-html {
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-}
-
-li{
-	font-size: 16px;
-}
-
 .interactionList, .recommendList {
     margin-top: 15px;
-    font-size: 24px;
+    font-size: 1em;
     margin-left: 25px;
     margin-right: 25px;
 }
 
 h3 {
-    font-size: 24px;
+    font-size: 1.5em;
 }
 
 .purchase-section table, .review-section table {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 /* 10/21 추가 */
-
-select{
-	min-height: 20px;
-	font-size: 16px;
+li{	
+	font-size: 1em;
 }
+
 .recommentList{
 	padding-left: 3%;
     padding-top: 3%;
     padding-right: 3%;
-}
-
-.interactionList, .recommendList{
-	margin-top: 15px;
-	font-size: 24px;
-	margin-left: 25px;
-	margin-right: 25px;
+    font-size: 1em;
 }
 
 
-
-label{
-	font-size: 16px;
-}
-.purchase-section table{
-	margin-top: 15px;
+/* .purchase-section table{
+	margin-top: 10px;
 }
 
 .review-section table{
 	margin-top: 10px;
 }
+ */
 
-/* 10/22 추가 */
+/*10/29 시간 체크박스 테스트 코드*/
 
-.mySupplement{
-	margin-bottom: 5%;
-	    padding-top: 1.5%;
+
+.right-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.filter-options {
+    display: flex;
+    gap: 5px;
+}
+
+.filter-bar select {
+    margin-left: auto; 
+    width: 32%; 
+    font-size: 1em;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }

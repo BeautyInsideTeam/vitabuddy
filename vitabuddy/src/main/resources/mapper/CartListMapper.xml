@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+
  <mapper namespace="com.example.vitabuddy.dao.ICartListDAO">
 
 
@@ -12,7 +12,7 @@
 	where c.supId = s.supId and c.userId=#{userId} 
 	order by c.cartId
 </select>
- 
+
 <!-- 장바구니 목록 삭제 -->
 <delete id="deleteCart" parameterType="String">
 	delete from cart where cartId=#{cartId}
@@ -70,6 +70,15 @@
 </delete>
 
 
- 
+<!-- 10/28 마이페이지 구매 내역 출력 -->
+<select id="getUserPurchaseHistory" parameterType="String" resultType="com.example.vitabuddy.model.PurchaseHistoryVO">
+  SELECT  op.orderId, s.supId, s.supName, s.supPrice, s.supBrand, op.ordQty, s.supImg
+   FROM OrderProduct op
+   JOIN Supplement s ON op.supId = s.supId
+   JOIN OrderInfo oi ON op.orderId = oi.orderId
+   WHERE oi.userId = #{userId}
+   ORDER BY op.orderId desc
+</select>
+
 
  </mapper>

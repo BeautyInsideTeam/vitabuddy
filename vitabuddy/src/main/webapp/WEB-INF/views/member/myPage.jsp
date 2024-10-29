@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/myPage.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/head.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/footer.css'/>">
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="/js/purchaseList.js"></script>
 <c:import url="/WEB-INF/views/layout/head.jsp"/>
 <meta charset="UTF-8">
 <title>마이페이지</title>
@@ -148,14 +150,29 @@
                     <!-- 구매 내역 : 10/25 myPage 구매내역 부분 수정 -->
   					<div class="purchase-section">
                         <h3>구매 내역</h3>
-                        <label for="order">정렬 기준:</label>
-                        <select name="order">
-                            <option>현재 주문 처리 상태</option>
-                            <option>배송 준비 중</option>
-                            <option>배송 중</option>
-                            <option>배송 완료</option>
-                        </select>
-						<br> <!-- 10/21 br 태그 추가 -->
+                         
+                        <!-- 10/29 수정 -->
+                        <div class="filter-bar">
+					        <label for="order">정렬 기준:</label>
+					        
+					        <div class="right-options">
+						        <div class="filter-options">
+						            <label><input type="radio" name="dateRange" value="1month" onclick="showPurchases('recentPurchases')"> 1개월 전</label>
+						            <label><input type="radio" name="dateRange" value="1to3months" onclick="showPurchases('midTermPurchases')"> 1~3개월 전</label>
+						            <label><input type="radio" name="dateRange" value="3months" onclick="showPurchases('oldPurchases')"> 3개월 전</label>
+						        </div>
+						        
+						        <select name="order">
+						            <option>현재 주문 처리 상태</option>
+						            <option>주문 완료</option>
+						            <option>배송 준비</option>
+						            <option>배송 시작</option>
+						            <option>배송 완료</option>
+						        </select>
+						    </div>
+					    </div>
+                        <!-- 10/29 수정 -->
+						<!-- <br> --> <!-- 10/21 br 태그 추가 -->  
                         <table width="100%" id="productInfo">
                             <thead>
                                 <tr>
@@ -167,29 +184,76 @@
                                     <th>주문 처리</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                            	 <c:choose>
-                                    <c:when test="${not empty orderItems}">
-                                    <c:forEach var="ord" items="${orderItems}" varStatus="status">
-                                        <tr>
-                                            <td>${ord.ordDate}</td>
-                                            <td><img src="data:image/png;base64,${supImgBase64}" width="100" height="100"></td>
-                                            <td>${ord.supName}</td>
-                                            <td>${ord.ordQuantity}</td>
-                                            <td>
-			                                  <fmt:formatNumber value="${ord.supPrice}" pattern="#,###" />
-			                                 원</td>
-                                            <td>배송 준비 중</td>
-                                        </tr>
-                                    </c:forEach>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <tr>
-                                            <td colspan="6" align="center">주문 내역이 없습니다.</td>
-                                        </tr>
-                                     </c:otherwise>
-                                </c:choose>
-                            </tbody>
+                            
+                            	<!-- 1개월 전 구매내역 -->
+                                <tbody id="recentPurchases" >
+							        <c:choose>
+							            <c:when test="${not empty recentPurchases}">
+							                <c:forEach var="ord" items="${recentPurchases}" varStatus="status">
+							                    <tr>
+							                        <td>${ord.orderId}</td>
+							                        <td><img src="data:image/png;base64,${ord.base64SupImg}" width="100" height="100"></td>
+							                        <td>${ord.supName}</td>
+							                        <td>${ord.ordQty}</td>
+							                        <td><fmt:formatNumber value="${ord.supPrice * ord.ordQty}" pattern="#,###" /> 원</td>
+							                        <td>배송 준비 중</td>
+							                    </tr>
+							                </c:forEach>
+							            </c:when>
+							            <c:otherwise>
+							                <tr><td colspan="6" align="center">주문 내역이 없습니다.</td></tr>
+							            </c:otherwise>
+							        </c:choose>
+							    </tbody>
+							
+							    <!-- 중기 구매 (1~3개월) -->
+							    <tbody id="midTermPurchases" style="display:none;"> 
+							        <c:choose>
+							            <c:when test="${not empty midTermPurchases}">
+							                <c:forEach var="ord" items="${midTermPurchases}" varStatus="status">
+							                    <tr>
+							                        <td>${ord.orderId}</td>
+							                        <td><img src="data:image/png;base64,${ord.base64SupImg}" width="100" height="100"></td>
+							                        <td>${ord.supName}</td>
+							                        <td>${ord.ordQty}</td>
+							                        <td><fmt:formatNumber value="${ord.supPrice * ord.ordQty}" pattern="#,###" /> 원</td>
+							                        <td>배송 준비 중</td>
+							                    </tr>
+							                </c:forEach>
+							            </c:when>
+							            <c:otherwise>
+							                <tr><td colspan="6" align="center">주문 내역이 없습니다.</td></tr>
+							            </c:otherwise>
+							        </c:choose>
+							    </tbody>
+							
+							    <!-- 오래된 구매 (3개월 이상) -->
+							    <tbody id="oldPurchases" style="display:none;">
+							        <c:choose>
+							            <c:when test="${not empty oldPurchases}">
+							                <c:forEach var="ord" items="${oldPurchases}" varStatus="status">
+							                    <tr>
+							                        <td>${ord.orderId}</td>
+							                        <td><img src="data:image/png;base64,${ord.base64SupImg}" width="100" height="100"></td>
+							                        <td>${ord.supName}</td>
+							                        <td>${ord.ordQty}</td>
+							                        <td><fmt:formatNumber value="${ord.supPrice * ord.ordQty}" pattern="#,###" /> 원</td>
+							                        <td>배송 준비 중</td>
+							                    </tr>
+							                </c:forEach>
+							            </c:when>
+							            <c:otherwise>
+							                <tr><td colspan="6" align="center">주문 내역이 없습니다.</td></tr>
+							            </c:otherwise>
+							        </c:choose>
+							    </tbody>
+
+
+
+
+
+                            
+                            
                         </table>
                     </div>
                 </div>
