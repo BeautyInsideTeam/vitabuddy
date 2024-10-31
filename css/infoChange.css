@@ -255,6 +255,11 @@ button {
     
 }
 
+button:hover{
+	background-color: #a09d67;
+    transition: background-color 0.3s ease;
+}
+
 .search-box button{
 	margin-top: 0;
 	margin-left: 5px;
@@ -284,21 +289,22 @@ li {
     padding-left: 10px; /* 기호와 텍스트 사이의 거리 */
 }
 
-/* #supplementList button:hover,
-#currentSupplementList button:hover {
+#supplementList button,
+#currentSupplementList button {
     background-color: #7e7b46; 
     color: #fff; 
-    border-radius: 5px; 
-    font-size: 14px; 
+    border-radius: 5px;  
     margin-left: 10px; 
-} */
+    border: none;
+    font-size: 0.9em;
+} 
+
+#supplementList button:hover,
+#currentSupplementList button:hover {
+    background-color: #a09d67;
+    transition: background-color 0.3s ease;
+} 
 
 li::marker {
     font-size: 1em;
 }
-
-button:hover{
-	background-color: #a09d67;
-    transition: background-color 0.3s ease;
-}
-
