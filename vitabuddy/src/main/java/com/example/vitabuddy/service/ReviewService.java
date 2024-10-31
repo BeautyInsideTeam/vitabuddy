@@ -1,7 +1,10 @@
 package com.example.vitabuddy.service;
 
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -53,19 +56,14 @@ public class ReviewService implements IReviewService {
 		return dao.getReviewsByUserId(userId);
 	}
 
-	// 브랜드별 리뷰순 상품 출력 기능.
+	// 브랜드별 리뷰순 상품 출력 기능
 	@Override
 	public List<SupplementStoreVO> getTopSupplementsByBrand() {
 		List<SupplementStoreVO> supplements = dao.getTopSupplementsByBrand();
 
 		for (SupplementStoreVO supplement : supplements) {
 			try {
-				// SupID에 해당하는 이미지를 byte[]로 가져옴
-				// byte[] image = dao.getSupplementImageById(supplement.getSupId()); ** 수정사항1 :
-				// 주석처리
-
 				if (supplement.getSupImg() != null) {
-					// Base64로 인코딩된 이미지 저장
 					String base64Image = Base64.getEncoder().encodeToString(supplement.getSupImg());
 					supplement.setBase64SupImg(base64Image);
 				} else {
@@ -78,13 +76,33 @@ public class ReviewService implements IReviewService {
 		}
 		return supplements;
 	}
-	// 이미지 출력 끝
 
-	// 상위 2개 해시태그 출력.
+	// 상위 2개 해시태그 출력
 	@Override
 	public List<ReviewVO> getHashtagsByReview(int supId) {
-		List<ReviewVO> topHashtags = dao.getHashtagsByReview(supId);					
-		return topHashtags;
+		return dao.getHashtagsByReview(supId);
 	}
+
+	// 특정 상품별 리뷰 개수를 반환하는 메서드
+		@Override
+		public int countReviews(int supId) {
+			return dao.countReviews(supId);
+		}
+
+		// 특정 상품별 페이지네이션을 통한 리뷰 목록 조회 메서드
+		@Override
+		public ArrayList<ReviewVO> pagingReviewList(int supId, int page) {
+			int pageLimit = 3; // 한 페이지에 표시할 리뷰 개수
+			int pagingStart = (page - 1) * pageLimit; // 시작 인덱스 계산
+
+			// 파라미터 설정
+			Map<String, Integer> pagingParams = new HashMap<>();
+			pagingParams.put("supId", supId);
+			pagingParams.put("start", pagingStart);
+			pagingParams.put("limit", pageLimit);
+			ArrayList<ReviewVO> pagingReview = dao.pagingReviewList(pagingParams);
+			// DAO 호출
+			return pagingReview;
+		}
 
 }

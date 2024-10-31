@@ -15,6 +15,7 @@
 			<script src="<c:url value='/js/deleteReview.js'/>"></script>
 			<script src="<c:url value='/js/editReviewForm.js'/>"></script>
 			<script src="<c:url value='/js/supplementDetail.js'/>"></script>
+			<script src="<c:url value='/js/reviewPagenation.js'/>"></script>
 		<!-- 찜목록 추가, 장바구니 추가 -->
 			<script src="<c:url value='/js/addWish.js'/>"></script>
 			<script src="<c:url value='/js/addCartSupDetail.js'/>"></script>
@@ -253,30 +254,19 @@
 			<c:forEach var="review" items="${reviewList}">
 				<table class="reviewItem">
 					<tr>
-						<td colspan="5"><h3>${review.reviewTitle}</h3></td>
-						<!-- 리뷰 수정 -->
-						<%-- <td>
-							<c:if test="${review.userId == sessionScope.sid}">
-							<a href="#" class="correctReview" data-review-id="${review.userId}">수정</a>
-							</c:if>
-						</td> --%>
-						<!-- 리뷰 삭제 -->
-						<%-- <td>
-					    		<c:if test="${review.userId == sessionScope.sid}">
-									<a href="#" class="deleteReview" data-review-id="${review.userId}">리뷰삭제</a>
-					    		</c:if>
-							</td> --%>
-						<!-- 리뷰삭제 수정된 부분 -->
-
-						<!-- 삭제 버튼 style="display:inline;" 제거 class="deleteReview" 추가 -->
-						<td colspan="2"><!-- 수정 삭제 버튼 한 칸에/ 순서 변경-->
+						<td colspan="5"><h3>${review.reviewTitle}</h3></td>						
+						<td colspan="2">
+						<!-- 수정 삭제 버튼 한 칸에/ 순서 변경-->
+							<!-- 리뷰 삭제 -->
 							<c:if test="${review.userId == sessionScope.sid}">
 								<button class="deleteReview" 
 								   data-review-id="${review.reviewNo}" 
 								   data-sup-id="${supplementDetail.supId}">
 								   삭제
 								</button>
+							
 							</c:if>
+							<!-- 리뷰 수정 -->
 						    <c:if test="${review.userId == sessionScope.sid}">
 						        <button 
 						            class="editButton" 
@@ -335,26 +325,50 @@
 				</table>
 			</c:forEach>
 			</section><!-- div를 section으로 변경 1018 -->
-
+		
+		<!-- 페이지네이션 -->
 			<nav>
-				<!-- 페이지네이션 -->
-				<div class="pagination">
-					<a href="#"
-						class="prev <c:if test='${currentPage == 1}'>disabled</c:if>"
-						data-page="${currentPage - 1}""><i
-						class="fa-solid fa-caret-left"></i></a>
-					<c:forEach var="i" begin="1" end="${totalPages}">
-						<a href="#" class="page" onclick="changePage(${i})">${i}</a>
-					</c:forEach>
-					<a href="#"
-						class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>"
-						data-page="${currentPage + 1}"><i
-						class="fa-solid fa-caret-right"></i></a>
-				</div>
+				<!-- 시작/끝 페이지 설정 -->
+		         <c:set var="startPage" value="${currentPage - 2}" />
+		         <c:set var="endPage" value="${currentPage + 2}" />
+		         
+		         <!-- 시작 페이지 조정 -->
+		         <c:if test="${startPage < 1}">
+		             <c:set var="startPage" value="1" />
+		         </c:if>
+		         
+		         <!-- 끝 페이지 조정 -->
+		         <c:if test="${endPage > totalPages}">
+		             <c:set var="endPage" value="${totalPages}" />
+		         </c:if>
+		         
+		         <!-- startPage가 1보다 작아지지 않도록 조정 -->
+		         <c:if test="${startPage < 1}">
+		             <c:set var="startPage" value="1" />
+		         </c:if>
+		         <!-- totalPages보다 endPage가 크지 않도록 조정 -->
+		         <c:if test="${endPage > totalPages}">
+		             <c:set var="endPage" value="${totalPages}" />
+		         </c:if>
+		
+		         
+		         <div class="pagination">
+		             <!-- 이전 버튼 -->
+		             <button class="prev <c:if test='${currentPage == 1}'>disabled</c:if>" data-page="${currentPage - 1}" onClick="goToPage(${currentPage - 1})">
+		                 <i class="fa-solid fa-caret-left"></i>
+		             </button>
+		         
+		             <!-- 페이지 번호 버튼 -->
+		             <c:forEach var="i" begin="${startPage}" end="${endPage}">
+		                 <button class="page <c:if test='${i == currentPage}'> active</c:if>" onClick="goToPage(${i})" data-page="${i}">${i}</button>
+		             </c:forEach>
+		         
+		             <!-- 다음 버튼 -->
+		             <button class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage + 1}" onClick="goToPage(${currentPage + 1})">
+		                 <i class="fa-solid fa-caret-right"></i>
+		             </button>
+		         </div>
 			</nav>
-
-<!-- 		</div> -->
-			
 			
 			<!-- footer 포함 -->
 			<c:import url="/WEB-INF/views/layout/footer.jsp" /> 

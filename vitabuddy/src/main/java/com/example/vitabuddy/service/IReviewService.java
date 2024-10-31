@@ -1,6 +1,10 @@
 package com.example.vitabuddy.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+
+import org.apache.ibatis.annotations.Param;
 
 import com.example.vitabuddy.model.ReviewVO;
 import com.example.vitabuddy.model.SupplementStoreVO;
@@ -30,4 +34,8 @@ public interface IReviewService {
 
 	// 제품별 상위 2개의 해시태그를 가져오는 메서드
 	List<ReviewVO> getHashtagsByReview(int supId);
+
+	// 페이지네이션을 위한 리뷰 목록 조회 메서드
+	public int countReviews(@Param("supId") int supId);
+	ArrayList<ReviewVO> pagingReviewList(int supId, int page);
 }
