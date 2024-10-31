@@ -1,29 +1,36 @@
 @charset "UTF-8";
-
+*{
+	font-size: 1.0em;
+	font-family: 'myriad';
+	box-sizing: border-box;
+}
 body {
-     font-family: 'myriad'; /* 폰트 수정 */
     background-color: #f7f4ef;
     margin: 0;
     padding: 0;
 }
-
 #wrap{
     position: relative;
     width: 100%;
     height: 100%;
+}
+footer {
+    width:100%;
+    bottom: 0px;
+    position:absolute;  
 }
 
 p {
     margin-left:10px;
     margin-bottom: 5%;
 }
-
 table{
     width:100%;
     margin-bottom:20px;
 }
-
-
+.important{
+    width:70%
+}
 .board{
     margin-bottom:20px;
 }
@@ -32,6 +39,7 @@ table{
     padding: 20px;
     width: 80%;
     margin: 50px auto;
+    /* background-color: white;  */
     height:auto;
     overflow:hidden;
     border-radius: 10px;
@@ -39,27 +47,27 @@ table{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     color: #7b6e48;
 }
-
-.horizontal_box {
-    padding-right:32%;
-    padding-left:32%;
-    row-gap: 10px;
-}
-
 .horizontal_box .name{
     width:20%;
 }
     
+.horizontal_box {
+    
+    padding-right:32%;
+    padding-left:28%;
+    /* flex-direction: column; */
+    row-gap: 10px;
+}
 .horizontal_box label {
     display: block;
     padding: 0 10px 0 10px;
-    color: #7b6e48;
-    width:150px;
+    color: #7e7b46;
+    width: 180px;
 }
 .horizontal_box input {
     width: 97%;
     padding: 10px;
-    color: #7b6e48;
+    color: #7e7b46;
     background-color: #e9e5e0;
     border-style:none;
     border-radius: 5px;
@@ -68,38 +76,21 @@ table{
     display: flex;
     flex-direction: row;
 }
-
-.box_rowContents button{
-  
-   padding: 0.85%; /* 번호 두께 수정 */
-   font-size: 1em; /* 버튼 내 폰트 사이즈 수정 */
-    background-color: #7e7b46;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-left: auto;
-    text-align: center;
-    align-items: center;
-    display: flex;    
-    height: 2.5%;
-    justify-content: center;
-    white-space: nowrap;
-    
-} 
-
 label{
     color: #7e7b46;
-    font-size: 1em;
 }
 
 h1 {
     text-align: center;
     color: #7e7b46;
-    font-size: 2.25em;
+    font-size: 2.8em;
 }
-
-input{
+h4 {
+    display: block;
+    margin-top: 10px;
+    color: #7e7b46;
+}
+input, textarea {
     display: inline-black;
     width: 100%;
     padding: 10px 0 10px 0;
@@ -120,18 +111,66 @@ input{
 .phone-number span {
     margin: 0 8px; /* 구분 기호 사이 여백 */
 }
-
-.submit-btn {
-    display: block;
-    width: 30%;
-    max-width: 250px;
-    margin: 20px auto;
+.zipcode button {
     padding: 10px;
+    width: 150px;
     background-color: #7e7b46;
     color: white;
     border: none;
-    border-radius: 30px;
+    border-radius: 25px;
     cursor: pointer;
-    font-size: 1.2em;
+    margin-left: 10px;
+    position: absolute;
+    /* right: 33%; */
+}
+.submit-btn {
+    display: block;
+    
+    width: 200px;
+    height: 40px;
+    margin: 2% auto;
+    background-color: #7e7b46;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
     
 } 
+
+.box_rowContents button{
+    /* right: 630px;
+    position: absolute; */
+    padding: 1%;
+    /* width: 175px; */
+    background-color: #7e7b46;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    width: 150px;
+    height: 40px;
+    justify-content: center;
+    white-space: nowrap;
+    position: absolute;
+    right: 25%;
+} 
+
+button:hover{
+	background-color: #a09d67;
+    transition: background-color 0.3s ease;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce){
+    html{
+        scroll-behavior: auto;
+    }
+}
