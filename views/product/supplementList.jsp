@@ -167,29 +167,24 @@
 			        <i class="fa-solid fa-caret-right"></i>
 			    </button>
 			</div> --%>
-			<!-- 시작/끝 페이지 설정 -->
 			<c:set var="startPage" value="${currentPage - 2}" />
 			<c:set var="endPage" value="${currentPage + 2}" />
 			
-			<!-- 시작 페이지 조정 -->
+			<!-- 시작 페이지와 끝 페이지 조정 -->
+			<c:if test="${startPage < 1}">
+			    <c:set var="startPage" value="1" />
+			    <c:set var="endPage" value="5" />
+			</c:if>
+			
+			<c:if test="${endPage > totalPages}">
+			    <c:set var="endPage" value="${totalPages}" />
+			    <c:set var="startPage" value="${totalPages - 4}" />
+			</c:if>
+			
+			<!-- 페이지가 5개보다 적을 때 시작 페이지 조정 -->
 			<c:if test="${startPage < 1}">
 			    <c:set var="startPage" value="1" />
 			</c:if>
-			
-			<!-- 끝 페이지 조정 -->
-			<c:if test="${endPage > totalPages}">
-			    <c:set var="endPage" value="${totalPages}" />
-			</c:if>
-			
-			<!-- startPage가 1보다 작아지지 않도록 조정 -->
-			<c:if test="${startPage < 1}">
-			    <c:set var="startPage" value="1" />
-			</c:if>
-			<!-- totalPages보다 endPage가 크지 않도록 조정 -->
-			<c:if test="${endPage > totalPages}">
-			    <c:set var="endPage" value="${totalPages}" />
-			</c:if>
-
 			
 			<div class="pagination">
 			    <!-- 이전 버튼 -->
@@ -207,6 +202,7 @@
 			        <i class="fa-solid fa-caret-right"></i>
 			    </button>
 			</div>
+
 
 
 	</nav> 
