@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const toggleText = document.getElementById("toggleNutrition");
     const nutritionInfo = document.getElementById("nutritionInfo");
@@ -18,4 +16,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
