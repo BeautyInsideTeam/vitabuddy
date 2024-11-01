@@ -2,7 +2,7 @@
  *
  */
 $(document).ready(function () {
-  $(".deleteCartBtn").on("click", function () {
+  $(".deleteWishBtn").on("click", function () {
     if (!confirm("삭제하시겠습니까?")) {
       return;
     }

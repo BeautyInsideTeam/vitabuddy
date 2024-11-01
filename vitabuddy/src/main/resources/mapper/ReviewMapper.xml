@@ -119,9 +119,9 @@
 	<select id="pagingReviewList" parameterType="int" resultType="int">
 	<![CDATA[
 		SELECT * FROM (
-        SELECT ROWNUM AS rn, reviewTitle, userId, supId, rating, reviewHashtag, reviewDate, content, startDate, endDate, reviewImg, supName
+        SELECT ROWNUM AS rn, reviewTitle, userId, supId, rating, reviewHashtag, reviewDate, content, startDate, endDate, reviewImg
         FROM (
-            SELECT reviewTitle, userId, supId, rating, reviewHashtag, reviewDate, content, startDate, endDate, reviewImg, supName
+            SELECT reviewTitle, userId, supId, rating, reviewHashtag, reviewDate, content, startDate, endDate, reviewImg
             FROM Review
             WHERE supId = #{supId}
             ORDER BY reviewDate DESC
