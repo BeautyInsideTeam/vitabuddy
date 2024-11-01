@@ -20,7 +20,6 @@
         <section>        
             <div class="wishContainer">
                 <h1>찜목록</h1>
-
                     <table class="wishItems">
                         <thead>
                             <tr>
@@ -72,4 +71,3 @@
         <c:import url="/WEB-INF/views/layout/footer.jsp" />
     </div>
 </body>
-</html>

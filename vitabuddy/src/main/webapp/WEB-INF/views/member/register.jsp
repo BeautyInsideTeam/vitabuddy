@@ -32,7 +32,7 @@
                     <label>아이디</label>
                     <input type="text" name="userId" id="userId" required/>
                     <!-- 버튼에 스타일 적용, 목록 옆에 띄움 -->
-                    <button type="button" onclick="fnDbCheckId()" name="dbCheckId" class="btn" style="position:absolute; right: 28%; width: 7%;">중복확인</button>
+                    <button type="button" onclick="fnDbCheckId()" name="dbCheckId" class="btn" >중복확인</button>
                 </div>
                 <p></p> <!-- 간격 만들기 -->
                 <div class="box_rowContents">
@@ -68,7 +68,7 @@
                         <label>우편번호</label>
                         <input type="text" name="userZipcode" id="userZipcode" readonly/>
                         <!-- 버튼에 스타일 적용, 목록 옆에 띄움 -->
-                        <button type="button" name="searchBtn" class="btn" onclick="openZipSearch()" style="position:absolute; right: 28%; width: 7%;">우편번호 찾기</button><br>             
+                        <button type="button" name="searchBtn" class="btn" onclick="openZipSearch()">우편번호 찾기</button><br>             
                     </div>
                     <p></p>
                     <div class="box_rowContents">

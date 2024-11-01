@@ -15,7 +15,6 @@
 			<script src="<c:url value='/js/deleteReview.js'/>"></script>
 			<script src="<c:url value='/js/editReviewForm.js'/>"></script>
 			<script src="<c:url value='/js/supplementDetail.js'/>"></script>
-			<script src="<c:url value='/js/reviewPagenation.js'/>"></script>
 		<!-- 찜목록 추가, 장바구니 추가 -->
 			<script src="<c:url value='/js/addWish.js'/>"></script>
 			<script src="<c:url value='/js/addCartSupDetail.js'/>"></script>
@@ -26,12 +25,12 @@
 		<div id="wrap">
 			<!-- top 메뉴 포함 -->
 			<c:import url="/WEB-INF/views/layout/top.jsp" />
-			
+
 				<!-- 로그인 여부 데이터 속성으로 설정 --> 
 				<c:set var="isLoggedIn" value="${not empty sessionScope.sid}" />
 				<!-- 로그인 여부 저장 -->
 				<div id="loginStatus" data-login="${isLoggedIn}"></div>
-				
+
 			<!-- 상품 프로필 -->
 			<section class="prdProfile">
 				<!-- 공백 삭제 <br><br> -->
@@ -62,7 +61,7 @@
 
 					<!-- 찜목록 및 장바구니 추가 -->
 					<tr>
-					
+
 					<!-- 찜목록, 장바구니 추가 버튼에 data 속성 추가 -->
 						<td colspan="2">
 							<a href="#" id="addWish" data-sup-id="${supplementDetail.supId}" data-user-id="${sessionScope.sid}">찜목록 추가</a>
@@ -111,9 +110,9 @@
 				</tr>
 				</table>
 			</section>
-			
+
 			<br>
-			
+
 			<!-- 상품 상세 정보 -->
 			<section class="prdInfo">
 				<h2>상품 상세 정보</h2>
@@ -123,19 +122,19 @@
 						<h3>상품설명</h3>
 						<p>${supplementDetail.supDetail}</p>
 					</div>
-					
+
 					<!-- 복용법 -->
 					<div>
 						<h3>복용법</h3>
 						<p>${supplementDetail.supDosage}</p>
 					</div>
-					
+
 					<!-- 주의사항 -->
 					<div>
 						<h3>주의사항</h3>
 						<p>${supplementDetail.supPrecautions}</p>
 					</div>
-					
+
 					<!-- 영양 정보 -->
 					<div>
 						<h3 id="toggleNutrition" class="clickable">영양정보 <span class="arrow"><i class="fa-solid fa-caret-down"></i></span></h3>
@@ -149,9 +148,9 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</section>
-			
+
 				<!-- 리뷰작성 -->
 				<!-- div를 section으로 변경 1018 -->
 		<section class="reviewWrite">
@@ -217,7 +216,7 @@
 								<option value="#소화가 편해요">#소화가 편해요</option>
 								<option value="#근육회복에 좋아요">#근육회복에 좋아요</option>
 								<option value="#탈모예방에 좋아요">#탈모예방에 좋아요</option>
-								<option value="#눈이 편안해요">#눈이 편안해요</option>
+								<option value="#눈이 편안해요">눈이 편안해요</option>
 								<c:forEach var="tag" items="${taglist}">
 									<option value="${tag.tagNo}">${tag.tagName}</option>
 								</c:forEach>
@@ -254,19 +253,30 @@
 			<c:forEach var="review" items="${reviewList}">
 				<table class="reviewItem">
 					<tr>
-						<td colspan="5"><h3>${review.reviewTitle}</h3></td>						
-						<td colspan="2">
-						<!-- 수정 삭제 버튼 한 칸에/ 순서 변경-->
-							<!-- 리뷰 삭제 -->
+						<td colspan="5"><h3>${review.reviewTitle}</h3></td>
+						<!-- 리뷰 수정 -->
+						<%-- <td>
+							<c:if test="${review.userId == sessionScope.sid}">
+							<a href="#" class="correctReview" data-review-id="${review.userId}">수정</a>
+							</c:if>
+						</td> --%>
+						<!-- 리뷰 삭제 -->
+						<%-- <td>
+					    		<c:if test="${review.userId == sessionScope.sid}">
+									<a href="#" class="deleteReview" data-review-id="${review.userId}">리뷰삭제</a>
+					    		</c:if>
+							</td> --%>
+						<!-- 리뷰삭제 수정된 부분 -->
+
+						<!-- 삭제 버튼 style="display:inline;" 제거 class="deleteReview" 추가 -->
+						<td colspan="2"><!-- 수정 삭제 버튼 한 칸에/ 순서 변경-->
 							<c:if test="${review.userId == sessionScope.sid}">
 								<button class="deleteReview" 
 								   data-review-id="${review.reviewNo}" 
 								   data-sup-id="${supplementDetail.supId}">
 								   삭제
 								</button>
-							
 							</c:if>
-							<!-- 리뷰 수정 -->
 						    <c:if test="${review.userId == sessionScope.sid}">
 						        <button 
 						            class="editButton" 
@@ -325,53 +335,49 @@
 				</table>
 			</c:forEach>
 			</section><!-- div를 section으로 변경 1018 -->
-		
-		<!-- 페이지네이션 -->
+
 			<nav>
-				<!-- 시작/끝 페이지 설정 -->
-		         <c:set var="startPage" value="${currentPage - 2}" />
-		         <c:set var="endPage" value="${currentPage + 2}" />
-		         
-		         <!-- 시작 페이지 조정 -->
-		         <c:if test="${startPage < 1}">
-		             <c:set var="startPage" value="1" />
-		         </c:if>
-		         
-		         <!-- 끝 페이지 조정 -->
-		         <c:if test="${endPage > totalPages}">
-		             <c:set var="endPage" value="${totalPages}" />
-		         </c:if>
-		         
-		         <!-- startPage가 1보다 작아지지 않도록 조정 -->
-		         <c:if test="${startPage < 1}">
-		             <c:set var="startPage" value="1" />
-		         </c:if>
-		         <!-- totalPages보다 endPage가 크지 않도록 조정 -->
-		         <c:if test="${endPage > totalPages}">
-		             <c:set var="endPage" value="${totalPages}" />
-		         </c:if>
-		
-		         
-		         <div class="pagination">
-		             <!-- 이전 버튼 -->
-		             <button class="prev <c:if test='${currentPage == 1}'>disabled</c:if>" data-page="${currentPage - 1}" onClick="goToPage(${currentPage - 1})">
-		                 <i class="fa-solid fa-caret-left"></i>
-		             </button>
-		         
-		             <!-- 페이지 번호 버튼 -->
-		             <c:forEach var="i" begin="${startPage}" end="${endPage}">
-		                 <button class="page <c:if test='${i == currentPage}'> active</c:if>" onClick="goToPage(${i})" data-page="${i}">${i}</button>
-		             </c:forEach>
-		         
-		             <!-- 다음 버튼 -->
-		             <button class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage + 1}" onClick="goToPage(${currentPage + 1})">
-		                 <i class="fa-solid fa-caret-right"></i>
-		             </button>
-		         </div>
-			</nav>
+			<c:set var="startPage" value="${currentPage - 2}" />
+			<c:set var="endPage" value="${currentPage + 2}" />
 			
+			<!-- 시작 페이지와 끝 페이지 조정 -->
+			<c:if test="${startPage < 1}">
+			    <c:set var="startPage" value="1" />
+			    <c:set var="endPage" value="5" />
+			</c:if>
+			
+			<c:if test="${endPage > totalPages}">
+			    <c:set var="endPage" value="${totalPages}" />
+			    <c:set var="startPage" value="${totalPages - 4}" />
+			</c:if>
+			
+			<!-- 페이지가 5개보다 적을 때 시작 페이지 조정 -->
+			<c:if test="${startPage < 1}">
+			    <c:set var="startPage" value="1" />
+			</c:if>
+			
+			<div class="pagination">
+			    <!-- 이전 버튼 -->
+			    <button class="prev <c:if test='${currentPage == 1}'>disabled</c:if>" data-page="${currentPage - 1}" onClick="goToPage(${currentPage - 1})">
+			        <i class="fa-solid fa-caret-left"></i>
+			    </button>
+			
+			    <!-- 페이지 번호 버튼 -->
+			    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+			        <button class="page <c:if test='${i == currentPage}'> active</c:if>" onClick="goToPage(${i})" data-page="${i}">${i}</button>
+			    </c:forEach>
+			
+			    <!-- 다음 버튼 -->
+			    <button class="next <c:if test='${currentPage == totalPages}'>disabled</c:if>" data-page="${currentPage + 1}" onClick="goToPage(${currentPage + 1})">
+			        <i class="fa-solid fa-caret-right"></i>
+			    </button>
+			</div>
+			</nav>
+
+<!-- 		</div> -->
+
+
 			<!-- footer 포함 -->
 			<c:import url="/WEB-INF/views/layout/footer.jsp" /> 
 		</div>
 	</body>
-</html>
