@@ -125,6 +125,7 @@ h1 {
     text-align: center;
     /* 색상 수정 */
     color: #7e7b46;
+    font-size: 2.25em;
 }
 
 h4 {
@@ -287,6 +288,7 @@ button:hover{
 
 li {
     padding-left: 10px; /* 기호와 텍스트 사이의 거리 */
+    margin-top: 2px;
 }
 
 #supplementList button,
