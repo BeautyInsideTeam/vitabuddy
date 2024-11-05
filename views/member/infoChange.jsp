@@ -22,12 +22,16 @@
         <c:import url="/WEB-INF/views/layout/top.jsp"/> 
         <section id="wrap"> 
             <div class="container">
-                <div class="headers"> 
+                <!-- <div class="headers"> 
                     <h1>회원 정보/ 영양제 관리</h1>
-                </div> 
+                </div>  -->
                 
 				<div class="temp">
 					<div class="left">
+					
+					<div class="headers"> 
+                    	<h1>회원 정보 관리</h1>
+                	</div> 
 						<form method="post" id="information" action="<c:url value='/member/myInfoUpdate'/>" >  
 							<div class="horizontal_box">
 								<label>이름</label>
@@ -69,9 +73,15 @@
 							</div>
 							
 					</div>
+					
+					<div class="divider"></div>
 							
 							<!-- 여기서부터 영양제 정보 수정 변경 - 팀장님 파트 -->
 <!--  temp div, 폼 태그 내부 button 앞으로 이동  --><div class="right">
+
+					<div class="headers"> 
+                    	<h1>영양제 정보 관리</h1>
+                	</div> 
                         <div class="search-box">
 <!--       위치 이동(85)                    <i class="fas fa-search"></i> -->
                             <input type="text" id="keyword" placeholder="Search">

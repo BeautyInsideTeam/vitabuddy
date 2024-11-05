@@ -102,15 +102,17 @@ input, textarea {
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 100%;
 }
 .phone-number input {
-    width: 22%;
+    /* width: 22%; */
     text-align: center;
     padding: 10px;
 }
 .phone-number span {
     margin: 0 8px; /* 구분 기호 사이 여백 */
-}
+} 
+
 .zipcode button {
     padding: 10px;
     width: 150px;

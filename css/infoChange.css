@@ -310,3 +310,13 @@ li {
 li::marker {
     font-size: 1em;
 }
+
+/* 구분선 추가 */
+.divider {
+        width: 0.01em;
+        background-color: #7e7b46;
+        opacity: 0.2;
+        margin: 0 20px;
+        margin-top: 20px;
+        box-shadow: 0 0 5px #7e7b46;
+    }

@@ -32,7 +32,7 @@
                     <label>아이디</label>
                     <input type="text" name="userId" id="userId" required/>
                     <!-- 버튼에 스타일 적용, 목록 옆에 띄움 -->
-                    <button type="button" onclick="fnDbCheckId()" name="dbCheckId" class="btn" >중복확인</button>
+                    <button type="button" onclick="fnDbCheckId()" name="dbCheckId" class="btn" style="position:absolute; right: 28%; width: 7%;">중복확인</button>
                 </div>
                 <p></p> <!-- 간격 만들기 -->
                 <div class="box_rowContents">
@@ -45,9 +45,11 @@
                     <input type="password" name="confirmPwd" id="confirmPwd" oninput="pwCheck()" required/><br>
                 </div>
                 <p id="pwOk"></p>
-                <div class="phone-number">
-                    <div class="box_rowContents">
+                
+                <div class="box_rowContents">
+                    
                         <label>전화번호</label>
+                        <div class="phone-number">
                         <input type="tel" name="userPh1" id="userPh1" placeholder="010" maxlength="3" required/>
                         <span>-</span>
                         <input type="tel" name="userPh2" id="userPh2" placeholder="1111" maxlength="4" required/>
@@ -68,7 +70,7 @@
                         <label>우편번호</label>
                         <input type="text" name="userZipcode" id="userZipcode" readonly/>
                         <!-- 버튼에 스타일 적용, 목록 옆에 띄움 -->
-                        <button type="button" name="searchBtn" class="btn" onclick="openZipSearch()">우편번호 찾기</button><br>             
+                        <button type="button" name="searchBtn" class="btn" onclick="openZipSearch()" style="position:absolute; right: 28%; width: 7%;">우편번호 찾기</button><br>             
                     </div>
                     <p></p>
                     <div class="box_rowContents">
