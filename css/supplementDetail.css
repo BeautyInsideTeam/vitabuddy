@@ -199,7 +199,7 @@ table{
 
 .option select, .option input[type="date"] {
     display: inline-block;
-    /* font-size: 13px; */
+    font-size: 0.9em; 
     margin: 10px;
     padding: 5px;
     /* 배경색 전체 배경과 통일 */
