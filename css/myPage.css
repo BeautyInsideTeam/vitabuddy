@@ -19,7 +19,8 @@ body {
     height: 100%;
 }
 
-p {
+.box p,
+.box_rowContents p {
     margin-left: 10px;
     font-size: 1.2em;
 }
@@ -96,19 +97,20 @@ th, td {
 }
 
 .box_rowContents {
-    display: flex;
-    justify-content: space-between;
+/*     display: flex;
+    justify-content: space-between; */
     width: 100%;
-   	margin-bottom: 10%;
+   	/* margin-bottom: 10%; */
 }
 
 .horizontal_box {
-    width: 48%;
+/*     width: 48%; */
     height: 100%;
     text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 5%;
 }
 
 .mySupplement {
