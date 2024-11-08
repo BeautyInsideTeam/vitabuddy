@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>VitaBuddy</title>
  	<link rel="stylesheet" type="text/css" href="<c:url value='/css/home.css'/>">
  	<script src="<c:url value='/js/home.js'/>" defer></script>
 	<c:import url="/WEB-INF/views/layout/head.jsp" />	 
@@ -27,7 +27,12 @@
 			</button>
 		</form>
 	</div>
+	
+	
+	<div class="title"><strong>건강한 영양제 복용을 위한 파트너!</strong><br><br>맞춤 성분 추천과 올바른 복용법 가이드를 통해 더 쉽게 건강을 관리하세요.
+	<div class="background-text">VitaBuddy</div></div>
 	<br>
+	
 <section class="home">
 	<!-- 메인메뉴 -->
 	<div class="mainMenu">

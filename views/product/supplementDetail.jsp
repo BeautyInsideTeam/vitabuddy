@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>상품 상세 조회</title>
+		<title>상품 상세 정보</title>
 			<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 			<script src="<c:url value='/js/rating.js'/>"></script>
 			<script src="<c:url value='/js/insertReview.js'/>"></script>

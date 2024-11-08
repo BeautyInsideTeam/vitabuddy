@@ -23,6 +23,12 @@
                 <h1>마이페이지</h1>
             </div>
             <div class="box">
+            	<div class="tooltip-container">
+				  <span class="tooltip-icon"><i class="fa-solid fa-circle-question"></i></span>
+				  <div class="tooltip-text">비타버디에서 판매 중인 상품들의 주성분을 기준으로 좋은 시너지가 나는 영양제 성분을 추천해주는 동시에 안전한 복용법을 지도합니다. <br>
+				  <strong>-마이페이지에서 추천 성분과 주의사항을 확인하려면?</strong><br>
+						회원 정보 수정 페이지에서 현재 복용 중인 영양제를 추가해 보세요. 추가된 영양제를 바탕으로 시너지를 내는 추천 성분과 상호작용, 주의사항을 마이페이지에서 확인하실 수 있습니다.</div>
+				</div>
                 <p>복용 중인 영양제</p>
                 <div class="mySupplement">
                     <c:forEach var="supplement" items="${userSupplements}" varStatus="status">

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 목록</title>
 
 <c:import url="/WEB-INF/views/layout/head.jsp" />    
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>

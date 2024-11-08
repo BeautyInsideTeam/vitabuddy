@@ -58,8 +58,8 @@ h1 {
 /* 메뉴 이미지 */
 .menuImg {
     position: relative;
-    width: 250px;
-    height: 250px;
+    width: 200px;  /* 메인메뉴 아이콘 크기 수정 */
+    height: 200px;
     overflow: hidden;
     margin-top: 30px;
     margin-bottom: 10px;
@@ -221,5 +221,40 @@ button{
 #page-indicator span {
     margin: 0 5px; 
     cursor: pointer;
+}
+
+/* 가이드 */
+.title{
+	margin-top: 30px;
+	font-size: 18px;
+	font-style: italic;
+	color:#583b1f;
+	z-index: 0;
+}
+
+.title strong{
+	font-size: 20px;
+	font-style: normal;
+}
+
+.title {
+    position: relative;
+    text-align: center;
+    padding: 50px;
+}
+
+.background-text {
+     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 7em; 
+    color: #7e7b46;
+    opacity: 0.1; 
+    font-weight: bold;
+    white-space: nowrap; 
+    pointer-events: none; 
+    z-index: 1; /* 모든 요소 뒤로 배치 */
+    
 }
 

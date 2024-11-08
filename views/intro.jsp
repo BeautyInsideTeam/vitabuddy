@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인 페이지</title>
+<title>로그인</title>
 
 <c:import url="/WEB-INF/views/layout/head.jsp" />	
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/intro.css'/>">
