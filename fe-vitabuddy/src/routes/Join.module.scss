@@ -64,6 +64,7 @@ label {
 }
 
 .input {
+  width: 100%;
   background-color: #e6e1db;
   border: none;
   border-radius: 5px;
@@ -242,7 +243,6 @@ label {
   align-items: center;
   label {
     text-align: left; /* label을 왼쪽으로 정렬 */
-    margin-right: 10px; /* 적당한 간격을 추가 */
   }
   .input_emailleft {
     display: flex;
