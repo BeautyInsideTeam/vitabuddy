@@ -68,6 +68,8 @@ $(function () {
         console.error(selectedCategory + " 카테고리 로드 실패");
       },
     });
+
+
   });
 
   // 페이지 로드시 - 화면이 로드될 떄 모든 카테고리가 아예 안뜨게끔

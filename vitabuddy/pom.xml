@@ -130,6 +130,12 @@
            <scope>provided</scope>
        </dependency>
 
+      <!--SMTP 서버 연결 설정 -->
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-mail</artifactId>
+      </dependency>
+
    </dependencies>
 
    <build>

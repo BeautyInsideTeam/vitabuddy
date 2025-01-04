@@ -52,7 +52,7 @@
 
 <br>
 	<section>	
-           <!-- 회원가입 -->
+        <!-- 회원가입 -->
         <div>   
             <p>아직 회원이 아니신가요?</p>
             <a href="<c:url value='/member/register'/>" class="btn btnFilled">

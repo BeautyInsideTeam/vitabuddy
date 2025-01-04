@@ -22,6 +22,8 @@ public class webSecurityConfig {
 		http.csrf(csrf->csrf.disable())
 			.formLogin(formLogin->formLogin.disable())
 			.headers(headerConfig->headerConfig.frameOptions(frameOptionsConfig->frameOptionsConfig.disable()));
+
+
 		
 			return http.build();
 	}

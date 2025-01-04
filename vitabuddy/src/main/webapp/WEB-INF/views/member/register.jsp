@@ -5,11 +5,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <script src="/js/jquery-3.7.1.min.js"></script>  <!--라이브러리 추가 -->
     <script src="https://kit.fontawesome.com/567f0760c2.js" crossorigin="anonymous"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>회원가입</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/register.css'/>">
+    <script src="<c:url value='/js/emailVerification.js'/>"></script> <!-- 이메일 인증 코드 추가 -->
     <script src="<c:url value='/js/register.js'/>"></script> <!-- JS 파일을 추가 -->
+
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
 </head>
 <body>
@@ -61,6 +64,7 @@
                 <div class="box_rowContents">
                     <label>이메일</label>
                     <input type="email" name="userEmail" id="userEmail" onchange="emailCheck()" required/>
+                    <button type="button" id="verificationEmail">이메일 인증</button><br>
                 </div>
                 <p id="emOk"></p>
                 <!-- </div>
