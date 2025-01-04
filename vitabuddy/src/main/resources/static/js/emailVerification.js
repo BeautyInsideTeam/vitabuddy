@@ -21,7 +21,11 @@ $(function(){
                         console.log("서버에서 받은 인증코드입니다" + data);  //data 찍어보기 -> 성공
                         alert("해당 이메일 주소로 인증코드가 전송되었습니다.");
                         // 인증번호 입력 필드 추가
-
+                        $('#verificationEmailCode').html(`
+                            <label>인증코드 입력</label>
+                            <input type="text" name="verificationEmailCode" id="verificationEmailCode" onchange="emailCheck()" required/>
+                            <button type="button" id="verificationEmailCode">인증하기</button><br>
+                        `);
 
                     },
                     error: function(){
@@ -30,12 +34,6 @@ $(function(){
                     }
 
                 });  //ajax 종료
-
-
-
-
-
-
 
         }else{
             alert("올바른 이메일 형식이 아닙니다. 다시 입력해주세요");

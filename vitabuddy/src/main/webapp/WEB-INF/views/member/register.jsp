@@ -67,6 +67,10 @@
                     <button type="button" id="verificationEmail">이메일 인증</button><br>
                 </div>
                 <p id="emOk"></p>
+                <div class="box_rowContents" id="verificationEmailCode">
+                    <!-- 25/01/05 추가 코드 : ajax 통신으로 동적으로 들어갈 코드 -->
+                </div>
+                <br>
                 <!-- </div>
                 <div class="right"> 통합 위해 삭제-->
                 <div class="zipcode">
