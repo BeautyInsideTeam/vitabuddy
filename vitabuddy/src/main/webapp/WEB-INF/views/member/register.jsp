@@ -50,7 +50,6 @@
                 <p id="pwOk"></p>
 
                 <div class="box_rowContents">
-
                         <label>전화번호</label>
                         <div class="phone-number">
                         <input type="tel" name="userPh1" id="userPh1" placeholder="010" maxlength="3" required/>
@@ -63,7 +62,7 @@
                 <p></p>
                 <div class="box_rowContents">
                     <label>이메일</label>
-                    <input type="email" name="userEmail" id="userEmail" onchange="emailCheck()" required/>
+                    <input type="email" name="userEmail" id="userEmail" onchange="emailCheckfromDB()" required/>
                     <button type="button" id="verificationEmail">이메일 인증</button><br>
                 </div>
                 <p id="emOk"></p>

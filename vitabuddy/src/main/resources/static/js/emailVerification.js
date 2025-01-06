@@ -45,15 +45,64 @@ $(function(){
 });
 
 
+
 function validateEmail(email){
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-
-
 }
 
 
 
+/*25/01/05 이메일 중복체크 구현*/
+//이메일 중복체크
+var email = 0;
+function emailCheckfromDB() {
+    var userEmail = document.getElementById("userEmail").value;
+
+    //ajax 코드
+    $.ajax({
+        type: "GET",
+        url: "/member/checkEmail",
+        data : {"userEmail" : userEmail},
+        dataType: "text",
+        success: function(data){
+            console.log(data);
+
+            var verificationBtn = document.getElementById('verificationEmail');
+            var emOK = document.getElementById('emOk');
+
+            if(data=="0"){
+                emOK.innerHTML = "중복된 이메일입니다. 다른 이메일을 입력해주세요.";
+                emOK.style.color = 'red';
+                email = 0;
+
+                //버튼 비활성화
+                verificationBtn.disabled=true;
+                verificationButton.style.backgroundColor = '#cccccc';
+                verificationButton.style.cursor = 'not-allowed';
+
+            }else{
+                document.getElementById('emOk').innerHTML = "사용 가능한 이메일입니다.";
+                document.getElementById('emOk').style.color = 'green';
+                email = 1;
+
+                //버튼 활성화
+                verificationBtn.disabled=false;
+                verificationButton.style.backgroundColor = '';
+                verificationButton.style.cursor = '';
+            }
+
+
+        },
+        error: function(error){
+            alert("오류가 발생했습니다. 다시 시도해주세요");
+        }
+
+
+    });  //ajax 종료
+
+
+}
 
 
 

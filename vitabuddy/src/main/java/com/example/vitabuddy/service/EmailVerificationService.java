@@ -1,5 +1,6 @@
 package com.example.vitabuddy.service;
 
+import com.example.vitabuddy.dto.MemberDTO;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.InternetAddress;
@@ -97,5 +98,8 @@ public class EmailVerificationService implements IEmailVerificationService {
         return key.toString();  //인증 코드 생성 - String
 
     }
+
+
+
 
 }

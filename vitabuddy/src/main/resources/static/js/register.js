@@ -9,6 +9,7 @@ function pwCheck() {
     } else {
         document.getElementById('pwLeng').innerHTML = "";
     }
+
     if (document.getElementById('userPwd').value !== '' && document.getElementById('confirmPwd').value !== '') {
         if (document.getElementById('userPwd').value === document.getElementById('confirmPwd').value) {
             document.getElementById('pwOk').innerHTML = "비밀번호가 일치합니다.";
@@ -22,7 +23,8 @@ function pwCheck() {
     }
 }
 
-function emailCheck() {
+/* 이메일 중복체크 - [이메일 인증] 버튼에서 정합성 확인까지 하도록 구현 - alert문 출력 (emailVerification.js의 validateEmail(email) 메서드*/
+/*function emailCheck() {
     if (document.getElementById('userEmail').value.indexOf("@") > 0) {
         document.getElementById('emOk').innerHTML = "";
         email = 1;
@@ -31,7 +33,7 @@ function emailCheck() {
         document.getElementById('emOk').style.color = 'red';
         email = 0;
     }
-}
+}*/
 
 // 아이디 중복 체크
 function fnDbCheckId() {
@@ -99,3 +101,5 @@ function registerMember() {
     })
     .catch(error => console.error("Error:", error));
 }
+
+
