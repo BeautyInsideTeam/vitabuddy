@@ -45,7 +45,7 @@ public class EmailVerificationService implements IEmailVerificationService {
         nmessage.setText(finalContent, "utf-8", "html");  //이메일 본문에 해당한다.
         nmessage.setFrom(new InternetAddress("awsdevelopment@naver.com", "vitabuddy"));  //발신자 정보 설정
 
-        return nmessage;
+        return nmessage;  //사용자에게 보낼 이메일 content
     }
 
 
