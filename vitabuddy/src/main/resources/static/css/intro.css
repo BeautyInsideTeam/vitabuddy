@@ -155,3 +155,14 @@ section {/* ���� ȭ�� ���� �̵� */
     left: 30%; /* ȭ���� 30%���� ���� */
     text-align: center; 
 }
+
+#socialLogin{
+    text-align: left;
+    margin-top: 15px;
+}
+
+#socialLogin img{
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}

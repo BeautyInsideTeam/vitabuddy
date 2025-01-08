@@ -10,7 +10,6 @@
 <c:import url="/WEB-INF/views/layout/head.jsp" />	
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/intro.css'/>">
 <script src="<c:url value='/js/login.js'/>" defer></script>
-<script src="<c:url value='/js/kakaoOAuth.js'/>"></script>
 
 </head>
 <body>
@@ -40,41 +39,70 @@
                 <br>
                 <button type="submit" id="loginSubmit" class="btn btnFilled">로그인</button>
             </form>
-            <!--카카오 로그인-->
-            <a href="https://kauth.kakao.com/oauth/authorize?client_id=d04c3a1dba697423aa56a189f1e5f65b&redirect_uri=http://localhost:8080/oauth/kakao/callback&response_type=code&prompt=login">
-                <img src="<c:url value='/image/kakao_login_medium_narrow.png'/>" id="kakaologoImg">
-            </a>
-            <!-- 구글 로그인 -->
-            <a href="/member/socialLogin/google">
-                Login with Google
-            </a>
-            <!-- 네이버 로그인 버튼 -->
-            <div class="social-login">
-                <p>소셜 계정으로 로그인</p>
-                <a href="<c:url value='/member/socialLogin/naver'/>">
-                    <img src="<c:url value='/image/naverLoginbtn.png'/>" alt="네이버 로그인" id="naverLoginBtn">
-                </a>
+            <div id="socialLogin">
+
+                            <a href="https://kauth.kakao.com/oauth/authorize?client_id=d04c3a1dba697423aa56a189f1e5f65b&redirect_uri=http://localhost:8080/oauth/kakao/callback&response_type=code&prompt=login">
+
+                                <img src="<c:url value='/image/kakao.png'/>" id="kakaologoImg">
+
+                            </a>
+
+                            <a href="<c:url value='/member/socialLogin/naver'/>">
+
+                                <img src="<c:url value='/image/naver.png'/>" id="logoImg">
+
+                            </a>
+
+                            <a href="/member/socialLogin/google">
+
+                                <img src="<c:url value='/image/google.png'/>" alt="네이버 로그인" id="naverLoginBtn">
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+            	</section>
+
+
+
+
+
+            	<section>
+
+                       <!-- 회원가입 -->
+
+                    <div>
+
+                        <p>아직 회원이 아니신가요?</p>
+
+                        <a href="<c:url value='/member/register'/>" class="btn btnFilled">
+
+            				회원가입
+
+            			</a>
+
+                    </div>
+
+
+
+                    <!-- 로그인 하지 않은 상태로 메인 이동 -->
+
+                    <div>
+
+                    	<a href="<c:url value='/'/>">
+
+            				둘러보기
+
+            			</a>
+
+                    </div>
+
+            	</section>
+
             </div>
-        </div>
-	</section>
 
-<br>
-	<section>	
-           <!-- 회원가입 -->
-        <div>   
-            <p>아직 회원이 아니신가요?</p>
-            <a href="<c:url value='/member/register'/>" class="btn btnFilled">
-				회원가입
-			</a>
-        </div>
+            </body>
 
-        <!-- 로그인 하지 않은 상태로 메인 이동 -->
-        <div>
-        	<a href="<c:url value='/'/>">
-				둘러보기
-			</a>
-        </div>
-	</section>  
-</div>	
-</body>
-</html>
+            </html>
