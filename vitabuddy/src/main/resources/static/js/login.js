@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const username = document.getElementById("email").value;
         const password = document.getElementById("pwd").value;
+        console.log(username);
+        console.log(password);
 
         // AJAX 요청
         fetch('/login', {

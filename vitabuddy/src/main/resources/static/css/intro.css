@@ -159,6 +159,7 @@ section {/* ���� ȭ�� ���� �̵� */
 #socialLogin{
     text-align: left;
     margin-top: 15px;
+    width: 60%;
 }
 
 #socialLogin img{
