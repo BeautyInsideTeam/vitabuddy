@@ -48,6 +48,13 @@
             <a href="/member/socialLogin/google">
                 Login with Google
             </a>
+            <!-- 네이버 로그인 버튼 -->
+            <div class="social-login">
+                <p>소셜 계정으로 로그인</p>
+                <a href="<c:url value='/member/socialLogin/naver'/>">
+                    <img src="<c:url value='/image/naverLoginbtn.png'/>" alt="네이버 로그인" id="naverLoginBtn">
+                </a>
+            </div>
         </div>
 	</section>
 
