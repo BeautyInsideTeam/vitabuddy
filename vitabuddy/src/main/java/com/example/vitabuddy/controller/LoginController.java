@@ -9,23 +9,23 @@ import com.example.vitabuddy.service.LoginService;
 import jakarta.servlet.http.HttpSession;
 @Controller
 public class LoginController {
-    @Autowired 
+    @Autowired
     LoginService logService;
-    
+
     // 1. 로그인 기능
     @ResponseBody
     @RequestMapping("/intro/login")
     public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) {
         String result = logService.login(param);
-        
+
         if(result.equals("success")) {
             // 세션에 userId를 sid로 저장
             session.setAttribute("sid", param.get("id"));
             return "success";
-        } 
+        }
         return "fail";
     }
-    
+
     // 2. 로그아웃 기능
     @RequestMapping("/member/logout")
     public String logout(HttpSession session) {

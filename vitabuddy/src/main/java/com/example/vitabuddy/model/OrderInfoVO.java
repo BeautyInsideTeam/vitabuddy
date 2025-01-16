@@ -14,6 +14,7 @@ public class OrderInfoVO {
 	private String ordRcvEmail; 
 	private String ordRcvMsg;
 	private String ordPay;
+	private String paymentKey;
 	
 	
 	//Getter, Setter
@@ -65,10 +66,10 @@ public class OrderInfoVO {
 	public void setOrdRcvPhone(String ordRcvPhone) {
 		this.ordRcvPhone = ordRcvPhone;
 	}
-	public String getordRcvEmail() {
+	public String getOrdRcvEmail() {
 		return ordRcvEmail;
 	}
-	public void setordRcvEmail(String ordRcvEmail) {
+	public void setOrdRcvEmail(String ordRcvEmail) {
 		this.ordRcvEmail = ordRcvEmail;
 	}
 	public String getOrdRcvMsg() {
@@ -83,6 +84,8 @@ public class OrderInfoVO {
 	public void setOrdPay(String ordPay) {
 		this.ordPay = ordPay;
 	}
+	public String getPaymentKey() { return paymentKey; }
+	public void setPaymentKey(String paymentKey) {this.paymentKey = paymentKey; }
 	
 	
 }

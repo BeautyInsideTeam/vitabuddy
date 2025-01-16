@@ -38,7 +38,7 @@ public class CartListController {
 	@RequestMapping("/supplement/cartList")
 	public String cartList(Model model, HttpSession session) {
 		String userId = (String) session.getAttribute("sid"); // 로그인된 userId 추출
-		
+
 		ArrayList<CartListVO> cartLists = cartListService.cartList(userId);
 		model.addAttribute("cartLists", cartLists);
 		return "supplement/cartList";
