@@ -1,68 +1,68 @@
 package com.example.vitabuddy.controller;
 
-import org.springframework.http.*;
+import com.example.vitabuddy.model.OrderInfoVO;
+import com.example.vitabuddy.service.PaymentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/payment")
 public class PaymentController {
 
-    @GetMapping("/success")
+    @Autowired
+    private PaymentService paymentService;
+
+    // 세션에 OrderInfo 저장
+    @PostMapping("/session")
+    public ResponseEntity<String> saveOrderInfoToSession(
+            @RequestBody OrderInfoVO orderInfo,
+            HttpSession session
+    ) {
+        session.setAttribute("orderInfo", orderInfo);
+        return ResponseEntity.ok("OrderInfo saved in session");
+    }
+
+    // 결제 성공 처리 (GET 요청도 허용)
+    @RequestMapping(value = "/success", method = {RequestMethod.GET, RequestMethod.POST})
     public String successPayment(
             @RequestParam("paymentKey") String paymentKey,
             @RequestParam("orderId") String orderId,
             @RequestParam("amount") Long amount,
+            HttpSession session,
             Model model
     ) {
         // 승인 API 호출
-        String result = approvePayment(paymentKey, orderId, amount);
+        String result = paymentService.approvePayment(paymentKey, orderId, amount);
         if (result.startsWith("결제 승인 실패")) {
             model.addAttribute("error", result);
-            return "supplement/orderForm"; // 결제 실패 시 orderForm.jsp로 이동
+            return "supplement/orderForm"; // 실패 시 주문서 페이지로 이동
         }
+
+        // 세션에서 OrderInfo 가져오기
+        OrderInfoVO orderInfo = (OrderInfoVO) session.getAttribute("orderInfo");
+        if (orderInfo == null) {
+            model.addAttribute("error", "세션에서 주문 정보를 찾을 수 없습니다.");
+            return "supplement/orderForm";
+        }
+
+        // DB에 주문 정보 저장
+        orderInfo.setPaymentKey(paymentKey);
+        orderInfo.setOrderId(orderId);
+        orderInfo.setOrdPay("CARD");
+        paymentService.saveOrderInfo(orderInfo);
+
         model.addAttribute("message", "결제가 성공적으로 완료되었습니다.");
-        return "supplement/orderComplete"; // 결제 성공 시 orderComplete.jsp로 이동
-    }
-
-    private String approvePayment(String paymentKey, String orderId, Long amount) {
-        final String SECRET_KEY = "test_sk_6BYq7GWPVveZKQODaAgw3NE5vbo1";
-        String url = "https://api.tosspayments.com/v1/payments/confirm";
-
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("paymentKey", paymentKey);
-        requestBody.put("orderId", orderId);
-        requestBody.put("amount", amount);
-
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBasicAuth(SECRET_KEY, "");
-
-        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
-
-        try {
-            ResponseEntity<String> response = restTemplate.exchange(
-                    url,
-                    HttpMethod.POST,
-                    requestEntity,
-                    String.class
-            );
-            return response.getBody();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "결제 승인 실패: " + e.getMessage();
-        }
+        return "supplement/orderComplete"; // 성공 시 주문 완료 페이지로 이동
     }
 
     @GetMapping("/fail")
     public String failPayment(Model model) {
         model.addAttribute("error", "결제가 실패하였습니다. 다시 시도해주세요.");
-        return "supplement/orderForm"; // 결제 실패 시 orderForm.jsp에 머무르기
+        return "supplement/orderForm"; // 실패 시 주문서 페이지 유지
     }
 }

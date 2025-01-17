@@ -115,14 +115,14 @@ public class CartListService implements ICartListService {
 	public ArrayList<PurchaseHistoryVO> getUserPurchaseHistory(String userId) {
 		ArrayList<PurchaseHistoryVO> mypagePurchaseLists = dao.getUserPurchaseHistory(userId);
 
-		for (PurchaseHistoryVO mypagePurchaseList : mypagePurchaseLists) {
+			 for (PurchaseHistoryVO mypagePurchaseList : mypagePurchaseLists) {
 			String orderId = mypagePurchaseList.getOrderId();
-			String year = orderId.substring(0, 4);  //년도 추출
+			/*String year = orderId.substring(0, 4);  //년도 추출
 	        String month = orderId.substring(4, 6);  //월 추출
 	        String day = orderId.substring(6, 8);  //일 추출
 
-	        String formattedorderId = year + '-' + month + '-' + day;
-	        mypagePurchaseList.setOrderId(formattedorderId);  //format된 orderId 로 값 세팅
+	        String formattedorderId = year + '-' + month + '-' + day;*/
+	        mypagePurchaseList.setOrderId(orderId);  //format된 orderId 로 값 세팅
 			
 
 		}

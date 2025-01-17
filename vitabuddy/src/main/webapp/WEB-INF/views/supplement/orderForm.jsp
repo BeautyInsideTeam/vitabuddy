@@ -8,7 +8,7 @@
     <title>주문서 작성</title>
     <!-- TossPayments SDK -->
     <script src="https://js.tosspayments.com/v2/standard"></script>
-    <!-- 외부 JavaScript 파일 포함 (중복 호출 방지) -->
+    <!-- 외부 JavaScript 파일 포함 -->
     <script src="<c:url value='/js/payment.js'/>"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/orderForm.css'/>">
 </head>
@@ -89,5 +89,47 @@
             </section>
         </form>
     </div>
+
+    <!-- 세션 저장 및 결제 요청 -->
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            const orderInfo = {
+                userId: document.getElementById('userId').value,
+                orderId: document.getElementById('orderId').value,
+                ordRcvReceiver: document.getElementById('ordRcvReceiver').value,
+                ordRcvPhone: document.getElementById('ordRcvPhone').value,
+                ordRcvEmail: document.getElementById('ordRcvEmail').value,
+                ordRcvZipcode: document.getElementById('ordRcvZipcode').value,
+                ordRcvAddress1: document.getElementById('ordRcvAddress1').value,
+                ordRcvAddress2: document.getElementById('ordRcvAddress2').value,
+                ordRcvMsg: document.getElementById('ordRcvMsg').value,
+            };
+
+            // 세션 저장 요청
+            fetch('/payment/session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderInfo)
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('세션 저장 성공:', data);
+
+                  // TossPayments 결제 요청
+                  const tossPayments = TossPayments("test_ck_5OWRapdA8dwkboG6WZRAro1zEqZK");
+                  tossPayments.requestPayment('카드', {
+                      amount: document.getElementById('amount').value,
+                      orderId: orderInfo.orderId,
+                      orderName: "장바구니 상품 결제",
+                      successUrl: `${window.location.origin}/payment/success`,
+                      failUrl: `${window.location.origin}/payment/fail`,
+                      customerName: orderInfo.ordRcvReceiver,
+                      customerEmail: orderInfo.ordRcvEmail
+                  });
+              })
+              .catch(error => console.error('세션 저장 실패:', error));
+        });
+    </script>
 </body>
 </html>
