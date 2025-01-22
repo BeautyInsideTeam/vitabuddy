@@ -3,6 +3,7 @@ package com.example.vitabuddy.model;
 public class PurchaseHistoryVO {
 	
 	private String orderId;
+	private String ordDate;
 	private int supId;
 	private String supName;
 	private int supPrice;
@@ -24,6 +25,12 @@ public class PurchaseHistoryVO {
 	}
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
+	}
+	public String getOrdDate() {
+		return ordDate;
+	}
+	public void setOrdDate(String ordDate) {
+		this.ordDate = ordDate;
 	}
 	public int getSupId() {
 		return supId;

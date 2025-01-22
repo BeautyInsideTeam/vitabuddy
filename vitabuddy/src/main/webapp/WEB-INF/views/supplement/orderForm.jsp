@@ -11,6 +11,7 @@
     <!-- 외부 JavaScript 파일 포함 -->
     <script src="<c:url value='/js/payment.js'/>"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/orderForm.css'/>">
+    <c:import url="/WEB-INF/views/layout/head.jsp"/>
 </head>
 <body>
     <div id="wrap">
@@ -88,6 +89,7 @@
                 <button class="submit-btn" type="button" id="submitBtn">결제하기</button>
             </section>
         </form>
+        <c:import url="/WEB-INF/views/layout/footer.jsp"/>
     </div>
 
     <!-- 세션 저장 및 결제 요청 -->

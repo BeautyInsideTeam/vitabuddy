@@ -188,7 +188,8 @@
 							            <c:when test="${not empty recentPurchases}">
 							                <c:forEach var="ord" items="${recentPurchases}" varStatus="status">
 							                    <tr>
-							                        <td>${ord.orderId}</td>
+							                        <td><fmt:parseDate value="${ord.ordDate}" pattern="yyyy-MM-dd HH:mm:ss.SSS" var="parsedDate" />
+							                        <fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" /></td>
 							                        <td><img src="data:image/png;base64,${ord.base64SupImg}" width="100" height="100"></td>
 							                        <td>${ord.supName}</td>
 							                        <td>${ord.ordQty}</td>
@@ -209,7 +210,8 @@
 							            <c:when test="${not empty midTermPurchases}">
 							                <c:forEach var="ord" items="${midTermPurchases}" varStatus="status">
 							                    <tr>
-							                        <td>${ord.orderId}</td>
+							                        <td><fmt:parseDate value="${ord.ordDate}" pattern="yyyy-MM-dd HH:mm:ss.SSS" var="parsedDate" />
+                                                    <fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" /></td>
 							                        <td><img src="data:image/png;base64,${ord.base64SupImg}" width="100" height="100"></td>
 							                        <td>${ord.supName}</td>
 							                        <td>${ord.ordQty}</td>
@@ -230,7 +232,8 @@
 							            <c:when test="${not empty oldPurchases}">
 							                <c:forEach var="ord" items="${oldPurchases}" varStatus="status">
 							                    <tr>
-							                        <td>${ord.orderId}</td>
+							                        <td><fmt:parseDate value="${ord.ordDate}" pattern="yyyy-MM-dd HH:mm:ss.SSS" var="parsedDate" />
+                                                    <fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" /></td>
 							                        <td><img src="data:image/png;base64,${ord.base64SupImg}" width="100" height="100"></td>
 							                        <td>${ord.supName}</td>
 							                        <td>${ord.ordQty}</td>
