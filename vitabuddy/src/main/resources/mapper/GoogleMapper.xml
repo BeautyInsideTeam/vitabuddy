@@ -8,12 +8,12 @@
     <!-- 구글 소셜 로그인-->
     <insert id="insertGoogleMember" parameterType="com.example.vitabuddy.dto.GoogleDTO">
         INSERT INTO GoogleUsers (UserID, UserName, UserEmail, AuthType)
-        VALUES (#{UserID, jdbcType=VARCHAR}, #{userName, jdbcType=VARCHAR}, #{userEmail, jdbcType=VARCHAR}, 'google')
+        VALUES (#{userId, jdbcType=VARCHAR}, #{userName, jdbcType=VARCHAR}, #{userEmail, jdbcType=VARCHAR}, 'google')
     </insert>
 
     <!-- 이메일로 사용자 조회 -->
-    <select id="findBySocialId" resultType="com.example.vitabuddy.dto.GoogleDTO">
-        SELECT * FROM GoogleUsers WHERE UserID = #{UserID}
+    <select id="findByUserId" resultType="com.example.vitabuddy.dto.GoogleDTO">
+        SELECT * FROM GoogleUsers WHERE UserID = #{userId}
     </select>
     
 </mapper>

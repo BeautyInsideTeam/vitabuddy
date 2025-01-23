@@ -16,8 +16,8 @@ import org.springframework.stereotype.Repository;
             sqlSession.insert("GoogleMapper.insertGoogleMember", googlemember);
         }
 
-        public GoogleDTO findBySocialId(String socialId) {
-            return sqlSession.selectOne("GoogleMapper.findBySocialId", socialId);
+        public GoogleDTO findByUserId(String userId) {
+            return sqlSession.selectOne("GoogleMapper.findByUserId", userId);
         }
 
     }

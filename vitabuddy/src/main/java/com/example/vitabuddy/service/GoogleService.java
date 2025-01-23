@@ -29,8 +29,8 @@ public class GoogleService {
     GoogleDAO googleDAO;
 
     // 이미 계정이 존재하는지 확인
-    public GoogleDTO checkExistingUser(String socialId) {
-        return googleDAO.findBySocialId(socialId); // 소셜 아이디 기반으로 사용자 정보 반환
+    public GoogleDTO checkExistingUser(String userId) {
+        return googleDAO.findByUserId(userId); // 소셜 아이디 기반으로 사용자 정보 반환
     }
 
     public String getAccessToken(String authorizationCode) throws IOException {
@@ -120,16 +120,16 @@ public class GoogleService {
 
         // JSON 응답 파싱
         JsonObject jsonObject = JsonParser.parseString(response.toString()).getAsJsonObject();
-        String socialId = jsonObject.get("id").getAsString();
+        String userId = jsonObject.get("id").getAsString();
         String userEmail = jsonObject.get("email").getAsString();
         String userName = jsonObject.has("name") ? jsonObject.get("name").getAsString() : null;
 
-        System.out.println("Google 사용자 ID: " + socialId);
+        System.out.println("Google 사용자 ID: " + userId);
         System.out.println("Google 사용자 이메일: " + userEmail);
         System.out.println("Google 사용자 이름: " + userName);
 
         // userInfo 맵에 값 채우기
-        userInfo.put("socialId", socialId);
+        userInfo.put("userId", userId);
         userInfo.put("userEmail", userEmail);
         userInfo.put("userName", userName);
 

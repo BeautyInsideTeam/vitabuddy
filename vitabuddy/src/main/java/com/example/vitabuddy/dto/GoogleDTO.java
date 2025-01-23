@@ -2,16 +2,16 @@ package com.example.vitabuddy.dto;
 
 public class GoogleDTO {
 
-    private String socialId;
+    private String userId;
     private String userName;
     private String userEmail;
 
-    public void setSocialId(String socialId) {
-        this.socialId = socialId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getSocialId() {
-        return socialId;
+    public String getUserId() {
+        return userId;
     }
 
     public String getUserEmail() {

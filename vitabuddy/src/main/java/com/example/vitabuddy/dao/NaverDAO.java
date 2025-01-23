@@ -17,7 +17,7 @@ public class NaverDAO {
     }
 
     // 기존 사용자 확인
-    public NaverDTO findByUserId(String socialId) {
-        return sqlSession.selectOne("NaverMapper.findBySocialId", socialId);
+    public NaverDTO findByUserId(String userId) {
+        return sqlSession.selectOne("NaverMapper.findBySocialId", userId);
     }
 }
