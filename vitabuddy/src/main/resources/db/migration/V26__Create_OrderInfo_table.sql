@@ -2,7 +2,7 @@ create table OrderInfo(
 	
 	OrderId VARCHAR2(60) NOT NULL, 
     OrdDate TIMESTAMP (6) DEFAULT SYSDATE, 
-    UserID VARCHAR2(50) NOT NULL,          
+    UserID VARCHAR2(100) NOT NULL,
     OrdRcvReceiver VARCHAR2(100) NOT NULL, 
     OrdRcvZipcode VARCHAR2(10) NOT NULL,   
     OrdRcvAddress1 VARCHAR2(200) NOT NULL, 
