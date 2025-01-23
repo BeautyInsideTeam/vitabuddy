@@ -7,12 +7,12 @@
 
     <!-- 사용자 정보 삽입 -->
     <insert id="insertNaverMember" parameterType="com.example.vitabuddy.dto.NaverDTO">
-        INSERT INTO naverusers (SocialId, UserName, UserEmail, Gender, BirthYear)
-        VALUES (#{socialId}, #{userName}, #{userEmail}, #{gender}, #{birthYear})
+        INSERT INTO naverusers (UserID, UserName, UserEmail, Gender, BirthYear)
+        VALUES (#{UserID}, #{userName}, #{userEmail}, #{gender}, #{birthYear})
     </insert>
 
     <select id="findBySocialId" parameterType="String" resultType="com.example.vitabuddy.dto.NaverDTO">
-        SELECT * FROM naverusers WHERE SocialId = #{socialId}
+        SELECT * FROM naverusers WHERE UserID = #{UserID}
     </select>
 
 

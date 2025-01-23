@@ -47,7 +47,7 @@ public class MyPageController {
 	private RecommendService recommendService; // 영양제의 추천 성분을 위한 서비스 주입
 
 	@Autowired
-	private CartListService cartService; 
+	private CartListService cartService;
 
 	// 마이페이지로 이동
 	@GetMapping("/myPage")
@@ -116,38 +116,39 @@ public class MyPageController {
 		//10/28 구매내역 출력 (주문일자, 이미지, 상품 정보(상품명, 브랜드, 가격), 수량, 금액)
 		ArrayList<PurchaseHistoryVO> myPagePurchaseLists = cartService.getUserPurchaseHistory(userId);
 
-			LocalDate today = LocalDate.of(2024, 11, 27);  // 2024년 11월 27일로 설정 
-			LocalDate oneMonthAgo = today.minusMonths(1);  //1개월 전
-		    LocalDate threeMonthsAgo = today.minusMonths(3);  //3개월 전
-		    
-		    ArrayList<PurchaseHistoryVO> recentPurchases = new ArrayList<>();  //1개월 구매내역
-	        ArrayList<PurchaseHistoryVO> midTermPurchases = new ArrayList<>();  //1~3개월 구매내역
-	        ArrayList<PurchaseHistoryVO> oldPurchases = new ArrayList<>();  //3개월 구매내역
-			
-	        
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  //formatter
+		/*LocalDate today = LocalDate.of(2025, 2, 27);  // 날짜 설정*/
+		LocalDate today = LocalDate.now(); // 현재 시스템 날짜
+		LocalDate oneMonthAgo = today.minusMonths(1);  //1개월 전
+		LocalDate threeMonthsAgo = today.minusMonths(3);  //3개월 전
 
-			for(PurchaseHistoryVO myPagePurchaseList : myPagePurchaseLists  ) {
-				String dateString = myPagePurchaseList.getOrderId();  //날짜 형식 (String형)
-				
-				
-				
-				LocalDate orderDate = LocalDate.parse(dateString, formatter);  //날짜 형식으로 변환
+		ArrayList<PurchaseHistoryVO> recentPurchases = new ArrayList<>();  //1개월 구매내역
+		ArrayList<PurchaseHistoryVO> midTermPurchases = new ArrayList<>();  //1~3개월 구매내역
+		ArrayList<PurchaseHistoryVO> oldPurchases = new ArrayList<>();  //3개월 구매내역
+
+
+		for (PurchaseHistoryVO myPagePurchaseList : myPagePurchaseLists) {
+			String dateString = myPagePurchaseList.getOrdDate(); // String 날짜
+
+			try {
+				// 문자열을 LocalDate로 변환
+				LocalDate orderDate = LocalDate.parse(dateString.substring(0, 10)); // yyyy-MM-dd만 추출 후 변환
+
 				if (orderDate.isAfter(oneMonthAgo)) {
-	                recentPurchases.add(myPagePurchaseList); // 1개월 이내
-	            } else if (orderDate.isAfter(threeMonthsAgo)) {
-	                midTermPurchases.add(myPagePurchaseList); // 1~3개월
-	            } else {
-	                oldPurchases.add(myPagePurchaseList); // 3개월 이전
-	            }
-				
-				
+					recentPurchases.add(myPagePurchaseList); // 1개월 이내
+				} else if (orderDate.isAfter(threeMonthsAgo)) {
+					midTermPurchases.add(myPagePurchaseList); // 1~3개월
+				} else {
+					oldPurchases.add(myPagePurchaseList); // 3개월 이전
+				}
+			} catch (Exception e) {
+				System.err.println("Error parsing date: " + dateString);
 			}
-			model.addAttribute("recentPurchases", recentPurchases);
-	        model.addAttribute("midTermPurchases", midTermPurchases);
-	        model.addAttribute("oldPurchases", oldPurchases);
-	     
-	       
+
+
+		}
+		model.addAttribute("recentPurchases", recentPurchases);
+		model.addAttribute("midTermPurchases", midTermPurchases);
+		model.addAttribute("oldPurchases", oldPurchases);
 
 		return "member/myPage";
 	}

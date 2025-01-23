@@ -86,6 +86,8 @@ public class NaverService {
         return accessToken;
     }
 
+
+
     // 사용자 정보 요청
     public HashMap<String, Object> getUserInfo(String accessToken) throws IOException {
         String apiUrl = "https://openapi.naver.com/v1/nid/me";

@@ -116,36 +116,36 @@ public class CartListService implements ICartListService {
 		ArrayList<PurchaseHistoryVO> mypagePurchaseLists = dao.getUserPurchaseHistory(userId);
 
 		for (PurchaseHistoryVO mypagePurchaseList : mypagePurchaseLists) {
-			String orderId = mypagePurchaseList.getOrderId();
-			String year = orderId.substring(0, 4);  //년도 추출
+			String ordDate = mypagePurchaseList.getOrdDate();
+			/*String year = orderId.substring(0, 4);  //년도 추출
 	        String month = orderId.substring(4, 6);  //월 추출
 	        String day = orderId.substring(6, 8);  //일 추출
 
-	        String formattedorderId = year + '-' + month + '-' + day;
-	        mypagePurchaseList.setOrderId(formattedorderId);  //format된 orderId 로 값 세팅
-			
+	        String formattedorderId = year + '-' + month + '-' + day;*/
+			mypagePurchaseList.setOrderId(ordDate);  //format된 orderId 로 값 세팅
+
 
 		}
 
 		//이미지 출력
 		for (PurchaseHistoryVO mypagePurchaseList : mypagePurchaseLists) {
-		    try {
-		        if (mypagePurchaseList.getSupImg() != null) {
-		            String base64Img = Base64.getEncoder().encodeToString(mypagePurchaseList.getSupImg());
-		            mypagePurchaseList.setBase64SupImg(base64Img); // Base64로 인코딩된 이미지 설정
-		        }
-		    } catch (Exception e) {
-		        System.out.println("Error encoding image for supplement: " + mypagePurchaseList.getSupName());
-		        e.printStackTrace();
-		    }
+			try {
+				if (mypagePurchaseList.getSupImg() != null) {
+					String base64Img = Base64.getEncoder().encodeToString(mypagePurchaseList.getSupImg());
+					mypagePurchaseList.setBase64SupImg(base64Img); // Base64로 인코딩된 이미지 설정
+				}
+			} catch (Exception e) {
+				System.out.println("Error encoding image for supplement: " + mypagePurchaseList.getSupName());
+				e.printStackTrace();
+			}
 		}
 
 
 
 		return mypagePurchaseLists;
 
-		
-		
-		
+
+
+
 	}
 }

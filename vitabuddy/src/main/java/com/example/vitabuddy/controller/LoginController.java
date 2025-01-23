@@ -31,7 +31,7 @@ public class LoginController {
         } 
         return "fail";
     }*/
-    
+
     // 로그아웃 기능 - 소셜 로그인용
     @RequestMapping("/member/logout")
     public String logout(HttpSession session) {

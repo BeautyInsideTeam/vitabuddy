@@ -49,26 +49,26 @@ public class NaverController {
 
         HashMap<String, Object> userInfo = naverService.getUserInfo(accessToken);
 
-        String socialId = (String) userInfo.get("id");
+        String userId = (String) userInfo.get("id");
         String userName = (String) userInfo.get("name");
         String userEmail = (String) userInfo.get("email");
 
-        NaverDTO existingUser = naverService.findUserById(socialId);
+        NaverDTO existingUser = naverService.findUserById(userId);
 
         if (existingUser != null) {
-            session.setAttribute("sid", existingUser.getSocialId());
+            session.setAttribute("sid", existingUser.getUserId());
             System.out.println("세션에 저장된 SID: " + session.getAttribute("sid"));  // **로그 추가**
             return "redirect:/";
         } else {
             NaverDTO naverDTO = new NaverDTO();
-            naverDTO.setSocialId(socialId);
+            naverDTO.setUserId(userId);
             naverDTO.setUserName(userName);
             naverDTO.setUserEmail(userEmail);
             naverDTO.setGender((String) userInfo.get("gender"));
             naverDTO.setBirthYear((String) userInfo.get("birthyear"));
 
             naverService.registerNaverMember(naverDTO);
-            session.setAttribute("sid", socialId);
+            session.setAttribute("sid", userId);
             System.out.println("신규 가입 사용자 세션 저장: " + session.getAttribute("sid"));  // **로그 추가**
             return "redirect:/";
         }

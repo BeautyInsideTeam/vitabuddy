@@ -2,19 +2,19 @@ package com.example.vitabuddy.dto;
 
 public class NaverDTO {
 
-    private String socialId; // 네이버 사용자 고유 ID
+    private String userId; // 네이버 사용자 고유 ID
     private String userName; // 사용자 이름
     private String userEmail; // 이메일 주소
     private String gender; // 성별
     private String birthYear; // 출생 연도
 
     // Getter & Setter
-    public String getSocialId() {
-        return socialId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setSocialId(String socialId) {
-        this.socialId = socialId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {

@@ -31,7 +31,7 @@ public class HomeController {
     public String home(Model model) {
 
         // 브랜드별 상위 1개의 상품을 가져옴
-		//기능별, 성분별 상위 상품 추가
+        //기능별, 성분별 상위 상품 추가
         List<SupplementStoreVO> topSupplementsByBrand = reviewService.getTopSupplementsByBrand();
         List<SupplementStoreVO> topSupplementsByFunction = reviewService.getTopSupplementsByFunction();
         List<SupplementStoreVO> topSupplementsByIngredient = reviewService.getTopSupplementsByIngredient();
@@ -53,10 +53,10 @@ public class HomeController {
     @Autowired
     private IReviewService reviewService;
 
-	// 4. 상점 페이지 추가
-	@RequestMapping("/supplementList")
-	public String supplementList() {
-		return "supplement/supplementList"; // supplementList.jsp로 연결
-	}
+    // 4. 상점 페이지 추가
+    @RequestMapping("/supplementList")
+    public String supplementList() {
+        return "supplement/supplementList"; // supplementList.jsp로 연결
+    }
 
 }
