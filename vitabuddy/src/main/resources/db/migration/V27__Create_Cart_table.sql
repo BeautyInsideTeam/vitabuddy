@@ -5,5 +5,6 @@ create table cart(
     CartQty NUMBER not null,
     primary key(CartID),
     foreign key(UserID) references users(UserID),
+    foreign key(UserID) references kakaousers(UserID),
     foreign key(SupID) references supplement(SupID)
 ); 
