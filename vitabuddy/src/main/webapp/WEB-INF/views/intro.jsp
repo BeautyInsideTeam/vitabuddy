@@ -26,9 +26,9 @@
         <!-- 로그인 폼 -->
         <div class="loginForm">
             <form id="loginForm">
-                <label for="email">이메일</label>
+                <label for="id">아이디</label>
                 <br>
-                <input type="text" id="email" name="email" class="formTxt" placeholder="이메일" required>  <!-- input 태그 email로 변경 -->
+                <input type="text" id="id" name="id" class="formTxt" placeholder="아이디" required>
                 <br>
                 <label for="pwd">비밀번호</label>
                 <br>

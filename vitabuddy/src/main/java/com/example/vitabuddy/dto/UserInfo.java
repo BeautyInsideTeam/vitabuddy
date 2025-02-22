@@ -28,7 +28,7 @@ public class UserInfo implements UserDetails {
 
     @Override
     public String getUsername() {
-        return dto.getUserEmail();
+        return dto.getUserId();
     }
 
     @Override
@@ -54,7 +54,7 @@ public class UserInfo implements UserDetails {
     @Override
     public String toString() {
         return "UserInfo{" +
-                "userEmail='" + dto.getUserEmail() + '\'' +
+                "userId='" + dto.getUserId() + '\'' +
                 ", userRole='" + dto.getUserRole() + '\'' +
                 '}';
     }

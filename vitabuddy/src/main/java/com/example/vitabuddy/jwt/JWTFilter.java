@@ -29,16 +29,18 @@ public class JWTFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        String accessToken = request.getHeader("access");
+        String accessToken = null;
         String refreshToken = null;
 
-        // Refresh 토큰 쿠키에서 가져오기
+        // 1 쿠키에서 access, refresh 추출
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
+                if ("access".equals(cookie.getName())) {
+                    accessToken = cookie.getValue();
+                }
                 if ("refresh".equals(cookie.getName())) {
                     refreshToken = cookie.getValue();
                 }
@@ -46,64 +48,79 @@ public class JWTFilter extends OncePerRequestFilter {
         }
 
         try {
-            // Access 토큰 유효성 검증
+            // 2 Access 토큰이 있으면 검증
             if (accessToken != null) {
-                jwtUtil.isExpired(accessToken);
-                // 인증 로직 처리
-                String userEmail = jwtUtil.getUserEmail(accessToken);
-                System.out.println("userEmail = " + userEmail);
+                jwtUtil.isExpired(accessToken); // 만료 여부 체크 (만료 시 예외 발생)
 
+                String userId = jwtUtil.getuserId(accessToken);
                 String userRole = jwtUtil.getUserRole(accessToken);
-                System.out.println("userRole = " + userRole);
-                setAuthentication(userEmail, userRole);
+                setAuthentication(userId, userRole);
+
                 filterChain.doFilter(request, response);
                 return;
             }
 
-            // Access 토큰이 만료된 경우 Refresh 토큰 처리
+            // 3 Access가 없거나 만료되었을 경우 -> Refresh 토큰 확인
             if (refreshToken != null) {
-                jwtUtil.isExpired(refreshToken); // Refresh 토큰 유효성 검증
+                jwtUtil.isExpired(refreshToken); // Refresh도 만료 체크
                 Boolean exists = refreshService.existsByRefresh(refreshToken);
                 if (exists == null || !exists) {
                     throw new IllegalArgumentException("Refresh token invalid");
                 }
 
-                String userEmail = jwtUtil.getUserEmail(refreshToken);
+                // Refresh 토큰 유효 -> 새 Access 토큰 발급
+                String userId = jwtUtil.getuserId(refreshToken);
                 String userRole = jwtUtil.getUserRole(refreshToken);
 
-                // 새 Access 토큰 발급
-                String newAccessToken = jwtUtil.createJwt("access", userEmail, userRole, 600000L);
-                response.setHeader("access", newAccessToken);
-                setAuthentication(userEmail, userRole);
+                String newAccessToken = jwtUtil.createJwt("access", userId, userRole, 600000L);
+
+                // 4 새 Access 토큰을 쿠키로 다시 내려줌
+                Cookie newAccessCookie = new Cookie("access", newAccessToken);
+                newAccessCookie.setHttpOnly(true);
+                newAccessCookie.setPath("/");
+                newAccessCookie.setMaxAge(600); // 10분
+                response.addCookie(newAccessCookie);
+
+                setAuthentication(userId, userRole);
                 filterChain.doFilter(request, response);
                 return;
             }
 
-            // Access 및 Refresh 토큰 모두 없는 경우
+            // 5 Access, Refresh 둘 다 없으면 그냥 다음 필터로 진행
             filterChain.doFilter(request, response);
+
         } catch (ExpiredJwtException | IllegalArgumentException e) {
-            // Refresh 토큰 만료 시 로그아웃 처리
+            // 6 Refresh 쿠키가 있었는데 만료되었다면 => 로그아웃 처리
             if (refreshToken != null && "refresh".equals(jwtUtil.getCategory(refreshToken))) {
                 logout(response);
             }
         }
     }
 
-    private void setAuthentication(String userEmail, String userRole) {
+    private void setAuthentication(String userId, String userRole) {
         MemberDTO dto = new MemberDTO();
-        dto.setUserEmail(userEmail);
+        dto.setUserId(userId);
         dto.setUserRole(userRole);
 
         UserInfo userInfo = new UserInfo(dto);
-        Authentication authToken = new UsernamePasswordAuthenticationToken(userInfo, null, userInfo.getAuthorities());
+        Authentication authToken =
+                new UsernamePasswordAuthenticationToken(userInfo, null, userInfo.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authToken);
     }
 
     private void logout(HttpServletResponse response) {
+        // refresh 쿠키 삭제
         Cookie cookie = new Cookie("refresh", null);
         cookie.setMaxAge(0);
         cookie.setPath("/");
         response.addCookie(cookie);
+
+        // access 쿠키도 필요하다면 같이 삭제
+        Cookie accCookie = new Cookie("access", null);
+        accCookie.setMaxAge(0);
+        accCookie.setPath("/");
+        response.addCookie(accCookie);
+
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
     }
 }

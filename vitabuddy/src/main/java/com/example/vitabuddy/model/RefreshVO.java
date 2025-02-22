@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Setter
 public class RefreshVO{
 
-    private String userEmail;
+    private String userId;
     private String refreshToken;
     private Timestamp expiration;
 

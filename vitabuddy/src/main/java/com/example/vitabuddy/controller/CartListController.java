@@ -26,7 +26,7 @@ import com.example.vitabuddy.service.MemberUpdateService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class CartListController {
+public class   CartListController {
 
 	@Autowired
 	CartListService cartListService;

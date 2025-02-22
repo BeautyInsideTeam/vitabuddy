@@ -34,7 +34,7 @@
 
 			<!-- 2. JWT 로그인 -->
 			<!-- 2-1 일반 회원 -->
-            <c:if test="${userRole == 'ROLE_USER'}">
+            <c:if test="${userRole == 'ROLE_USER' && cookie.userId != null}">
                <p>${userId}</p>
                <a href="/logout" id="logoutButton">로그아웃</a>
                <a href="<c:url value='/supplement/wishList'/>">

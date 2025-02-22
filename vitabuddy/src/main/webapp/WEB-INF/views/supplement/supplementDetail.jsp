@@ -110,7 +110,7 @@
 							<c:choose>
 								<c:when test="${not empty topHashtags}">
 									<c:forEach var="hashtag" items="${topHashtags}">
-				                        ${hashtag.reviewHashtag}&nbsp;&nbsp; 
+				                        ${hashtag.reviewHashtag}&nbsp;&nbsp;
 				                    </c:forEach>
 								</c:when>
 								<c:otherwise>
@@ -271,16 +271,22 @@
 							<!-- 리뷰 수정 -->
 							<%-- <td>
 							<c:if test="${review.userId == sessionScope.sid}">
-							<a href="#" class="correctReview" data-review-id="${review.userId}">수정</a>
+							    <a href="#" class="correctReview" data-review-id="${review.userId}">수정</a>
 							</c:if>
+							<c:if test="${review.userId == myUserId}">
+                                <a href="#" class="correctReview" data-review-id="${review.userId}">수정</a>
+                            </c:if>
 						</td> --%>
 							<!-- 리뷰 삭제 -->
 							<%-- <td>
 					    		<c:if test="${review.userId == sessionScope.sid}">
 									<a href="#" class="deleteReview" data-review-id="${review.userId}">리뷰삭제</a>
 					    		</c:if>
+					    		<c:if test="${review.userId == myUserId}">
+                                    <a href="#" class="deleteReview" data-review-id="${review.userId}">리뷰삭제</a>
+                                </c:if>
 							</td> --%>
-							<!-- 리뷰삭제 수정된 부분 --> 
+							<!-- 리뷰삭제 수정된 부분 -->
 							<!-- 삭제 버튼 style="display:inline;" 제거 class="deleteReview" 추가 -->
 							<td colspan="2">
 								<!-- 수정 삭제 버튼 한 칸에/ 순서 변경--> <c:if

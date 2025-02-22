@@ -92,9 +92,10 @@ public class CustomLogoutFilter extends GenericFilterBean {
         refreshService.deleteByRefresh(refresh);
 
         // 쿠키 삭제
+        deleteCookie(response, "access"); // accessToken값 역시 로그아웃하면 바로 삭제되어야 한다.
         deleteCookie(response, "refresh");
         deleteCookie(response, "userRole");
-        deleteCookie(response, "userEmail");
+        deleteCookie(response, "userId");
 
         response.setStatus(HttpServletResponse.SC_OK);
     }

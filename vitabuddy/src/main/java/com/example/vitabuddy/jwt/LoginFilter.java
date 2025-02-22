@@ -19,7 +19,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -41,47 +40,37 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         this.refreshService = refreshService;
     }
 
-    // cookie 생성 메서드
-    private Cookie createCookie(String key, String value) {
-
+    // (1) HttpOnly 쿠키 생성 메서드
+    private Cookie createHttpOnlyCookie(String key, String value, int maxAge) {
         Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(24*60*60);
-        //cookie.setSecure(true);
-        //cookie.setPath("/");
-        cookie.setHttpOnly(true);
+        cookie.setHttpOnly(true); // JS에서 접근 불가 (보안 강화) => ajax 직접참조 불가
+        cookie.setPath("/");      // 애플리케이션 전체 경로에서 전송
+        cookie.setMaxAge(maxAge); // 쿠키 만료 시간(초 단위)
         return cookie;
     }
 
-    // Refresh 메서드 추가
-    private void addRefresh(String userEmail, String refreshToken, Long expiration){
-        Timestamp timestamp = new java.sql.Timestamp(System.currentTimeMillis() + expiration);
-
+    // (2) Refresh 토큰 DB 저장 메서드 (기존 로직 그대로)
+    private void addRefresh(String userId, String refreshToken, Long expiration) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis() + expiration);
         RefreshVO refreshVO = new RefreshVO();
-        refreshVO.setUserEmail(userEmail);
+        refreshVO.setUserId(userId);
         refreshVO.setRefreshToken(refreshToken);
         refreshVO.setExpiration(timestamp);
-
-        // MyBatis를 통해 데이터베이스에 저장
         refreshService.saveRefreshToken(refreshVO);
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+            throws AuthenticationException {
         try {
-            // 요청의 InputStream에서 JSON 데이터를 읽음
             ObjectMapper mapper = new ObjectMapper();
             Map<String, String> credentials = mapper.readValue(request.getInputStream(), Map.class);
 
             String username = credentials.get("username");
             String password = credentials.get("password");
 
-            System.out.println("username = " + username); // 디버깅용
-            System.out.println("password = " + password); // 디버깅용
-
-            // UsernamePasswordAuthenticationToken 생성
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
-
-            // AuthenticationManager로 인증 위임
+            UsernamePasswordAuthenticationToken authToken =
+                    new UsernamePasswordAuthenticationToken(username, password);
             return authenticationManager.authenticate(authToken);
 
         } catch (IOException e) {
@@ -89,44 +78,61 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         }
     }
 
-    // 로그인 성공 시 실행하는 메서드 (JWT를 발급하는 곳)
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) {
+
         // 세션 무효화
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
 
-        // 회원 정보
-        String userEmail = authentication.getName();
-
+        // (3) 인증 정보에서 userId / userRole 추출
+        String userId = authentication.getName();
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
-        GrantedAuthority auth = iterator.next();
-        String userRole = auth.getAuthority();
+        String userRole = iterator.hasNext() ? iterator.next().getAuthority() : "ROLE_USER";
 
-        // 토큰 생성
-        String access = jwtUtil.createJwt("access", userEmail, userRole, 600000L);
-        String refresh = jwtUtil.createJwt("refresh", userEmail, userRole, 86400000L);
+        // (4) 토큰 생성
+        // Access 토큰: 10분
+        // Refresh 토큰: 24시간
+        String accessToken = jwtUtil.createJwt("access", userId, userRole, 600000L);
+        String refreshToken = jwtUtil.createJwt("refresh", userId, userRole, 86400000L);
 
-        // Refresh 토큰 저장 로직
-        addRefresh(userEmail, refresh, 86400000L);
+        // (5) Refresh 토큰 DB 저장
+        addRefresh(userId, refreshToken, 86400000L);
 
-        // 응답 설정
-        response.setHeader("access", access);
-        response.addCookie(createCookie("refresh", refresh));
+        // (6) Access 토큰도 HttpOnly 쿠키로 내려주기
+        Cookie accessCookie = createHttpOnlyCookie("access", accessToken, 600);  // 600초 = 10분
+        response.addCookie(accessCookie);
 
-        // userRole과 userEmail를 쿠키에 저장
-        response.addCookie(createCookie("userRole", userRole));
-        response.addCookie(createCookie("userEmail", userEmail));
+        // (7) Refresh 토큰도 HttpOnly 쿠키로
+        Cookie refreshCookie = createHttpOnlyCookie("refresh", refreshToken, 86400); // 86400초 = 24시간
+        response.addCookie(refreshCookie);
 
+        // (8) 혹시 userRole, userId을 쿠키로 내려주고 싶다면(필요하다면):
+        //  - 만약 JS에서 이 값을 읽어야 한다면 HttpOnly=false
+        Cookie roleCookie = new Cookie("userRole", userRole);
+        roleCookie.setPath("/");
+        roleCookie.setMaxAge(86400);
+        response.addCookie(roleCookie);
+
+        Cookie emailCookie = new Cookie("userId", userId);
+        emailCookie.setPath("/");
+        emailCookie.setMaxAge(86400);
+        response.addCookie(emailCookie);
+
+        // (9) 헤더 "access"는 더 이상 사용하지 않는다.
+        // response.setHeader("access", accessToken);
+
+        // (10) 로그인 성공 응답
         response.setStatus(HttpStatus.OK.value());
     }
 
-    // 로그인 실패 시 실행하는 메서드
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) {
-        response.setStatus(401);
+    protected void unsuccessfulAuthentication(HttpServletRequest request,
+                                              HttpServletResponse response,
+                                              AuthenticationException failed) {
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
     }
 }
