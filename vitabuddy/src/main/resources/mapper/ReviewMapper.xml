@@ -185,21 +185,22 @@
     </select>
 
     <!-- 페이지별 리뷰 가져오기 -->
-    <select id="pagingReviewList" parameterType="map" resultType="com.example.vitabuddy.model.ReviewVO">
+    <select id="pagingReviewList" parameterType="map" resultMap="reviewResultMap">
         <![CDATA[
-	        SELECT * FROM (
-	            SELECT ROWNUM AS rn, reviewNo, reviewTitle, userId, supId, rating, reviewHashtag, reviewDate, content, startDate, endDate, reviewImg
-	            FROM (
-	                SELECT reviewNo, reviewTitle, userId, supId, rating, reviewHashtag, reviewDate, content, startDate, endDate, reviewImg
-	                FROM Review
-	                WHERE supId = #{supId}
-	                ORDER BY reviewDate DESC
-	            )
-	            WHERE ROWNUM <= #{offset} + #{limit}
-	        )
-	        WHERE rn > #{offset}
-	    ]]>
+        SELECT * FROM (
+            SELECT ROWNUM AS rn, reviewNo, reviewTitle, USERID, supId, rating, reviewHashtag, reviewDate, content, startDate, endDate, reviewImg
+            FROM (
+                SELECT reviewNo, reviewTitle, USERID, supId, rating, reviewHashtag, reviewDate, content, startDate, endDate, reviewImg
+                FROM Review
+                WHERE supId = #{supId, jdbcType=INTEGER}
+                ORDER BY reviewDate DESC
+            )
+            WHERE ROWNUM <= #{offset, jdbcType=INTEGER} + #{limit, jdbcType=INTEGER}
+        )
+        WHERE rn > #{offset, jdbcType=INTEGER}
+    ]]>
     </select>
+
 
 
 

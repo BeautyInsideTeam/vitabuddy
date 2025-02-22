@@ -27,6 +27,7 @@
 <script>
     const userId = "${sessionScope.sid}"; // 서버 세션에서 가져온 userId를 JavaScript 변수에 저장
     console.log("JSP User ID from session:", userId); // 콘솔에 userId 출력
+    console.log("JSP User ID from session:", review.userId);
 </script>
 
 </head>
@@ -270,31 +271,32 @@
 							<td colspan="5"><h3>${review.reviewTitle}</h3></td>
 							<!-- 리뷰 수정 -->
 							<%-- <td>
-							<c:if test="${review.userId == sessionScope.sid}">
+							<c:if test="${(not empty sessionScope.sid and review.userId eq sessionScope.sid) or (not empty myUserId and review.userId eq myUserId)}">
 							    <a href="#" class="correctReview" data-review-id="${review.userId}">수정</a>
 							</c:if>
-							<c:if test="${review.userId == myUserId}">
+							<c:if test="${(not empty sessionScope.sid and review.userId eq sessionScope.sid) or (not empty myUserId and review.userId eq myUserId)}">
                                 <a href="#" class="correctReview" data-review-id="${review.userId}">수정</a>
                             </c:if>
 						</td> --%>
 							<!-- 리뷰 삭제 -->
 							<%-- <td>
-					    		<c:if test="${review.userId == sessionScope.sid}">
+					    		<c:if test="${(not empty sessionScope.sid and review.userId eq sessionScope.sid) or (not empty myUserId and review.userId eq myUserId)}">
 									<a href="#" class="deleteReview" data-review-id="${review.userId}">리뷰삭제</a>
 					    		</c:if>
-					    		<c:if test="${review.userId == myUserId}">
+					    		<c:if test="${(not empty sessionScope.sid and review.userId eq sessionScope.sid) or (not empty myUserId and review.userId eq myUserId)}">
                                     <a href="#" class="deleteReview" data-review-id="${review.userId}">리뷰삭제</a>
                                 </c:if>
 							</td> --%>
 							<!-- 리뷰삭제 수정된 부분 -->
 							<!-- 삭제 버튼 style="display:inline;" 제거 class="deleteReview" 추가 -->
 							<td colspan="2">
-								<!-- 수정 삭제 버튼 한 칸에/ 순서 변경--> <c:if
-									test="${review.userId == sessionScope.sid}">
+								<!-- 수정 삭제 버튼 한 칸에/ 순서 변경-->
+								<c:if test="${(not empty sessionScope.sid and review.userId eq sessionScope.sid) or (not empty myUserId and review.userId eq myUserId)}">
 									<button class="deleteReview"
 										data-review-id="${review.reviewNo}"
 										data-sup-id="${supplementDetail.supId}">삭제</button>
-								</c:if> <c:if test="${review.userId == sessionScope.sid}">
+								</c:if>
+								<c:if test="${(not empty sessionScope.sid and review.userId eq sessionScope.sid) or (not empty myUserId and review.userId eq myUserId)}">
 									<button class="editButton"
 										data-sup-id="${supplementDetail.supId}"
 										data-review-no="${review.reviewNo}">수정</button>
@@ -404,6 +406,12 @@
 		</nav>
 
 		<!-- 		</div> -->
+
+<p>myUserId: <c:out value="${myUserId}" /></p>
+<p>Session SID: <c:out value="${sessionScope.sid}" /></p>
+<p>Review UserId: <c:out value="${review.userId}" /></p>
+<p>Controller에서 전달된 myUserId: <c:out value="${myUserId}" /></p>
+<p>리뷰 작성자: <c:out value="${review.userId}" /></p>
 
 
 		<!-- footer 포함 -->
