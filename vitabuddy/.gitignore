@@ -18,6 +18,7 @@ target/
 *.iws
 *.iml
 *.ipr
+application.properties
 
 ### NetBeans ###
 /nbproject/private/
@@ -63,5 +64,3 @@ VITABUDDY*.sql
 =======
 >>>>>>> origin/features/Login
 
-# Ignore application.properties
-/src/main/resources/application.properties
