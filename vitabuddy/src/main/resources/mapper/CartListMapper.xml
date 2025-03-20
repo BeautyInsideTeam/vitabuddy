@@ -8,8 +8,8 @@
  <!-- 장바구니 목록 조회 -->
 <select id="cartList" parameterType="String" resultType="com.example.vitabuddy.model.CartListVO">
 	select c.cartId, c.supId, s.supImg, s.supName, s.supBrand, s.supPrice, c.cartQty, c.userId
-	from cart c, supplement s, kakaousers ku
-	where c.supId = s.supId and ku.UserId=c.userId and c.userId=#{userId}
+	from cart c, supplement s
+	where c.supId = s.supId and c.userId=#{userId}
 	order by c.cartId
 </select>
 

@@ -9,9 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.vitabuddy.dto.UserInfo;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,13 +52,31 @@ public class MyPageController {
 	@Autowired
 	private CartListService cartService;
 
+	/**
+	 * JWT 또는 세션을 통해 현재 인증된 사용자 ID(이메일)를 얻어오는 메서드
+	 */
+	private String getUserIdFromSessionOrJwt(HttpSession session) {
+		String userId = (String) session.getAttribute("sid");
+		if (userId != null) {
+			return userId;
+		}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof UserInfo) {
+			UserInfo userInfo = (UserInfo) auth.getPrincipal();
+			return userInfo.getUsername();
+		}
+		return null;
+	}
+
 	// 마이페이지로 이동
 	@GetMapping("/myPage")
 	public String myPage(HttpSession session, Model model) {
 		// 세션에서 사용자 ID를 가져옴
-		String userId = (String) session.getAttribute("sid");
+		// JWT나 세션으로부터 userId(또는 userEmail) 가져오기
+		String userId = getUserIdFromSessionOrJwt(session);
 		if (userId == null) {
-			return "redirect:/intro"; // 로그인 페이지로 리다이렉트
+			// 인증되지 않은 경우
+			return "redirect:/intro";
 		}
 
 		// 사용자가 복용 중인 영양제 목록을 조회

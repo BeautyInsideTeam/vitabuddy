@@ -1,11 +1,15 @@
 package com.example.vitabuddy.controller;
 
+import com.example.vitabuddy.dto.UserInfo;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +24,29 @@ public class WishListController {
 	@Autowired
 	private WishListService wishService;
 
+	/**
+	 * JWT 또는 세션을 통해 현재 인증된 사용자 ID(이메일)를 얻어오는 메서드
+	 */
+	private String getUserIdFromSessionOrJwt(HttpSession session) {
+		String userId = (String) session.getAttribute("sid");
+		if (userId != null) {
+			return userId;
+		}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof UserInfo) {
+			UserInfo userInfo = (UserInfo) auth.getPrincipal();
+			return userInfo.getUsername();
+		}
+		return null;
+	}
+
 	// 1. 찜 목록 조회
 	@GetMapping("/wishList")
 	public String getWishList(HttpSession session, Model model) {
-		String userId = (String) session.getAttribute("sid");  //1234
+		String userId = getUserIdFromSessionOrJwt(session);
+		if (userId == null) {
+			return "redirect:/intro";
+		}
 		model.addAttribute("wishList", wishService.getWishList(userId));
 		return "supplement/wishList";
 	}
@@ -31,40 +54,40 @@ public class WishListController {
 	// 2. 찜 목록에 상품 추가
 	@ResponseBody
 	@PostMapping("/wishList/insert")
-	public String insertWishList(@RequestBody WishListVO wishListVO, HttpSession session) {
-		// 찜 목록에 중복 확인 및 추가
+	public ResponseEntity<String> insertWishList(@RequestBody WishListVO wishListVO, HttpSession session) {
+		String userId = getUserIdFromSessionOrJwt(session);
+		if (userId == null) {
+			return ResponseEntity.status(401).body("Unauthorized");
+		}
+		wishListVO.setUserId(userId);
 		wishService.insertWishList(wishListVO);
-
-		return "찜 목록에 추가되었습니다.";
+		return ResponseEntity.ok("찜 목록에 추가되었습니다.");
 	}
 
 	// 3. 찜 목록에서 상품 삭제
 	@ResponseBody
 	@PostMapping("/wishList/delete")
-	public int deleteWishList(@RequestBody HashMap<String, Object> requestBody) {
+	public int deleteWishList(@RequestBody HashMap<String, Object> requestBody, HttpSession session) {
+		String userId = getUserIdFromSessionOrJwt(session);
+		if (userId == null) {
+			return 0;
+		}
 		int supId = (int) requestBody.get("supId");
-		String userId = (String) requestBody.get("userId");
 
 		int result = wishService.deleteWishList(supId, userId);
-
-		if (result > 0)
-			return 1; // 삭제 성공
-		else
-			return 0; // 삭제 실패
+		return result > 0 ? 1 : 0;
 	}
 
 	// 4. 찜 목록에서 장바구니로 상품 추가
 	@ResponseBody
 	@PostMapping("/wishList/toCart")
-	public int addWishListtoCartList(@RequestBody HashMap<String, Object> toCart) {
-		int supId = (int) toCart.get("supId");
-		String userId = (String) toCart.get("userId");
-
-		int result = wishService.addWishListtoCartList(supId, userId);
-		if (result > 0)
-			return 1;
-		else
+	public int addWishListtoCartList(@RequestBody HashMap<String, Object> toCart, HttpSession session) {
+		String userId = getUserIdFromSessionOrJwt(session);
+		if (userId == null) {
 			return 0;
+		}
+		int supId = (int) toCart.get("supId");
+		int result = wishService.addWishListtoCartList(supId, userId);
+		return result > 0 ? 1 : 0;
 	}
-
 }

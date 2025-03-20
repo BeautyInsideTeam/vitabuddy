@@ -2,7 +2,10 @@ package com.example.vitabuddy.controller;
 
 import java.util.List;
 
+import com.example.vitabuddy.dto.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +29,27 @@ public class MemberUpdateController {
 
 	SupplementService supService;
 
+	/**
+	 * JWT 또는 세션을 통해 현재 인증된 사용자 ID(이메일)를 얻어오는 메서드
+	 */
+	private String getUserIdFromSessionOrJwt(HttpSession session) {
+		String userId = (String) session.getAttribute("sid");
+		if (userId != null) {
+			return userId;
+		}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof UserInfo) {
+			UserInfo userInfo = (UserInfo) auth.getPrincipal();
+			return userInfo.getUsername();
+		}
+		return null;
+	}
+
 	// 마이페이지 > 회원정보 수정폼으로 이동
 	@RequestMapping("/member/myInfoChangeForm")
 	public String myInfoChangeForm(HttpSession session, Model model) {
 
-		String userId = (String) session.getAttribute("sid");
+		String userId = getUserIdFromSessionOrJwt(session);
 		MemberVO myInfo = memService.myInfoUpdateForm(userId);
 		model.addAttribute("myInfo", myInfo);
 
@@ -45,7 +64,7 @@ public class MemberUpdateController {
 	@RequestMapping("/member/myInfoUpdate")
 	public String myInfoUpdate(MemberVO vo, @RequestParam("userPh1") String userPh1,
 			@RequestParam("userPh2") String userPh2, @RequestParam("userPh3") String userPh3, HttpSession session) {
-		String userId = (String) session.getAttribute("sid");
+		String userId = getUserIdFromSessionOrJwt(session);
 		vo.setUserId(userId); // vosetUserId 추가 1017
 
 		String userPh = userPh1 + "-" + userPh2 + "-" + userPh3;
