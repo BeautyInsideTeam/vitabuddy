@@ -5,6 +5,7 @@ import com.example.vitabuddy.dao.OrderInfoDAO;
 import com.example.vitabuddy.model.OrderInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,14 +17,18 @@ import java.util.logging.Logger;
 @Service
 public class PaymentService {
 
+    private static final Logger logger = Logger.getLogger(PaymentService.class.getName());
+
+    @Value("${toss.SECRET_KEY}")
+    private String secretKey;
+
     @Autowired
     @Qualifier("ICartListDAO")
-    ICartListDAO dao;
+    private ICartListDAO dao;
 
-    private static final Logger logger = Logger.getLogger(PaymentService.class.getName());
-    private final String SECRET_KEY = "test_sk_6BYq7GWPVveZKQODaAgw3NE5vbo1";
     private final OrderInfoDAO orderInfoDAO;
 
+    @Autowired
     public PaymentService(OrderInfoDAO orderInfoDAO) {
         this.orderInfoDAO = orderInfoDAO;
     }
@@ -37,7 +42,7 @@ public class PaymentService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBasicAuth(SECRET_KEY, "");
+        headers.setBasicAuth(secretKey, ""); // 여기에 주입된 secretKey 사용
 
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
         RestTemplate restTemplate = new RestTemplate();
@@ -54,15 +59,12 @@ public class PaymentService {
 
     public void saveOrderInfo(OrderInfoVO orderInfo) {
         logger.info("DB에 주문 정보 저장: " + orderInfo);
-        orderInfoDAO.insertOrderInfo(orderInfo); // DB에 저장
+        orderInfoDAO.insertOrderInfo(orderInfo);
         logger.info("DB 저장 완료");
-        //2. 주문상품 업데이트 (OrderProduct테이블)
-        HashMap<String, Object> map = new HashMap<String, Object>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("orderId", orderInfo.getOrderId());
         map.put("userId", orderInfo.getUserId());
         dao.insertOrderProduct(map);
-
-        //주문 완료 후, 장바구니에 있는 데이터 삭제
         dao.deleteCartAfterOrder(orderInfo.getUserId());
     }
 }
