@@ -62,3 +62,7 @@ VITABUDDY*.sql
 
 =======
 >>>>>>> origin/features/Login
+
+# Ignore application.properties
+/src/main/resources/application.properties
+

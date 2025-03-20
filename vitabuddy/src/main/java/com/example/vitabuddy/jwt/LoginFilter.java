@@ -30,7 +30,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     // JWT token 주입
     private final JWTUtil jwtUtil;
 
-    // Refresh VO & RefreshService 필드선언
+    // RefreshService 필드선언
     private RefreshService refreshService;
 
     // LoginFilter에 주입
@@ -122,10 +122,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         emailCookie.setMaxAge(86400);
         response.addCookie(emailCookie);
 
-        // (9) 헤더 "access"는 더 이상 사용하지 않는다.
-        // response.setHeader("access", accessToken);
-
-        // (10) 로그인 성공 응답
+        // (9) 로그인 성공 응답
         response.setStatus(HttpStatus.OK.value());
     }
 

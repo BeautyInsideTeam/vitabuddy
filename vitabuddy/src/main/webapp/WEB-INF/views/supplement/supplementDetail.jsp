@@ -407,13 +407,6 @@
 
 		<!-- 		</div> -->
 
-<p>myUserId: <c:out value="${myUserId}" /></p>
-<p>Session SID: <c:out value="${sessionScope.sid}" /></p>
-<p>Review UserId: <c:out value="${review.userId}" /></p>
-<p>Controller에서 전달된 myUserId: <c:out value="${myUserId}" /></p>
-<p>리뷰 작성자: <c:out value="${review.userId}" /></p>
-
-
 		<!-- footer 포함 -->
 		<c:import url="/WEB-INF/views/layout/footer.jsp" />
 	</div>

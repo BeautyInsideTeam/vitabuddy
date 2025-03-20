@@ -49,7 +49,7 @@ public class ReviewController {
         // Principal이 UserInfo 타입인지 확인 후 가져오기
         if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof UserInfo) {
             UserInfo userInfo = (UserInfo) auth.getPrincipal();
-            // JWT 인증에선 userEmail을 식별자처럼 사용
+            // JWT 인증에선 Username을 식별자처럼 사용
             return userInfo.getUsername();
         }
         // 둘 다 없으면 null

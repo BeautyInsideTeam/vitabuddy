@@ -1,33 +1,25 @@
 package com.example.vitabuddy.controller;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-
-import com.example.vitabuddy.dto.UserInfo;
-import jakarta.servlet.http.HttpServletRequest;
+import com.example.vitabuddy.model.SupplementStoreVO;
+import com.example.vitabuddy.service.IReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.vitabuddy.model.SupplementStoreVO;
-import com.example.vitabuddy.service.IReviewService;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
-	// 1. 인트로 화면 (로그인화면)
-	@RequestMapping("/intro") // intro 추가
-	public String intro() {
-		return "intro";
-	}
+    // 1. 인트로 화면 (로그인화면)
+    @RequestMapping("/intro") // intro 추가
+    public String intro() {
+        return "intro";
+    }
 
-	// 2. 메인홈페이지. => 회원용
-	@RequestMapping("/")
+    // 2. 메인홈페이지. => 회원용
+    @RequestMapping("/")
     public String home(Model model) {
 
         // 브랜드별 상위 1개의 상품을 가져옴
@@ -35,7 +27,7 @@ public class HomeController {
         List<SupplementStoreVO> topSupplementsByBrand = reviewService.getTopSupplementsByBrand();
         List<SupplementStoreVO> topSupplementsByFunction = reviewService.getTopSupplementsByFunction();
         List<SupplementStoreVO> topSupplementsByIngredient = reviewService.getTopSupplementsByIngredient();
-       
+
         // 모델에 담아 JSP로 전달
         model.addAttribute("topSupplementsBrand", topSupplementsByBrand);
         model.addAttribute("topSupplementsFunction", topSupplementsByFunction);
@@ -45,7 +37,7 @@ public class HomeController {
 
     //3.메인페이지 => 관리자용
     @RequestMapping("/admin")
-    public String adminHome(){
+    public String adminHome() {
         return "adminHome";
     }
 
