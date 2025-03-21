@@ -10,6 +10,6 @@ CREATE TABLE Review (
     StartDate DATE,
     EndDate DATE,
     ReviewImg VARCHAR2(200),
-    FOREIGN KEY (UserID) REFERENCES users(UserID), 
+    FOREIGN KEY (UserID) REFERENCES users(UserID),
     FOREIGN KEY (SupID) REFERENCES supplement(SupID) 
 );

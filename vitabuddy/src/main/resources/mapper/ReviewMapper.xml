@@ -38,6 +38,7 @@
         #{content, jdbcType=VARCHAR}, #{startDate, jdbcType=DATE}, #{endDate, jdbcType=DATE}, #{reviewImg, jdbcType=VARCHAR})
     </insert>
 
+
     <select id="reviewLists" parameterType="int" resultMap="reviewResultMap">
         SELECT REVIEWNO, REVIEWTITLE, USERID, SUPID, RATING, REVIEWHASHTAG, REVIEWDATE,
         CONTENT, STARTDATE, ENDDATE, REVIEWIMG
