@@ -20,7 +20,7 @@ public class PaymentService {
     private static final Logger logger = Logger.getLogger(PaymentService.class.getName());
 
     @Value("${toss.SECRET_KEY}")
-    private String secretKey;
+    private String SECRET_KEY;
 
     @Autowired
     @Qualifier("ICartListDAO")
@@ -42,7 +42,7 @@ public class PaymentService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBasicAuth(secretKey, ""); // 여기에 주입된 secretKey 사용
+        headers.setBasicAuth(SECRET_KEY, ""); // 여기에 주입된 SECRET_KEY 사용
 
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
         RestTemplate restTemplate = new RestTemplate();
