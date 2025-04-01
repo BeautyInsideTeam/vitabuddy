@@ -2,5 +2,6 @@ CREATE TABLE GoogleUsers (
     UserID VARCHAR2(100) NOT NULL,
     UserName VARCHAR2(20),
     UserEmail VARCHAR2(80) NOT NULL UNIQUE,
-    AuthType VARCHAR2(80)
+    AuthType VARCHAR2(80),
+    PRIMARY KEY (UserID)
 );

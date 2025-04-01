@@ -24,11 +24,11 @@ $(document).ready(function() {
                             alert('장바구니에 추가되었습니다');
                             history.replaceState(null, null, window.location.href);
                         } else {
-                            alert('장바구니 추가 실패');
+                            alert('장바구니 추가에 실패했습니다');
                         }
                     },
                     error: function() {
-                        alert('장바구니 추가 실패');
+                        alert('(에러)장바구니 추가 실패');
                     }
                 });
             },
